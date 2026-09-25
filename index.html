@@ -31,14 +31,284 @@ input,textarea,select{width:100%;border:1px solid var(--line);border-radius:15px
 .coachDock{position:fixed;right:18px;bottom:18px;width:min(360px,calc(100vw - 36px));z-index:30}.coachMini{border:1px solid rgba(217,183,111,.7);background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}.coachHead{display:flex;align-items:center;justify-content:space-between;gap:8px;background:linear-gradient(135deg,var(--petrol2),var(--petrol));color:white;padding:12px 14px;font-weight:950}.coachBody{padding:14px}.coachMood{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.moodBtn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 10px;cursor:pointer;font-weight:800}.moodBtn:hover{background:var(--soft)}.coachHidden .coachBody{display:none}.coachPulse{animation:pulseCoach 1.4s ease-in-out 2}@keyframes pulseCoach{0%,100%{box-shadow:var(--shadow)}50%{box-shadow:0 0 0 6px rgba(217,183,111,.24), var(--shadow)}}
 @media(max-width:960px){.coachHero{grid-template-columns:1fr}.coachDock{position:static;width:auto;margin:12px 18px}.coachHidden .coachBody{display:block}}
 
+
+/* ===== ROMI VNext: Dashboard, progress, persistence, error bank, contextual coach ===== */
+:root{
+  --read:#2563eb;--grammar:#7c3aed;--vocab:#059669;--listen:#ea580c;
+  --speak:#e11d48;--write:#4f46e5;--dash:#0f4c5c;--softBlue:#eef6ff;
+}
+body{padding-bottom:0}
+.vnextDashboard{max-width:1240px;margin:22px auto 0;padding:0 18px}
+.dashboardShell{background:linear-gradient(135deg,#073642 0%,#0b5363 56%,#2f6f5e 100%);border-radius:32px;padding:28px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.dashboardShell:after{content:"";position:absolute;right:-90px;top:-100px;width:330px;height:330px;border-radius:50%;background:radial-gradient(circle,rgba(217,183,111,.28),transparent 66%)}
+.dashTop{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;position:relative;z-index:1}
+.welcomeTitle{font-size:clamp(2rem,5vw,3.7rem);line-height:1;margin:8px 0 10px;letter-spacing:-.05em}
+.welcomeText{color:#e8f4f5;line-height:1.6;max-width:740px}
+.nameRow{display:flex;gap:8px;max-width:520px;margin-top:16px}.nameRow input{background:rgba(255,255,255,.96)}
+.dashSnapshot{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);backdrop-filter:blur(12px);border-radius:24px;padding:18px}
+.dashSnapshot .metric{border-color:rgba(255,255,255,.16)}.dashSnapshot .metric b{color:#ffe6a7}
+.dashGrid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-top:18px;position:relative;z-index:1}
+.missionCard,.recommendCard{background:#fff;color:var(--ink);border-radius:22px;padding:18px;box-shadow:0 12px 30px rgba(0,0,0,.12)}
+.missionCard h3,.recommendCard h3{margin:0 0 8px}.missionSteps{display:grid;gap:8px;margin-top:12px}.missionStep{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:var(--soft)}
+.missionDot{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--petrol);color:#fff;font-weight:950;font-size:.8rem}
+.quickActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.skillOverview{max-width:1240px;margin:16px auto 0;padding:0 18px}
+.skillGrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.skillCard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:15px;box-shadow:0 8px 22px rgba(7,43,53,.06);position:relative;overflow:hidden}
+.skillCard:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--skillColor,var(--petrol))}
+.skillHead{display:flex;justify-content:space-between;gap:8px;align-items:center}.skillName{font-weight:950;color:var(--petrol)}.skillLevel{font-weight:950;color:var(--skillColor,var(--petrol))}
+.skillBar{height:8px;background:#edf2f4;border-radius:999px;overflow:hidden;margin:10px 0 7px}.skillBar span{display:block;height:100%;width:0;background:var(--skillColor,var(--petrol));transition:.4s}
+.mastery{font-size:.78rem;color:var(--muted);font-weight:850}
+.practiceHub .card{min-height:168px}.practiceIcon{font-size:1.7rem;margin-bottom:7px}.practiceHub .card p{min-height:48px}
+.progressCenterGrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:16px}
+.progressProfile{display:grid;gap:10px}.progressSkill{display:grid;grid-template-columns:100px 64px 1fr;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:15px;background:#fbfdfd}
+.progressSkill .bar{height:9px;background:#e7eff1;border-radius:999px;overflow:hidden}.progressSkill .bar span{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--gold))}
+.errorList{display:grid;gap:9px;max-height:440px;overflow:auto;padding-right:4px}.errorItem{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff}.errorTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.errorSkill{font-size:.76rem;font-weight:950;color:#fff;background:var(--petrol);padding:5px 8px;border-radius:999px}.errorCount{font-size:.78rem;color:var(--muted)}.errorMistake{margin-top:8px;color:var(--bad);font-weight:850}.errorCorrection{color:var(--ok);font-weight:850}.errorWhy{color:var(--muted);font-size:.87rem;line-height:1.45;margin-top:4px}
+.emptyState{border:2px dashed var(--line);border-radius:18px;padding:22px;text-align:center;color:var(--muted);background:#fbfdfd}
+.recentActivity{display:grid;gap:7px}.activityRow{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:8px 0;font-size:.9rem}.activityRow:last-child{border-bottom:none}
+.bottomAppNav{display:none}
+.section{scroll-margin-top:88px}
+.recommendBadge{display:inline-flex;padding:6px 9px;border-radius:999px;background:#fff4d6;color:#6d4d10;font-weight:900;font-size:.78rem;margin-bottom:7px}
+.savedNotice{font-size:.82rem;color:#d8f3e8;margin-top:8px}
+@media(max-width:1100px){.skillGrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.dashTop,.dashGrid,.progressCenterGrid{grid-template-columns:1fr}.skillGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){
+  body{padding-bottom:70px}.skillGrid{grid-template-columns:1fr}.nameRow{flex-direction:column}
+  .bottomAppNav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:10px;right:10px;bottom:10px;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+  .bottomAppNav a{text-decoration:none;color:var(--petrol);text-align:center;padding:9px 4px;font-size:.72rem;font-weight:900}.bottomAppNav span{display:block;font-size:1.1rem;margin-bottom:2px}
+  .dashboardShell{padding:22px}.vnextDashboard,.skillOverview{padding:0 12px}
+}
+@media print{.vnextDashboard,.skillOverview,.bottomAppNav{display:none}}
+
+
+/* ===== ROMI LIVE COACH+ ===== */
+.coachPlus{background:linear-gradient(180deg,#f9fcfc,#eef7f6);border:1px solid #d7e8e5}
+.coachPlusHeader{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:18px}
+.coachStatus{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#e7f8ef;color:#176b43;border:1px solid #bee7d1;font-weight:900;font-size:.82rem;white-space:nowrap}
+.statusDot{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 5px rgba(34,197,94,.13)}
+.coachChatLayout{display:grid;grid-template-columns:300px 1fr;gap:16px}
+.coachProfilePanel,.coachChatPanel{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 32px rgba(7,43,53,.07)}
+.coachProfilePanel{padding:18px}
+.coachAvatarLarge{width:62px;height:62px;border-radius:20px;display:grid;place-items:center;background:linear-gradient(135deg,var(--petrol),#26778a);color:#fff;font-size:1.8rem;font-weight:1000;box-shadow:0 10px 24px rgba(15,76,92,.22);margin-bottom:12px}
+.coachInsightBox{padding:12px;border:1px solid var(--line);border-radius:16px;background:#fbfdfd;margin:10px 0;color:var(--ink);line-height:1.45}
+.coachInsightLabel{font-size:.68rem;letter-spacing:.08em;font-weight:1000;color:var(--muted);margin-bottom:4px}
+.coachChatPanel{padding:0;overflow:hidden}
+.coachQuickBar{display:flex;gap:7px;flex-wrap:wrap;padding:13px;border-bottom:1px solid var(--line);background:#f8fbfb}
+.coachQuickBar button{border:1px solid #d7e3e5;background:#fff;color:var(--petrol);border-radius:999px;padding:7px 10px;font-size:.8rem;font-weight:900;cursor:pointer}
+.coachQuickBar button:hover{background:#edf7f7}
+.coachChatWindow{height:430px;overflow-y:auto;padding:18px;background:linear-gradient(180deg,#fdfefe,#f7fbfb);display:flex;flex-direction:column;gap:12px}
+.chatMsg{display:flex;gap:9px;align-items:flex-start;max-width:88%}
+.chatMsg.user{align-self:flex-end;flex-direction:row-reverse}
+.chatAvatar{flex:0 0 auto;width:34px;height:34px;border-radius:12px;display:grid;place-items:center;font-weight:1000;background:var(--petrol);color:#fff}
+.chatMsg.user .chatAvatar{background:#d9b76f;color:#40300c}
+.chatBubble{padding:11px 13px;border-radius:17px;border:1px solid var(--line);background:#fff;color:var(--ink);line-height:1.55;box-shadow:0 5px 15px rgba(7,43,53,.05);font-size:.92rem}
+.chatMsg.user .chatBubble{background:#0f4c5c;color:#fff;border-color:#0f4c5c}
+.chatTime{display:block;margin-top:5px;font-size:.68rem;opacity:.58}
+.coachTyping{display:inline-flex;gap:4px;align-items:center}.coachTyping i{width:6px;height:6px;border-radius:50%;background:#789;animation:coachDot 1s infinite}.coachTyping i:nth-child(2){animation-delay:.15s}.coachTyping i:nth-child(3){animation-delay:.3s}
+@keyframes coachDot{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+.coachAskArea{padding:14px;border-top:1px solid var(--line);background:#fff}
+.coachAskArea textarea{min-height:60px;margin:0;resize:vertical;background:#fbfdfd}
+.coachAskActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.coachCapabilities{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 10px}.coachCapabilities span{font-size:.7rem;font-weight:850;color:#48636a;padding:5px 8px;border-radius:999px;background:#edf5f5}
+.coachLocalNote{margin:0;padding:0 14px 14px;color:var(--muted);font-size:.75rem;line-height:1.45}
+.coachDockAsk{display:flex;gap:6px;margin:8px 0}.coachDockAsk input{padding:8px 9px;border-radius:12px;font-size:.8rem;min-width:0}
+.coachFeedbackCard{margin-top:9px;padding:9px 10px;border-radius:13px;background:#f5faf9;border-left:4px solid var(--green);color:#38545a}
+.coachRule{font-weight:900;color:var(--petrol)}
+.coachExample{display:block;margin-top:6px;padding:8px 10px;background:#fff8e6;border-radius:11px;color:#5f4a15}
+@media(max-width:900px){.coachChatLayout{grid-template-columns:1fr}.coachChatWindow{height:390px}.coachPlusHeader{display:block}.coachStatus{margin-top:8px}}
+@media(max-width:600px){.coachChatWindow{height:360px}.chatMsg{max-width:96%}.coachQuickBar{overflow-x:auto;flex-wrap:nowrap}.coachQuickBar button{white-space:nowrap}}
+
 </style>
 </head>
 <body>
-<header class="topbar"><nav class="nav"><div class="brand"><div class="logo">🤖</div><div>Romi<br><span class="small">Your AI Learning Assistant</span></div></div><div class="links"><a href="#diagnostic">Diagnostic</a><a href="#grammar">Grammar</a><a href="#reading">Reading</a><a href="#strategies">Strategies</a><a href="#vocabulary">Vocabulary</a><a href="#writing">Writing</a><a href="#speaking">Speaking</a><a href="#listening">Listening</a><a href="#coach">Live Coach</a><a href="#teacher">Teacher</a></div></nav></header>
+<header class="topbar">
+<nav class="nav">
+  <div class="brand">
+    <div class="logo">R</div>
+    <div>Romi<br><span class="small">Your AI Learning Assistant</span></div>
+  </div>
+  <div class="links">
+    <a href="#home">Home</a>
+    <a href="#diagnostic">Diagnostic</a>
+    <a href="#practiceHub">Practice</a>
+    <a href="#progressCenter">Progress</a>
+    <a href="#coach">Live Coach</a>
+    <a href="#teacher">Teacher</a>
+  </div>
+</nav>
+</header>
+
+<section class="vnextDashboard" id="home">
+  <div class="dashboardShell">
+    <div class="dashTop">
+      <div>
+        <div class="kicker">ROMI VNext · Personalized EFL Learning</div>
+        <h1 class="welcomeTitle">Hi, <span id="dashStudentName">Student</span> 👋</h1>
+        <p class="welcomeText">Your dashboard connects your diagnostic, practice, mistakes, progress, and Romi Live Coach. Complete activities and Romi will adjust what you should practice next.</p>
+        <div class="nameRow">
+          <input id="studentNameInput" type="text" maxlength="30" placeholder="Type your first name">
+          <button class="btn gold" onclick="saveStudentName()">Save name</button>
+        </div>
+        <div class="savedNotice">Progress is saved automatically in this browser.</div>
+      </div>
+      <aside class="dashSnapshot">
+        <h3 style="color:white">My Learning Snapshot</h3>
+        <div class="metric"><span>Overall CEFR</span><b id="dashOverall">Not assessed</b></div>
+        <div class="metric"><span>XP</span><b id="dashXP">0 XP</b></div>
+        <div class="metric"><span>Activities</span><b id="dashActivities">0</b></div>
+        <div class="metric"><span>Error bank</span><b id="dashErrors">0 patterns</b></div>
+      </aside>
+    </div>
+
+    <div class="dashGrid">
+      <div class="missionCard">
+        <div class="recommendBadge">TODAY'S MISSION</div>
+        <h3 id="missionTitle">Find your starting point</h3>
+        <p class="small" id="missionWhy">Complete the adaptive diagnostic so Romi can build your skill profile.</p>
+        <div class="missionSteps" id="missionSteps"></div>
+        <div class="quickActions">
+          <a class="btn" id="missionButton" href="#diagnostic">Start mission</a>
+          <a class="btn secondary" href="#practiceHub">Choose another skill</a>
+        </div>
+      </div>
+      <div class="recommendCard">
+        <div class="recommendBadge">RECOMMENDED FOR YOU</div>
+        <h3 id="recommendedTitle">Adaptive Diagnostic</h3>
+        <p id="recommendedText" class="small">Start with the diagnostic. Romi will change the question difficulty according to your answers.</p>
+        <div class="quickActions">
+          <a class="btn green" id="recommendedLink" href="#diagnostic">Continue learning</a>
+          <button class="btn secondary" onclick="clearLocalProgress()">Reset saved progress</button>
+        </div>
+        <div id="recentActivity" class="recentActivity" style="margin-top:12px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skillOverview" aria-label="Skill profile">
+  <div class="skillGrid" id="dashSkillGrid"></div>
+</section>
+
 <section class="hero"><div class="heroCard"><div class="kicker">Adaptive EFL Assistant A1–A2+</div><h1>Learn English with practice, pictures, and live feedback.</h1><p>Romi guides students through diagnostic testing, grammar, reading strategies, vocabulary flashcards with pictures, writing analysis, speaking tasks, and personalized recommendations.</p><div><a class="btn gold" href="#diagnostic">Start diagnostic</a> <a class="btn secondary" href="#vocabulary">Try flashcards</a> <a class="btn secondary" href="#strategies">Practice strategies</a></div><select class="mobileNav" onchange="location.hash=this.value"><option value="#diagnostic">Go to Diagnostic</option><option value="#grammar">Grammar</option><option value="#reading">Reading</option><option value="#strategies">Reading Strategies</option><option value="#vocabulary">Vocabulary</option><option value="#writing">Writing</option><option value="#speaking">Speaking</option><option value="#listening">Listening</option><option value="#coach">Romi Live Coach</option></select></div><aside class="side"><h3>Student Profile</h3><div class="metric"><span>Estimated level</span><b id="profileLevel">Not assessed</b></div><div class="metric"><span>Recommended next step</span><b id="profileNext">Start diagnostic</b></div><div class="metric"><span>XP</span><b id="xp">0 XP</b></div><div class="progress"><div class="fill" id="xpFill"></div></div><p class="small">XP increases when students complete practice. Use it as motivation, not as a grade.</p><div id="badgeBox"><span class="pill">Reading Explorer</span> <span class="pill">Vocabulary Builder</span> <span class="pill">Writing Improver</span></div></aside></section>
 <main class="wrap">
 
-<section class="section coachSection" id="coach"><h2>Romi Live Coach</h2><p class="lead">Real-time tips, next-step guidance, and supportive messages while students practice.</p><div class="coachHero"><div class="coachPanel"><div class="coachBubble" id="coachMainMessage"><b>Hi! I am Romi Live Coach.</b><br>Start the diagnostic or choose a skill. I will tell you what you are doing well, what to review, and your next small step.</div><div class="coachMood"><button class="moodBtn" onclick="coachMood('confused')">😵 I feel confused</button><button class="moodBtn" onclick="coachMood('nervous')">😟 I feel nervous</button><button class="moodBtn" onclick="coachMood('ready')">🚀 I am ready</button><button class="moodBtn" onclick="coachMood('proud')">⭐ I did well</button></div></div><div class="coachPanel"><h3>What should I work on?</h3><select id="coachSkill" onchange="manualCoachTip()"><option value="diagnostic">Adaptive diagnostic</option><option value="grammar">Grammar accuracy</option><option value="reading">Reading comprehension</option><option value="vocabulary">Vocabulary range</option><option value="writing">Writing correction</option><option value="speaking">Speaking fluency</option><option value="listening">Listening comprehension</option></select><div id="coachTips" class="coachTips"></div><button class="btn small" style="margin-top:12px" onclick="manualCoachTip()">Get tips now</button> <button class="btn small secondary" style="margin-top:12px" onclick="location.hash='diagnostic'">Go to diagnostic</button></div></div></section>
+<section class="section practiceHub" id="practiceHub">
+  <h2>Practice Hub</h2>
+  <p class="lead">Choose one skill. Romi remembers your results and updates your recommendation after practice.</p>
+  <div class="grid g3">
+    <a class="card" href="#grammar" style="text-decoration:none;color:inherit"><div class="practiceIcon">🧩</div><h3>Grammar</h3><p class="small">Micro-lessons, examples, common mistakes, and guided practice.</p><span class="pill">Practice grammar</span></a>
+    <a class="card" href="#reading" style="text-decoration:none;color:inherit"><div class="practiceIcon">📚</div><h3>Reading</h3><p class="small">CEFR readings plus linked strategy practice and comprehension.</p><span class="pill">Open library</span></a>
+    <a class="card" href="#vocabulary" style="text-decoration:none;color:inherit"><div class="practiceIcon">🖼️</div><h3>Vocabulary</h3><p class="small">Picture flashcards, sentence practice, and mini quizzes.</p><span class="pill">Build vocabulary</span></a>
+    <a class="card" href="#listening" style="text-decoration:none;color:inherit"><div class="practiceIcon">🎧</div><h3>Listening</h3><p class="small">10 graded listening tasks with scripts and feedback.</p><span class="pill">Listen now</span></a>
+    <a class="card" href="#speaking" style="text-decoration:none;color:inherit"><div class="practiceIcon">🎤</div><h3>Speaking</h3><p class="small">Timed speaking missions with a fluency checklist.</p><span class="pill">Start speaking</span></a>
+    <a class="card" href="#writing" style="text-decoration:none;color:inherit"><div class="practiceIcon">✍️</div><h3>Writing</h3><p class="small">Writing analysis with mistakes, corrections, explanations, and revision.</p><span class="pill">Analyze writing</span></a>
+  </div>
+</section>
+
+<section class="section" id="progressCenter">
+  <h2>My Progress Center</h2>
+  <p class="lead">Your CEFR profile is different for each skill. Romi updates it using your practice results instead of giving only one general level.</p>
+  <div class="progressCenterGrid">
+    <div>
+      <div class="card">
+        <h3>CEFR by Skill</h3>
+        <div id="progressSkillList" class="progressProfile"></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h3>Recent Learning</h3>
+        <div id="progressRecent" class="recentActivity"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
+        <div><h3 style="margin-bottom:2px">My Error Bank</h3><p class="small" style="margin:0">Romi saves repeated mistakes so you know exactly what to review.</p></div>
+        <button class="btn small secondary" onclick="clearErrorBank()">Clear error bank</button>
+      </div>
+      <div id="errorBankList" class="errorList" style="margin-top:12px"></div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section coachSection coachPlus" id="coach">
+  <div class="coachPlusHeader">
+    <div>
+      <div class="kicker">ROMI LIVE COACH+</div>
+      <h2>Ask Romi Anything About Your English</h2>
+      <p class="lead">Romi uses your saved CEFR profile, recent activities, current skill, and Error Bank to give personalized guidance. This version works locally in the browser without an external AI API.</p>
+    </div>
+    <div class="coachStatus"><span class="statusDot"></span> Local Coach Active</div>
+  </div>
+
+  <div class="coachChatLayout">
+    <aside class="coachProfilePanel">
+      <div class="coachAvatarLarge">R</div>
+      <h3>Hi, <span id="coachStudentName">Student</span>! 👋</h3>
+      <p class="small">I can explain, give hints, review mistakes, recommend practice, and respond to common EFL questions.</p>
+
+      <div class="coachInsightBox">
+        <div class="coachInsightLabel">YOUR CURRENT PRIORITY</div>
+        <div id="coachPriority">Complete the diagnostic first.</div>
+      </div>
+
+      <div class="coachInsightBox">
+        <div class="coachInsightLabel">RECENT PATTERN</div>
+        <div id="coachRecentPattern">No repeated error yet.</div>
+      </div>
+
+      <div class="coachInsightBox">
+        <div class="coachInsightLabel">COACH CONTEXT</div>
+        <div id="coachCurrentContext">Adaptive diagnostic</div>
+      </div>
+
+      <h4>How are you feeling?</h4>
+      <div class="coachMood">
+        <button class="moodBtn" onclick="coachMoodPlus('confused')">😵 Confused</button>
+        <button class="moodBtn" onclick="coachMoodPlus('nervous')">😟 Nervous</button>
+        <button class="moodBtn" onclick="coachMoodPlus('ready')">🚀 Ready</button>
+        <button class="moodBtn" onclick="coachMoodPlus('proud')">⭐ Proud</button>
+      </div>
+
+      <button class="btn small secondary" style="margin-top:12px;width:100%" onclick="clearCoachChat()">Clear coach chat</button>
+    </aside>
+
+    <div class="coachChatPanel">
+      <div class="coachQuickBar">
+        <button onclick="askRomiPreset('What should I work on today?')">🎯 What should I work on?</button>
+        <button onclick="askRomiPreset('Explain this more simply.')">💡 Explain simply</button>
+        <button onclick="askRomiPreset('Give me an example.')">📝 Give me an example</button>
+        <button onclick="askRomiPreset('Why is my last mistake wrong?')">🔎 Explain my mistake</button>
+        <button onclick="askRomiPreset('How am I doing?')">📈 How am I doing?</button>
+      </div>
+
+      <div class="coachChatWindow" id="coachChatWindow" aria-live="polite"></div>
+
+      <div class="coachAskArea">
+        <textarea id="coachQuestionInput" rows="2" placeholder="Ask Romi: Why do we use has? What is the difference between will and going to? Why is my sentence wrong? What should I practice?" onkeydown="coachInputKey(event)"></textarea>
+        <div class="coachAskActions">
+          <button class="btn" onclick="sendCoachQuestion()">Ask Romi</button>
+          <button class="btn secondary" id="coachMicBtn" onclick="startCoachVoiceInput()" title="Use browser speech recognition when available">🎤 Speak</button>
+          <button class="btn secondary" onclick="readLastCoachAnswer()" title="Read Romi's last answer aloud">🔊 Listen</button>
+        </div>
+      </div>
+
+      <div class="coachCapabilities">
+        <span>Grammar explanations</span>
+        <span>Examples</span>
+        <span>Hints</span>
+        <span>Writing feedback</span>
+        <span>Error review</span>
+        <span>Study recommendations</span>
+        <span>Reading strategies</span>
+        <span>Listening tips</span>
+        <span>Speaking support</span>
+      </div>
+      <p class="coachLocalNote">Romi Live Coach+ is a rule-based local tutor in this file. It can respond flexibly to supported EFL topics and your saved progress, but it is not a general-purpose generative AI model.</p>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="diagnostic"><h2>Adaptive Diagnostic Test</h2><p class="lead">This test estimates the student's level from A1 to A2+. It checks grammar, vocabulary, reading, and short writing.</p><div class="notice"><b>Teacher tip:</b> Ask students to answer individually first. Then use Romi's recommendation to assign reading, grammar, and writing practice.</div><div id="diagArea"></div><div class="grid g2"><div><h3>Short writing sample</h3><textarea id="diagWriting" placeholder="Write 5–8 sentences. Suggested topic: my routine, my last weekend, or my future plans."></textarea></div><div><h3>Finish</h3><p class="small">Romi will combine objective answers and writing indicators.</p><button class="btn" onclick="scoreDiagnostic()">Get my level</button> <button class="btn secondary" onclick="resetDiagnostic()">Reset test</button><div id="diagFeedback" class="feedback" style="display:none"></div></div></div></section>
 <section class="section" id="plan"><h2>Personalized Study Plan</h2><p class="lead">After the diagnostic, Romi creates a practical study path.</p><div class="grid g3" id="studyPlan"><div class="card"><h3>Start here</h3><p class="small">Complete the diagnostic to unlock your 5-step learning path.</p></div></div></section>
 <section class="section" id="grammar"><h2>Grammar Micro-Lessons</h2><p class="lead">Clear explanations, examples, common mistakes, and quick practice.</p><div id="grammarTabs" class="tabs"></div><div id="grammarBox"></div></section>
@@ -51,7 +321,28 @@ input,textarea,select{width:100%;border:1px solid var(--line);border-radius:15px
 <section class="section" id="teacher"><h2>Teacher Mode</h2><p class="lead">Use this section to turn Romi into a classroom assistant.</p><div class="grid g2"><div class="card"><h3>Classroom Generator</h3><select id="classroomType"><option>Warm-up activity</option><option>Pair work</option><option>Exit ticket</option><option>Homework generator</option><option>Quiz generator</option><option>Speaking cards</option><option>Reading worksheet</option><option>Writing prompt</option></select><br><br><button class="btn" onclick="generateClassroom()">Generate</button></div><div class="card"><h3>Teacher Report</h3><div id="teacherReport" class="small">Complete the diagnostic to generate a report.</div></div></div><div id="classroomOutput" class="feedback" style="display:none"></div></section>
 </main>
 
-<div class="coachDock" id="coachDock"><div class="coachMini coachHidden" id="coachMini"><div class="coachHead"><span>🤖 Romi Live Coach</span><button class="btn small secondary" onclick="toggleCoachDock()">Open</button></div><div class="coachBody"><div id="coachDockMessage" class="small"><b>Tip:</b> Complete one activity and I will guide your next step.</div><div class="coachMood"><button class="moodBtn" onclick="coachMood('confused')">Confused</button><button class="moodBtn" onclick="coachMood('nervous')">Support</button><button class="moodBtn" onclick="manualCoachTip()">Tips</button></div></div></div></div>
+
+<div class="coachDock" id="coachDock">
+  <div class="coachMini coachHidden" id="coachMini">
+    <div class="coachHead">
+      <span>🤖 Romi Live Coach+</span>
+      <button class="btn small secondary" onclick="toggleCoachDock()">Open</button>
+    </div>
+    <div class="coachBody">
+      <div id="coachDockMessage" class="small"><b>Tip:</b> I can now answer questions and use your progress to personalize feedback.</div>
+      <div class="coachDockAsk">
+        <input id="coachDockInput" placeholder="Ask a quick question..." onkeydown="if(event.key==='Enter'){askFromDock()}">
+        <button class="btn small" onclick="askFromDock()">Ask</button>
+      </div>
+      <div class="coachMood">
+        <button class="moodBtn" onclick="askRomiPreset('What should I work on today?')">Next step</button>
+        <button class="moodBtn" onclick="askRomiPreset('Why is my last mistake wrong?')">My mistake</button>
+        <button class="moodBtn" onclick="location.hash='coach'">Full Coach</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 let xp=0, timer=null, vocabMode='flash', selectedAnswers={};
 const diag=[
@@ -290,6 +581,770 @@ const _oldFinishAdaptiveDiagnostic=finishAdaptiveDiagnostic; finishAdaptiveDiagn
 const _oldCheckListening=checkListening; checkListening=function(i){_oldCheckListening(i); const fb=document.getElementById('listenFb'+i)?.textContent||''; const good=/Excellent|Good/.test(fb); setCoachMessage('listening',good?'good':'review',good?'Good listening score. Now reveal the script and underline the evidence.':'Listen again, focus on key words, then check the script for evidence.');};
 
 window.onload=init;
+
+/* ===== ROMI VNext ENGINE ===== */
+const ROMI_STATE_KEY='romi_vnext_state_1';
+const ROMI_SKILL_META={
+  grammar:{label:'Grammar',icon:'🧩',color:'#7c3aed',href:'#grammar'},
+  reading:{label:'Reading',icon:'📚',color:'#2563eb',href:'#reading'},
+  vocabulary:{label:'Vocabulary',icon:'🖼️',color:'#059669',href:'#vocabulary'},
+  listening:{label:'Listening',icon:'🎧',color:'#ea580c',href:'#listening'},
+  speaking:{label:'Speaking',icon:'🎤',color:'#e11d48',href:'#speaking'},
+  writing:{label:'Writing',icon:'✍️',color:'#4f46e5',href:'#writing'}
+};
+function defaultRomiState(){
+  return {
+    studentName:'Student',
+    xp:0,
+    skills:{
+      grammar:{score:null,attempts:0,correct:0},
+      reading:{score:null,attempts:0,correct:0},
+      vocabulary:{score:null,attempts:0,correct:0},
+      listening:{score:null,attempts:0,correct:0},
+      speaking:{score:null,attempts:0,correct:0},
+      writing:{score:null,attempts:0,correct:0}
+    },
+    errors:[],
+    activities:[],
+    lastSkill:'diagnostic',
+    lastTarget:'#diagnostic',
+    diagnosticLevel:null,
+    savedAt:null
+  };
+}
+function loadRomiState(){
+  try{
+    const raw=localStorage.getItem(ROMI_STATE_KEY);
+    if(!raw)return defaultRomiState();
+    const saved=JSON.parse(raw);
+    const base=defaultRomiState();
+    return {
+      ...base,...saved,
+      skills:{...base.skills,...(saved.skills||{})},
+      errors:Array.isArray(saved.errors)?saved.errors:[],
+      activities:Array.isArray(saved.activities)?saved.activities:[]
+    };
+  }catch(e){return defaultRomiState()}
+}
+let romiState=loadRomiState();
+
+function saveRomiState(){
+  romiState.savedAt=new Date().toISOString();
+  try{localStorage.setItem(ROMI_STATE_KEY,JSON.stringify(romiState))}catch(e){}
+}
+function escapeStateText(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function scoreToCEFR(score){
+  if(score===null||score===undefined||Number.isNaN(score))return '—';
+  if(score<40)return 'A1';
+  if(score<60)return 'A1+';
+  if(score<80)return 'A2';
+  return 'A2+';
+}
+function masteryText(score){
+  if(score===null||score===undefined)return 'Not assessed';
+  if(score<40)return 'Needs Practice';
+  if(score<60)return 'Developing';
+  if(score<80)return 'Almost There';
+  return 'Mastered';
+}
+function overallCEFR(){
+  const vals=Object.values(romiState.skills).map(s=>s.score).filter(v=>v!==null&&v!==undefined);
+  if(!vals.length)return romiState.diagnosticLevel||'Not assessed';
+  return scoreToCEFR(vals.reduce((a,b)=>a+b,0)/vals.length);
+}
+function updateSkillScore(skill,correct,weight=1){
+  if(!romiState.skills[skill])return;
+  const s=romiState.skills[skill];
+  const observed=correct?88:34;
+  if(s.score===null||s.score===undefined)s.score=observed;
+  else s.score=Math.max(10,Math.min(98,Math.round((s.score*(3-weight)+observed*weight)/3)));
+  s.attempts=(s.attempts||0)+1;
+  if(correct)s.correct=(s.correct||0)+1;
+  romiState.lastSkill=skill;
+  romiState.lastTarget=ROMI_SKILL_META[skill]?.href||'#practiceHub';
+  saveRomiState();renderVNext();
+}
+function setSkillScore(skill,score,attempts=1,correct=0){
+  if(!romiState.skills[skill])return;
+  romiState.skills[skill].score=Math.max(10,Math.min(98,Math.round(score)));
+  romiState.skills[skill].attempts=Math.max(romiState.skills[skill].attempts||0,attempts);
+  romiState.skills[skill].correct=Math.max(romiState.skills[skill].correct||0,correct);
+}
+function logActivity(skill,label){
+  romiState.activities.unshift({skill,label,time:new Date().toISOString()});
+  romiState.activities=romiState.activities.slice(0,12);
+  romiState.lastSkill=skill;
+  if(ROMI_SKILL_META[skill])romiState.lastTarget=ROMI_SKILL_META[skill].href;
+  saveRomiState();
+}
+function recordError(skill,mistake,correction,reason){
+  mistake=String(mistake||'').trim();correction=String(correction||'').trim();reason=String(reason||'').trim();
+  if(!mistake)return;
+  const key=(skill+'|'+mistake+'|'+correction).toLowerCase();
+  const existing=romiState.errors.find(e=>e.key===key);
+  if(existing){existing.count=(existing.count||1)+1;existing.reason=reason||existing.reason;existing.time=new Date().toISOString()}
+  else romiState.errors.unshift({key,skill,mistake,correction,reason,count:1,time:new Date().toISOString()});
+  romiState.errors.sort((a,b)=>(b.count||1)-(a.count||1)||new Date(b.time)-new Date(a.time));
+  romiState.errors=romiState.errors.slice(0,30);
+  saveRomiState();renderErrorBank();
+}
+function weakestSkill(){
+  const assessed=Object.entries(romiState.skills).filter(([k,v])=>v.score!==null&&v.score!==undefined);
+  if(!assessed.length)return null;
+  assessed.sort((a,b)=>a[1].score-b[1].score);
+  return assessed[0][0];
+}
+function recommendationForSkill(skill){
+  const r={
+    grammar:'Complete one grammar micro-lesson, then answer three practice questions.',
+    reading:'Open one reading and use a strategy before answering the comprehension questions.',
+    vocabulary:'Review picture flashcards, then use five words in original sentences.',
+    listening:'Listen once for the main idea, listen again for details, then check the script.',
+    speaking:'Speak for 45–60 seconds using at least three connectors.',
+    writing:'Write a short paragraph, analyze it, then rewrite it using the correction table.'
+  };
+  return r[skill]||'Complete the adaptive diagnostic so Romi can personalize your next step.';
+}
+function renderSkillCards(){
+  const grid=document.getElementById('dashSkillGrid'); if(!grid)return;
+  grid.innerHTML=Object.entries(ROMI_SKILL_META).map(([key,m])=>{
+    const s=romiState.skills[key];const score=s?.score;
+    const level=scoreToCEFR(score);const pct=score??0;
+    return `<a class="skillCard" href="${m.href}" style="--skillColor:${m.color};text-decoration:none;color:inherit">
+      <div class="skillHead"><span class="skillName">${m.icon} ${m.label}</span><span class="skillLevel">${level}</span></div>
+      <div class="skillBar"><span style="width:${pct}%"></span></div>
+      <div class="mastery">${masteryText(score)}${score!==null&&score!==undefined?' · '+score+'%':''}</div>
+    </a>`;
+  }).join('');
+}
+function renderProgressCenter(){
+  const box=document.getElementById('progressSkillList'); if(box){
+    box.innerHTML=Object.entries(ROMI_SKILL_META).map(([key,m])=>{
+      const s=romiState.skills[key];const score=s?.score;const pct=score??0;
+      return `<div class="progressSkill"><b>${m.icon} ${m.label}</b><span style="font-weight:950;color:${m.color}">${scoreToCEFR(score)}</span><div><div class="bar"><span style="width:${pct}%"></span></div><div class="small">${masteryText(score)} · ${s?.attempts||0} tracked attempt(s)</div></div></div>`;
+    }).join('');
+  }
+  const recent=document.getElementById('progressRecent'); if(recent){
+    recent.innerHTML=romiState.activities.length?romiState.activities.slice(0,6).map(a=>`<div class="activityRow"><span>${ROMI_SKILL_META[a.skill]?.icon||'✨'} ${escapeStateText(a.label)}</span><span class="small">${new Date(a.time).toLocaleDateString()}</span></div>`).join(''):'<div class="emptyState">Complete an activity and it will appear here.</div>';
+  }
+}
+function renderErrorBank(){
+  const box=document.getElementById('errorBankList');if(!box)return;
+  if(!romiState.errors.length){box.innerHTML='<div class="emptyState">No saved mistakes yet. When Romi finds a specific grammar, writing, listening, or reading error, it will appear here.</div>';return}
+  box.innerHTML=romiState.errors.slice(0,12).map(e=>`<div class="errorItem">
+    <div class="errorTop"><span class="errorSkill">${escapeStateText(e.skill)}</span><span class="errorCount">Seen ${e.count||1}×</span></div>
+    <div class="errorMistake">✕ ${escapeStateText(e.mistake)}</div>
+    ${e.correction?`<div class="errorCorrection">✓ ${escapeStateText(e.correction)}</div>`:''}
+    <div class="errorWhy">${escapeStateText(e.reason||'Review this pattern before your next attempt.')}</div>
+  </div>`).join('');
+}
+function renderMission(){
+  const weak=weakestSkill();
+  const title=document.getElementById('missionTitle'),why=document.getElementById('missionWhy'),steps=document.getElementById('missionSteps'),btn=document.getElementById('missionButton');
+  const recTitle=document.getElementById('recommendedTitle'),recText=document.getElementById('recommendedText'),recLink=document.getElementById('recommendedLink');
+  if(!title||!steps)return;
+  if(!weak){
+    title.textContent='Find your starting point';
+    why.textContent='Complete the adaptive diagnostic so Romi can build your CEFR profile by skill.';
+    steps.innerHTML=['Answer the adaptive questions','Write the short diagnostic sample','Read your personalized recommendation'].map((x,i)=>`<div class="missionStep"><span class="missionDot">${i+1}</span>${x}</div>`).join('');
+    btn.href='#diagnostic';recTitle.textContent='Adaptive Diagnostic';recText.textContent='The difficulty changes after each answer to find the best starting level.';recLink.href='#diagnostic';
+  }else{
+    const m=ROMI_SKILL_META[weak],score=romiState.skills[weak].score;
+    title.textContent=`Strengthen ${m.label}`;
+    why.textContent=`${m.label} is currently your clearest priority (${scoreToCEFR(score)} · ${masteryText(score)}).`;
+    steps.innerHTML=[
+      recommendationForSkill(weak),
+      'Review the feedback and any mistake saved in your Error Bank.',
+      'Repeat one similar task and try to improve your accuracy.'
+    ].map((x,i)=>`<div class="missionStep"><span class="missionDot">${i+1}</span>${x}</div>`).join('');
+    btn.href=m.href;recTitle.textContent=`Next: ${m.label} practice`;recText.textContent=recommendationForSkill(weak);recLink.href=m.href;
+  }
+}
+function renderRecentDashboard(){
+  const box=document.getElementById('recentActivity');if(!box)return;
+  if(!romiState.activities.length){box.innerHTML='<div class="small">No activity yet. Your most recent practice will appear here.</div>';return}
+  box.innerHTML='<b class="small">Recent:</b>'+romiState.activities.slice(0,3).map(a=>`<div class="activityRow"><span>${ROMI_SKILL_META[a.skill]?.icon||'✨'} ${escapeStateText(a.label)}</span><span class="small">${new Date(a.time).toLocaleDateString()}</span></div>`).join('');
+}
+function renderVNext(){
+  const n=document.getElementById('dashStudentName');if(n)n.textContent=romiState.studentName||'Student';
+  const inp=document.getElementById('studentNameInput');if(inp&&!inp.matches(':focus'))inp.value=romiState.studentName==='Student'?'':romiState.studentName;
+  const overall=document.getElementById('dashOverall');if(overall)overall.textContent=overallCEFR();
+  const dx=document.getElementById('dashXP');if(dx)dx.textContent=(romiState.xp||0)+' XP';
+  const da=document.getElementById('dashActivities');if(da)da.textContent=romiState.activities.length;
+  const de=document.getElementById('dashErrors');if(de)de.textContent=romiState.errors.length+' pattern'+(romiState.errors.length===1?'':'s');
+  const profileLevel=document.getElementById('profileLevel');if(profileLevel&&overallCEFR()!=='Not assessed')profileLevel.textContent=overallCEFR();
+  const profileNext=document.getElementById('profileNext');const weak=weakestSkill();if(profileNext&&weak)profileNext.textContent=ROMI_SKILL_META[weak].label;
+  renderSkillCards();renderProgressCenter();renderErrorBank();renderMission();renderRecentDashboard();
+}
+function saveStudentName(){
+  const v=(document.getElementById('studentNameInput')?.value||'').trim();
+  romiState.studentName=v||'Student';saveRomiState();renderVNext();
+  setCoachMessage('diagnostic','good',`Welcome, ${romiState.studentName}. Your progress will be saved in this browser.`);
+}
+function clearErrorBank(){
+  romiState.errors=[];saveRomiState();renderVNext();
+}
+function clearLocalProgress(){
+  if(!confirm('Reset Romi progress saved in this browser?'))return;
+  localStorage.removeItem(ROMI_STATE_KEY);romiState=defaultRomiState();xp=0;
+  const xpEl=document.getElementById('xp');if(xpEl)xpEl.textContent='0 XP';
+  const fill=document.getElementById('xpFill');if(fill)fill.style.width='0%';
+  const pl=document.getElementById('profileLevel');if(pl)pl.textContent='Not assessed';
+  const pn=document.getElementById('profileNext');if(pn)pn.textContent='Start diagnostic';
+  renderVNext();setCoachMessage('diagnostic','neutral','Progress was reset. Start with the adaptive diagnostic.');
+}
+
+/* Persist XP while preserving all existing XP and Live Coach behavior */
+const _vnextAddXP=addXP;
+addXP=function(n,b){
+  _vnextAddXP(n,b);
+  romiState.xp=xp;
+  if(b){
+    const lower=String(b).toLowerCase();
+    let skill=null;
+    if(lower.includes('reading'))skill='reading';
+    else if(lower.includes('vocabulary'))skill='vocabulary';
+    else if(lower.includes('writing'))skill='writing';
+    else if(lower.includes('speaking'))skill='speaking';
+    else if(lower.includes('listening'))skill='listening';
+    else if(lower.includes('grammar'))skill='grammar';
+    if(skill)logActivity(skill,b);
+  }
+  saveRomiState();renderVNext();
+};
+
+/* Track grammar and reading accuracy and store wrong-answer patterns */
+const _vnextCheckSmall=checkSmall;
+checkSmall=function(btn,ok,badge){
+  const context=(btn.closest('.question')?.innerText||'').split('\n').filter(Boolean)[0]||'Practice question';
+  _vnextCheckSmall(btn,ok,badge);
+  const skill=String(badge||'').toLowerCase().includes('reading')?'reading':'grammar';
+  updateSkillScore(skill,!!ok);
+  if(!ok){
+    const correct=[...btn.parentNode.querySelectorAll('button')].find(b=>b!==btn && b.classList.contains('correct'))?.textContent||'Review the model answer';
+    recordError(skill,btn.textContent,correct,context);
+  }
+};
+
+/* Track reading strategy practice */
+const _vnextCheckStrategy=checkStrategy;
+checkStrategy=function(){
+  const words=(document.getElementById('strategyAnswer')?.value.trim().split(/\s+/).filter(Boolean).length)||0;
+  _vnextCheckStrategy();
+  updateSkillScore('reading',words>=10);
+  if(words<10)recordError('reading','Answer too short','Use at least 10 words with evidence','Reading strategy answers need enough detail to show evidence from the text.');
+};
+
+/* Track vocabulary sentence quality */
+const _vnextSentenceFeedback=sentenceFeedback;
+sentenceFeedback=function(input){
+  const text=input.value.trim();const ok=text.split(/\s+/).filter(Boolean).length>=5&&/[.!?]$/.test(text);
+  _vnextSentenceFeedback(input);updateSkillScore('vocabulary',ok);
+  if(!ok)recordError('vocabulary',text||'Incomplete sentence','Write at least 5 words and finish with punctuation','Use the vocabulary word in a complete sentence.');
+};
+
+/* Track listening outcomes using existing instant feedback */
+const _vnextCheckListening=checkListening;
+checkListening=function(i){
+  _vnextCheckListening(i);
+  const fb=document.getElementById('listenFb'+i)?.textContent||'';
+  const good=/Excellent|Good|correct/i.test(fb)&&!/not|review|try/i.test(fb);
+  updateSkillScore('listening',good);
+  if(!good)recordError('listening','Listening detail missed','Listen again for key words, then check the script','Use the first listening for gist and the second for details.');
+};
+
+/* Writing: save specific mistakes/corrections to the Error Bank */
+const _vnextAnalyzeWriting=analyzeWriting;
+analyzeWriting=function(){
+  const text=document.getElementById('writingText')?.value||'';
+  const result=text.trim()?makeCorrections(text):{issues:[]};
+  _vnextAnalyzeWriting();
+  if(!text.trim())return;
+  const issueCount=result.issues.length;
+  updateSkillScore('writing',issueCount<=1,1.2);
+  result.issues.slice(0,8).forEach(it=>recordError('writing',it.mistake,it.correction,it.reason||it.issue));
+  logActivity('writing',issueCount?`Writing analysis: ${issueCount} correction point(s)`:'Writing analysis: clear draft');
+};
+
+/* Speaking completion is already signaled through XP badges */
+const _vnextAddXP2=addXP;
+addXP=function(n,b){
+  _vnextAddXP2(n,b);
+  if(b&&/Speaking Brave Student/i.test(b)){
+    updateSkillScore('speaking',true);
+    logActivity('speaking','Completed a timed speaking task');
+  }
+};
+
+/* Diagnostic: record each adaptive result and build initial skill profile */
+const _vnextAnswerAdaptive=answerAdaptive;
+answerAdaptive=function(i,btn){
+  const q=adaptiveState.active;const ok=i===q.a;
+  _vnextAnswerAdaptive(i,btn);
+  const mapped=/reading/i.test(q.skill)?'reading':'grammar';
+  updateSkillScore(mapped,ok,1.15);
+  if(!ok)recordError(mapped,q.opts[i],q.opts[q.a],q.why);
+};
+const _vnextFinishAdaptive=finishAdaptiveDiagnostic;
+finishAdaptiveDiagnostic=function(){
+  _vnextFinishAdaptive();
+  const level=document.getElementById('profileLevel')?.textContent||'A1';
+  romiState.diagnosticLevel=level;
+
+  const gh=adaptiveState.history.filter(h=>!/reading/i.test(h.skill));
+  if(gh.length){
+    const acc=gh.filter(h=>h.ok).length/gh.length;
+    const avg=gh.reduce((a,b)=>a+b.d,0)/gh.length;
+    setSkillScore('grammar',Math.round(25+acc*48+avg*7),gh.length,gh.filter(h=>h.ok).length);
+  }
+  const rh=adaptiveState.history.filter(h=>/reading/i.test(h.skill));
+  if(rh.length){
+    const acc=rh.filter(h=>h.ok).length/rh.length;
+    setSkillScore('reading',Math.round(32+acc*58),rh.length,rh.filter(h=>h.ok).length);
+  }
+  const wt=document.getElementById('diagWriting')?.value.trim()||'';
+  if(wt){
+    const words=wt.split(/\s+/).filter(Boolean).length;
+    const connectors=(wt.match(/\b(and|but|because|then|after that|first|finally|however|also|although|so)\b/gi)||[]).length;
+    const punctuation=(wt.match(/[.!?]/g)||[]).length;
+    setSkillScore('writing',Math.min(92,28+Math.min(words,45)*.8+connectors*6+punctuation*3),1,1);
+  }
+  logActivity('grammar',`Completed adaptive diagnostic · ${level}`);
+  saveRomiState();renderVNext();
+};
+
+/* Contextual Romi Live Coach: follows the section the student is using */
+function initContextualCoach(){
+  const map={
+    diagnostic:'diagnostic',grammar:'grammar',reading:'reading',strategies:'reading',
+    vocabulary:'vocabulary',writing:'writing',speaking:'speaking',listening:'listening'
+  };
+  if(!('IntersectionObserver' in window))return;
+  const observer=new IntersectionObserver(entries=>{
+    const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+    if(!visible)return;
+    const skill=map[visible.target.id];if(!skill)return;
+    romiState.lastSkill=skill;romiState.lastTarget=ROMI_SKILL_META[skill]?.href||'#diagnostic';saveRomiState();
+    const selector=document.getElementById('coachSkill');if(selector&&[...selector.options].some(o=>o.value===skill))selector.value=skill;
+    setCoachMessage(skill,'neutral',recommendationForSkill(skill));
+  },{threshold:[.32,.55]});
+  Object.keys(map).forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el)});
+}
+
+function initVNext(){
+  xp=Number(romiState.xp||0);
+  const xpEl=document.getElementById('xp');if(xpEl)xpEl.textContent=xp+' XP';
+  const fill=document.getElementById('xpFill');if(fill)fill.style.width=Math.min(100,xp%100)+'%';
+  renderVNext();initContextualCoach();
+  window.addEventListener('beforeunload',saveRomiState);
+}
+window.addEventListener('load',initVNext);
+
+
+/* ===== ROMI LIVE COACH+ CONVERSATIONAL ENGINE ===== */
+const ROMI_COACH_KB={
+  'verb to be':{
+    aliases:['verb to be','am is are','was were','to be'],
+    simple:'Use the verb to be to describe identity, age, feelings, location, and states.',
+    rule:'Present: I am · he/she/it is · you/we/they are. Past: I/he/she/it was · you/we/they were.',
+    example:'I am tired today. Yesterday, I was tired too.'
+  },
+  'simple present':{
+    aliases:['simple present','present simple','he she it s','third person s','third-person s'],
+    simple:'Use the simple present for routines, habits, facts, and repeated actions.',
+    rule:'I/you/we/they + base verb. He/she/it + verb-s or verb-es.',
+    example:'I play soccer on Fridays. She plays soccer on Fridays.'
+  },
+  'simple past':{
+    aliases:['simple past','past simple','regular verbs','irregular verbs','did went','past tense'],
+    simple:'Use the simple past for finished actions in the past.',
+    rule:'Positive: subject + past verb. Negative/question: did + base verb. Regular verbs often use -ed; irregular verbs change form.',
+    example:'I visited my aunt yesterday. She went to the park. Did you go?'
+  },
+  'future will':{
+    aliases:['future will','will','future with will'],
+    simple:'Use will for predictions, quick decisions, promises, and offers.',
+    rule:'Subject + will + base verb.',
+    example:'I think it will rain tomorrow. I will help you.'
+  },
+  'going to':{
+    aliases:['going to','future going to','gonna'],
+    simple:'Use be going to for plans or predictions based on present evidence.',
+    rule:'Subject + am/is/are + going to + base verb.',
+    example:'I am going to study tonight. Look at those clouds! It is going to rain.'
+  },
+  'present perfect':{
+    aliases:['present perfect','have has','past participle','ever never just yet since for'],
+    simple:'Use the present perfect to connect the past with the present: experiences, recent actions, or situations that continue now.',
+    rule:'Subject + have/has + past participle.',
+    example:'She has visited Cuenca twice. I have lived here for three years.'
+  },
+  'will vs going to':{
+    aliases:['will and going to','will vs going to','difference between will and going to','will or going to'],
+    simple:'Both talk about the future, but they are used for different reasons.',
+    rule:'Use will for predictions or decisions made now. Use going to for plans already decided or predictions with visible evidence.',
+    example:'I will answer the phone. / I am going to visit my grandmother this weekend.'
+  },
+  'present perfect vs simple past':{
+    aliases:['present perfect vs simple past','present perfect and past simple','difference between present perfect and simple past'],
+    simple:'Simple past focuses on a finished past time. Present perfect connects past experience or action to now.',
+    rule:'Use simple past with finished time expressions such as yesterday or last year. Use present perfect when the exact finished time is not important or the situation continues.',
+    example:'I visited Quito last year. / I have visited Quito three times.'
+  },
+  'reading':{
+    aliases:['reading','main idea','skim','skimming','scan','scanning','context clues','reading strategy'],
+    simple:'Strong readers do not translate every word. They choose a strategy based on the question.',
+    rule:'Skim for the general idea. Scan for specific information. Use nearby words to infer unknown vocabulary. Return to the text for evidence.',
+    example:'If the question asks “When?”, scan for dates and time expressions instead of rereading every sentence.'
+  },
+  'listening':{
+    aliases:['listening','listen','audio','i cannot understand the audio','can’t understand listening'],
+    simple:'Listening becomes easier when you separate gist from details.',
+    rule:'First listening: identify topic and general idea. Second listening: focus on key words, numbers, names, and target details.',
+    example:'Before listening, predict vocabulary from the title. After the first listen, write only the main idea.'
+  },
+  'speaking':{
+    aliases:['speaking','speak','fluency','i am nervous speaking','pronunciation'],
+    simple:'For speaking practice, communication comes first. Accuracy can improve after you finish the idea.',
+    rule:'Plan 3–5 key words, speak in complete sentences, and use connectors such as first, because, but, then, and finally.',
+    example:'First, I usually wake up at 6:00. Then, I have breakfast because school starts early.'
+  },
+  'writing':{
+    aliases:['writing','paragraph','coherence','cohesion','punctuation','word order','connectors'],
+    simple:'A clear paragraph needs one main idea, organized sentences, connectors, correct word order, and punctuation.',
+    rule:'Start with a clear topic sentence. Add details. Use connectors. Check subject + verb order and tense consistency. Finish each sentence with punctuation.',
+    example:'First, I get ready for school. Then, I take the bus because my school is far from home.'
+  },
+  'vocabulary':{
+    aliases:['vocabulary','word','words','remember vocabulary','learn words','flashcards'],
+    simple:'Vocabulary is learned better through retrieval and use, not only rereading.',
+    rule:'See the word, say it, remember its meaning, and use it in a personal sentence. Review difficult words again later.',
+    example:'Word: helmet. Sentence: I wear a helmet when I ride my bike.'
+  }
+};
+
+let romiCoachSession={lastTopic:'',lastIntent:'',lastAnswer:'',currentSkill:'diagnostic'};
+
+function coachNormalize(t){
+  return String(t||'').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[’]/g,"'")
+    .replace(/\s+/g,' ').trim();
+}
+
+function detectCoachTopic(question){
+  const q=coachNormalize(question);
+  // More specific comparisons first
+  const priority=['will vs going to','present perfect vs simple past','present perfect','simple past','simple present','verb to be','future will','going to','reading','listening','speaking','writing','vocabulary'];
+  for(const key of priority){
+    const item=ROMI_COACH_KB[key];
+    if(item.aliases.some(a=>q.includes(coachNormalize(a)))) return key;
+  }
+  const contextual=romiState?.lastSkill;
+  if(contextual && ROMI_COACH_KB[contextual]) return contextual;
+  return romiCoachSession.lastTopic||'';
+}
+
+function detectCoachIntent(question){
+  const q=coachNormalize(question);
+  if(/\b(hi|hello|hey|good morning|good afternoon)\b/.test(q))return'greeting';
+  if(/what should i (study|practice|work on)|what do i need|next step|recommend|priority/.test(q))return'recommend';
+  if(/how am i doing|my level|my progress|how good|am i improving|progress/.test(q))return'progress';
+  if(/why.*(wrong|mistake)|last mistake|explain my mistake|what did i do wrong/.test(q))return'mistake';
+  if(/correct my|check my|my writing|feedback on my|analyze my/.test(q))return'feedback';
+  if(/example|sentence with|show me a sentence/.test(q))return'example';
+  if(/hint|clue|help me answer|give me a clue/.test(q))return'hint';
+  if(/simpler|simple way|explain again|i don't understand|i dont understand|confused/.test(q))return'simplify';
+  if(/difference|compare|versus| vs /.test(q))return'compare';
+  if(/why do|why does|why is|why are|why use/.test(q))return'why';
+  if(/what is|what are|how do|how does|when do|when should|rule/.test(q))return'explain';
+  if(/nervous|afraid|scared|hard|difficult|frustrated|give up/.test(q))return'support';
+  return'general';
+}
+
+function currentErrorForCoach(){
+  return (romiState?.errors||[])[0]||null;
+}
+
+function coachProfileSummary(){
+  const assessed=Object.entries(romiState.skills||{}).filter(([k,v])=>v.score!==null&&v.score!==undefined);
+  if(!assessed.length)return'You have not completed enough tracked practice yet. Start with the adaptive diagnostic.';
+  assessed.sort((a,b)=>b[1].score-a[1].score);
+  const best=assessed[0], weak=[...assessed].sort((a,b)=>a[1].score-b[1].score)[0];
+  return `Your strongest tracked skill is <b>${ROMI_SKILL_META[best[0]].label}</b> (${scoreToCEFR(best[1].score)} · ${masteryText(best[1].score)}). Your current priority is <b>${ROMI_SKILL_META[weak[0]].label}</b> (${scoreToCEFR(weak[1].score)} · ${masteryText(weak[1].score)}).`;
+}
+
+function coachPersonalizedRecommendation(){
+  const weak=weakestSkill();
+  if(!weak)return`Start with the adaptive diagnostic. It will help me estimate your starting point before I recommend practice.`;
+  const s=romiState.skills[weak];
+  const err=(romiState.errors||[]).find(e=>e.skill===weak);
+  let answer=`Based on your saved progress, I recommend <b>${ROMI_SKILL_META[weak].label}</b> first. Your current tracked level there is <b>${scoreToCEFR(s.score)}</b> (${masteryText(s.score)}). ${recommendationForSkill(weak)}`;
+  if(err)answer+=`<div class="coachFeedbackCard"><b>Why this is personal:</b> I have seen this pattern ${err.count||1} time(s): <span class="coachRule">${escapeStateText(err.mistake)}</span> → <b>${escapeStateText(err.correction||'review')}</b>.</div>`;
+  return answer;
+}
+
+function coachExplainMistake(){
+  const err=currentErrorForCoach();
+  if(!err)return`I do not have a saved mistake to explain yet. Complete a grammar, writing, reading, vocabulary, or listening activity, and I will save useful correction patterns in your Error Bank.`;
+  return `Your most important recent pattern is:<div class="coachFeedbackCard"><b>Your answer:</b> ${escapeStateText(err.mistake)}<br><b>Better form:</b> ${escapeStateText(err.correction||'Review the correct form')}<br><b>Why:</b> ${escapeStateText(err.reason||'This pattern needs review.')}<br><b>I have seen it:</b> ${err.count||1} time(s).</div>Try one new example using the corrected pattern before you move on.`;
+}
+
+function coachWritingFeedback(){
+  const area=document.getElementById('writingText');
+  const text=area?.value?.trim()||'';
+  if(!text)return`Go to <b>Writing</b>, type or paste your paragraph, then ask me “Check my writing.” I can use the local correction rules and your Error Bank to give specific feedback.`;
+  const result=makeCorrections(text);
+  const words=text.split(/\s+/).filter(Boolean).length;
+  const connectors=(text.match(/\b(and|but|because|then|after that|first|finally|however|also|although|so)\b/gi)||[]).length;
+  let response=`I checked the writing currently in your Writing box. You wrote <b>${words} words</b> and used <b>${connectors} connector(s)</b>. `;
+  if(!result.issues.length){
+    response+=`I did not detect a major rule-based error. Your next challenge is to improve vocabulary range and add one more detail.`;
+  }else{
+    const top=result.issues.slice(0,3);
+    response+=`I found ${result.issues.length} correction point(s). Focus on these first:`;
+    response+=top.map((x,i)=>`<div class="coachFeedbackCard"><b>${i+1}. ${escapeStateText(x.mistake)}</b> → <b>${escapeStateText(x.correction)}</b><br>${escapeStateText(x.reason)}</div>`).join('');
+    response+=`After correcting them, rewrite the paragraph once.`;
+  }
+  return response;
+}
+
+function coachHint(topic){
+  const kb=ROMI_COACH_KB[topic];
+  if(!kb)return`Look for the tense signal, identify the subject, and decide what form of the verb you need. Try the question once more before checking the answer.`;
+  const hintMap={
+    'simple present':'First find the subject. If it is he, she, or it, ask yourself whether the main verb needs -s or -es.',
+    'simple past':'Look for a finished past-time signal such as yesterday or last week. In a positive sentence, use the past form; after did, use the base verb.',
+    'present perfect':'Look for have/has. Then check that the next verb is a past participle.',
+    'going to':'Check that you have the correct form of be before going to.',
+    'future will':'After will, the verb stays in the base form.',
+    'verb to be':'Match the subject first: I → am; he/she/it → is; you/we/they → are.',
+    'reading':'Read the question first. Then scan only for the key information you need.',
+    'listening':'Predict 3–5 words you might hear before you press Listen again.',
+    'writing':'Check one thing at a time: capital letter → subject + verb → tense → punctuation.',
+    'speaking':'Write only 3–5 key words, not a full script. Then speak around those ideas.'
+  };
+  return `<b>Hint:</b> ${hintMap[topic]||kb.rule} I will not give you the full answer yet—try once more.`;
+}
+
+function coachSupport(){
+  const name=romiState.studentName&&romiState.studentName!=='Student'?romiState.studentName:'';
+  const weak=weakestSkill();
+  let msg=`${name?name+', ':''}do one small step, not the whole lesson at once. Read the example, try one item, and use the feedback.`;
+  if(weak)msg+=` Right now, your priority is ${ROMI_SKILL_META[weak].label}, so it is normal if that part feels harder than your other skills.`;
+  return msg;
+}
+
+function buildCoachAnswer(question){
+  const q=coachNormalize(question);
+  const intent=detectCoachIntent(question);
+  let topic=detectCoachTopic(question);
+  romiCoachSession.lastIntent=intent;
+  if(topic)romiCoachSession.lastTopic=topic;
+
+  if(intent==='greeting'){
+    return `Hi ${romiState.studentName&&romiState.studentName!=='Student'?escapeStateText(romiState.studentName):'there'}! 👋 I’m ready. You can ask me about grammar, your mistakes, your level, what to study next, or ask for an example or hint.`;
+  }
+
+  if(intent==='recommend')return coachPersonalizedRecommendation();
+  if(intent==='progress')return coachProfileSummary();
+  if(intent==='mistake')return coachExplainMistake();
+  if(intent==='feedback')return coachWritingFeedback();
+  if(intent==='support')return coachSupport();
+
+  // Dedicated comparisons
+  if(q.includes('will')&&q.includes('going to'))topic='will vs going to';
+  if(q.includes('present perfect')&&(q.includes('simple past')||q.includes('past simple')))topic='present perfect vs simple past';
+
+  const kb=topic?ROMI_COACH_KB[topic]:null;
+
+  if(intent==='hint')return coachHint(topic);
+
+  if(intent==='example'){
+    if(kb)return `<b>${escapeStateText(topic.charAt(0).toUpperCase()+topic.slice(1))} example:</b><span class="coachExample">${escapeStateText(kb.example)}</span><br>Now create one similar sentence of your own.`;
+    return `Tell me the grammar point or skill you want an example for—for example: “Give me a simple past example.”`;
+  }
+
+  if(intent==='simplify'){
+    if(kb)return `<b>Simple version:</b> ${escapeStateText(kb.simple)}<span class="coachExample">${escapeStateText(kb.example)}</span>`;
+    const last=romiCoachSession.lastTopic;
+    if(last&&ROMI_COACH_KB[last])return `<b>Simple version:</b> ${escapeStateText(ROMI_COACH_KB[last].simple)}<span class="coachExample">${escapeStateText(ROMI_COACH_KB[last].example)}</span>`;
+    return `Tell me what part you want me to explain more simply. You can say: “Explain simple past more simply.”`;
+  }
+
+  if(intent==='why'||intent==='compare'||intent==='explain'){
+    if(kb)return `<b>${escapeStateText(topic.charAt(0).toUpperCase()+topic.slice(1))}</b><br>${escapeStateText(kb.simple)}<br><span class="coachRule">Rule:</span> ${escapeStateText(kb.rule)}<span class="coachExample">${escapeStateText(kb.example)}</span>`;
+  }
+
+  // Specific form questions
+  if(/\bwhy.*has\b|\bwhen.*has\b|\buse has\b/.test(q)){
+    return `<b>Use <i>has</i> with he, she, and it in the present perfect.</b><br><span class="coachRule">Rule:</span> he/she/it + has + past participle.<span class="coachExample">She has finished her homework. He has visited Cuenca.</span>Use <i>have</i> with I, you, we, and they.`;
+  }
+  if(/why.*(do|does)|difference.*do.*does/.test(q)){
+    return `<b>Do vs does:</b> use <i>does</i> with he, she, and it; use <i>do</i> with I, you, we, and they.<span class="coachExample">Do they play soccer? / Does she play soccer?</span>After do/does, keep the main verb in the base form.`;
+  }
+  if(/why.*did.*went|did went|did.*go/.test(q)){
+    return `<b>After <i>did</i>, use the base verb.</b> “Did went” is incorrect because <i>did</i> already carries the past meaning.<span class="coachExample">Incorrect: Did you went? → Correct: Did you go?</span>`;
+  }
+
+  // Use current context if no explicit topic
+  const current=romiState.lastSkill;
+  if(current&&ROMI_COACH_KB[current]){
+    const c=ROMI_COACH_KB[current];
+    return `I think you are asking while working on <b>${ROMI_SKILL_META[current]?.label||current}</b>. ${escapeStateText(c.simple)}<br><span class="coachRule">Key rule:</span> ${escapeStateText(c.rule)}<br><br>If you want something more specific, ask “Why…?”, “Give me an example”, or “Give me a hint”.`;
+  }
+
+  return `I can help with this if you make the question a little more specific. Try asking about <b>verb to be, simple present, simple past, will, going to, present perfect, reading, listening, speaking, vocabulary, or writing</b>. You can also ask “What should I work on?” or “Why is my last mistake wrong?”`;
+}
+
+function appendCoachChat(role,html,save=true){
+  const win=document.getElementById('coachChatWindow');if(!win)return;
+  const msg=document.createElement('div');
+  msg.className='chatMsg '+role;
+  const avatar=role==='user'?'You':'R';
+  msg.innerHTML=`<div class="chatAvatar">${avatar}</div><div class="chatBubble">${html}<span class="chatTime">${new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</span></div>`;
+  win.appendChild(msg);win.scrollTop=win.scrollHeight;
+  if(save){
+    romiState.coachChat=Array.isArray(romiState.coachChat)?romiState.coachChat:[];
+    romiState.coachChat.push({role,html,time:new Date().toISOString()});
+    romiState.coachChat=romiState.coachChat.slice(-24);
+    saveRomiState();
+  }
+}
+
+function showCoachTyping(){
+  const win=document.getElementById('coachChatWindow');if(!win)return null;
+  const d=document.createElement('div');d.className='chatMsg romi';d.id='coachTypingMsg';
+  d.innerHTML=`<div class="chatAvatar">R</div><div class="chatBubble"><span class="coachTyping"><i></i><i></i><i></i></span></div>`;
+  win.appendChild(d);win.scrollTop=win.scrollHeight;return d;
+}
+
+function sendCoachQuestion(questionOverride){
+  const input=document.getElementById('coachQuestionInput');
+  const q=String(questionOverride??input?.value??'').trim();
+  if(!q)return;
+  appendCoachChat('user',escapeStateText(q));
+  if(input)input.value='';
+  const typing=showCoachTyping();
+  setTimeout(()=>{
+    typing?.remove();
+    const answer=buildCoachAnswer(q);
+    romiCoachSession.lastAnswer=answer;
+    appendCoachChat('romi',answer);
+    updateCoachPlusInsights();
+  },260);
+}
+
+function askRomiPreset(q){
+  location.hash='coach';
+  setTimeout(()=>sendCoachQuestion(q),120);
+}
+
+function coachInputKey(e){
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendCoachQuestion()}
+}
+
+function askFromDock(){
+  const input=document.getElementById('coachDockInput');
+  const q=input?.value?.trim();if(!q)return;
+  if(input)input.value='';
+  location.hash='coach';
+  setTimeout(()=>sendCoachQuestion(q),120);
+}
+
+function clearCoachChat(){
+  romiState.coachChat=[];saveRomiState();
+  const win=document.getElementById('coachChatWindow');if(win)win.innerHTML='';
+  seedCoachConversation();
+}
+
+function seedCoachConversation(){
+  const win=document.getElementById('coachChatWindow');if(!win)return;
+  if(Array.isArray(romiState.coachChat)&&romiState.coachChat.length){
+    romiState.coachChat.forEach(m=>appendCoachChat(m.role,m.html,false));
+    return;
+  }
+  const name=romiState.studentName&&romiState.studentName!=='Student'?escapeStateText(romiState.studentName):'there';
+  appendCoachChat('romi',`Hi ${name}! 👋 I’m Romi Live Coach+. Ask me a question about English, your recent mistakes, your progress, or what you should practice next.`,true);
+}
+
+function updateCoachPlusInsights(){
+  const n=document.getElementById('coachStudentName');if(n)n.textContent=romiState.studentName||'Student';
+  const weak=weakestSkill();
+  const priority=document.getElementById('coachPriority');
+  if(priority)priority.innerHTML=weak?`${ROMI_SKILL_META[weak].icon} <b>${ROMI_SKILL_META[weak].label}</b> · ${scoreToCEFR(romiState.skills[weak].score)} · ${masteryText(romiState.skills[weak].score)}`:'Complete the diagnostic first.';
+  const pattern=document.getElementById('coachRecentPattern');
+  const err=currentErrorForCoach();
+  if(pattern)pattern.innerHTML=err?`${escapeStateText(err.mistake)} → <b>${escapeStateText(err.correction||'review')}</b> · seen ${err.count||1}×`:'No repeated error yet.';
+  const context=document.getElementById('coachCurrentContext');
+  const s=romiState.lastSkill||'diagnostic';
+  if(context)context.textContent=ROMI_SKILL_META[s]?.label||s.charAt(0).toUpperCase()+s.slice(1);
+}
+
+function coachMoodPlus(mood){
+  const q={
+    confused:'I am confused. Can you explain what I should do next in a simple way?',
+    nervous:'I feel nervous about English.',
+    ready:'I am ready. What challenge should I do next?',
+    proud:'I did well. What should I do now?'
+  }[mood];
+  sendCoachQuestion(q);
+}
+
+function readLastCoachAnswer(){
+  if(!('speechSynthesis' in window)){alert('Text-to-speech is not available in this browser.');return}
+  const tmp=document.createElement('div');tmp.innerHTML=romiCoachSession.lastAnswer||'Ask Romi a question first.';
+  const utter=new SpeechSynthesisUtterance(tmp.textContent);
+  utter.lang='en-US';utter.rate=.92;
+  speechSynthesis.cancel();speechSynthesis.speak(utter);
+}
+
+function startCoachVoiceInput(){
+  const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!Recognition){alert('Speech recognition is not available in this browser. You can type your question instead.');return}
+  const r=new Recognition();r.lang='en-US';r.interimResults=false;r.maxAlternatives=1;
+  const btn=document.getElementById('coachMicBtn');if(btn)btn.textContent='🎙️ Listening...';
+  r.onresult=e=>{
+    const text=e.results[0][0].transcript;
+    const input=document.getElementById('coachQuestionInput');if(input)input.value=text;
+    sendCoachQuestion(text);
+  };
+  r.onerror=()=>{if(btn)btn.textContent='🎤 Speak'};
+  r.onend=()=>{if(btn)btn.textContent='🎤 Speak'};
+  r.start();
+}
+
+/* Extend VNext render and context tracking for coach personalization */
+const _coachPlusRenderVNext=renderVNext;
+renderVNext=function(){
+  _coachPlusRenderVNext();
+  updateCoachPlusInsights();
+};
+
+const _coachPlusSetCoachMessage=setCoachMessage;
+setCoachMessage=function(skill='diagnostic',status='neutral',detail=''){
+  romiCoachSession.currentSkill=skill;
+  romiState.lastSkill=skill;
+  _coachPlusSetCoachMessage(skill,status,detail);
+  updateCoachPlusInsights();
+};
+
+function initCoachPlus(){
+  romiState.coachChat=Array.isArray(romiState.coachChat)?romiState.coachChat:[];
+  seedCoachConversation();
+  updateCoachPlusInsights();
+}
+window.addEventListener('load',()=>setTimeout(initCoachPlus,80));
+
 </script>
+
+<nav class="bottomAppNav" aria-label="Mobile app navigation">
+  <a href="#home"><span>🏠</span>Home</a>
+  <a href="#practiceHub"><span>🎯</span>Practice</a>
+  <a href="#diagnostic"><span>🧭</span>Test</a>
+  <a href="#progressCenter"><span>📈</span>Progress</a>
+  <a href="#coach"><span>🤖</span>Coach</a>
+</nav>
+
 </body>
 </html>
