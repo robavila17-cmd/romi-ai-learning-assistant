@@ -267,6 +267,65 @@ body.romi-dark .progressSkill,body.romi-dark .errorItem,body.romi-dark .coachIns
   .libraryPreviewGrid{grid-template-columns:1fr!important}
 }
 
+
+/* ===== ROMI 2.1 LOCAL ADAPTIVE DIAGNOSTIC ===== */
+.localEngineBanner{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 12px;border-radius:14px;background:#eaf8f1;border:1px solid #bfe9d3;margin-bottom:14px;font-size:.78rem;color:#176546}
+.localEngineBanner>div{display:flex;align-items:center;gap:7px}.engineDot{width:9px;height:9px;border-radius:50%;background:#20bd72;box-shadow:0 0 0 4px rgba(32,189,114,.13)}
+.adaptiveSkillGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.adaptiveSkillMeter{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;display:grid;grid-template-columns:1fr auto;gap:3px 10px;align-items:center}
+.adaptiveSkillMeter>span{font-weight:900;color:var(--petrol)}.adaptiveSkillMeter>b{font-size:1.25rem;color:var(--petrol)}
+.adaptiveSkillMeter>small{color:var(--muted);font-size:.72rem}
+.adaptiveMiniBar{grid-column:1/-1;height:7px;background:#edf3f4;border-radius:99px;overflow:hidden;margin-top:6px}.adaptiveMiniBar i{display:block;height:100%;background:linear-gradient(90deg,var(--petrol),#2b8397);border-radius:99px;transition:width .3s ease}
+.adaptiveStatusV2{grid-template-columns:repeat(4,1fr)}
+.adaptiveQuestionMeta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:7px}
+.adaptiveQuestionV2{margin-top:14px}.answerLetter{display:inline-grid;place-items:center;width:25px;height:25px;margin-right:9px;border-radius:8px;background:#eef4f5;color:var(--petrol);font-weight:1000}
+.choiceBtn.correct .answerLetter{background:#c9ead9}.choiceBtn.wrong .answerLetter{background:#ffd7d3}
+.diagnosticResultsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 14px}
+.resultLevelCard{background:#fff;border:1px solid var(--line);border-radius:17px;padding:13px;display:grid}.resultLevelCard>span{font-size:.73rem;color:var(--muted);font-weight:850}.resultLevelCard>b{font-size:1.75rem;color:var(--petrol)}.resultLevelCard>small{color:var(--muted)}
+.writingIndicatorBox{background:#fff8e8;border:1px solid #eedaa9;border-radius:14px;padding:11px;margin:10px 0}
+.diagnosticCompleteCard{padding:13px;border-radius:18px;background:linear-gradient(135deg,#eef8f6,#fff8e5);border:1px solid var(--line)}
+body.romi-dark .adaptiveSkillMeter,body.romi-dark .resultLevelCard{background:#102d35;border-color:#284a52}
+body.romi-dark .localEngineBanner{background:#10352d;border-color:#23614d;color:#c7f1df}
+body.romi-dark .writingIndicatorBox{background:#342d19;border-color:#5c4c23}
+body.romi-dark .diagnosticCompleteCard{background:linear-gradient(135deg,#102e36,#302a18)}
+@media(max-width:760px){.adaptiveSkillGrid,.diagnosticResultsGrid{grid-template-columns:1fr}.adaptiveStatusV2{grid-template-columns:repeat(2,1fr)}}
+
+
+/* ===== ROMI 2.2 RESULTS + STUDY PLAN ===== */
+.adaptiveResultsPanel{margin-top:18px}
+.diagnosticResultHero{display:grid;grid-template-columns:1fr 150px;gap:18px;align-items:center;padding:22px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,#eff9f7,#fff7df);margin-bottom:15px}
+.diagnosticResultHero h2{margin:.1rem 0 .35rem;font-size:1.8rem}
+.overallResultBadge{min-height:125px;border-radius:24px;background:linear-gradient(145deg,var(--petrol),#23778b);color:#fff;display:grid;place-items:center;align-content:center;box-shadow:0 14px 30px rgba(15,76,92,.18)}
+.overallResultBadge span{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;opacity:.8;font-weight:900}
+.overallResultBadge b{font-size:2.7rem;line-height:1}
+.diagnosticResultsLarge .resultLevelCard{min-height:130px;align-content:center}
+.resultBar{height:7px;background:#e7eff0;border-radius:99px;overflow:hidden;margin-top:10px}.resultBar i{display:block;height:100%;background:linear-gradient(90deg,var(--petrol),#38a0b5);border-radius:99px}
+.diagnosticInsightGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.resultInsightCard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px}
+.resultInsightCard h3{margin:0 0 9px}
+.resultChipWrap{display:flex;gap:7px;flex-wrap:wrap}
+.resultChip{display:inline-flex;padding:7px 10px;border-radius:999px;background:#edf3f4;color:#355a63;font-size:.77rem;font-weight:850}
+.goodChip{background:#e8f7ef;color:#18734a}.focusChip{background:#fff2d4;color:#755715}
+.diagnosticStudyPlan{margin:16px 0;padding:18px;border-radius:22px;border:1px solid var(--line);background:#fbfdfd}
+.studyPlanHeader{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:13px}
+.studyPlanHeader h3{margin:.1rem 0 .25rem;font-size:1.35rem}
+.planDuration{padding:7px 10px;border-radius:999px;background:#e9f3f4;color:var(--petrol);font-size:.74rem;font-weight:950;white-space:nowrap}
+.studyPlanTimeline{display:grid;gap:8px}
+.studyPlanStep{display:grid;grid-template-columns:36px 1fr;gap:11px;padding:11px;border-radius:15px;background:#fff;border:1px solid var(--line)}
+.planStepNumber{width:32px;height:32px;border-radius:11px;background:var(--petrol);color:#fff;display:grid;place-items:center;font-weight:1000}
+.studyPlanStep p{margin:3px 0;font-size:.88rem}.studyPlanStep small{color:var(--muted)}
+.diagnosticEvidence{margin:12px 0;padding:11px 13px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.resultActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+body.romi-dark .diagnosticResultHero{background:linear-gradient(135deg,#102e36,#302a18)}
+body.romi-dark .resultInsightCard,body.romi-dark .studyPlanStep,body.romi-dark .diagnosticEvidence,body.romi-dark .diagnosticStudyPlan{background:#102d35;border-color:#284a52}
+body.romi-dark .resultChip{background:#163943;color:#dcecee}
+body.romi-dark .goodChip{background:#123d2e;color:#b8edd5}
+body.romi-dark .focusChip{background:#403518;color:#f2d994}
+@media(max-width:700px){
+  .diagnosticResultHero{grid-template-columns:1fr}.overallResultBadge{min-height:105px}
+  .diagnosticInsightGrid{grid-template-columns:1fr}.studyPlanHeader{display:block}.planDuration{display:inline-flex;margin-top:5px}
+}
+
 </style>
 </head>
 <body>
@@ -518,7 +577,12 @@ body.romi-dark .progressSkill,body.romi-dark .errorItem,body.romi-dark .coachIns
   </div>
 </section>
 
-<section class="section" id="diagnostic"><h2>Adaptive Diagnostic Test</h2><p class="lead">This test estimates the student's level from A1 to A2+. It checks grammar, vocabulary, reading, and short writing.</p><div class="notice"><b>Teacher tip:</b> Ask students to answer individually first. Then use Romi's recommendation to assign reading, grammar, and writing practice.</div><div id="diagArea"></div><div class="grid g2"><div><h3>Short writing sample</h3><textarea id="diagWriting" placeholder="Write 5–8 sentences. Suggested topic: my routine, my last weekend, or my future plans."></textarea></div><div><h3>Finish</h3><p class="small">Romi will combine objective answers and writing indicators.</p><button class="btn" onclick="scoreDiagnostic()">Get my level</button> <button class="btn secondary" onclick="resetDiagnostic()">Reset test</button><div id="diagFeedback" class="feedback" style="display:none"></div></div></div></section>
+<section class="section" id="diagnostic"><h2>Adaptive Diagnostic Test</h2><p class="lead">ROMI estimates Grammar and Vocabulary independently from A1 to A2+. The difficulty changes according to the student's answers, and the final profile is created after 20 questions.</p><div class="notice"><b>Teacher tip:</b> Ask students to answer individually first. Then use Romi's recommendation to assign reading, grammar, and writing practice.</div>
+<div class="card" id="diagnosticBankSummary" style="margin:12px 0 16px">
+  <div class="pageEyebrow">DIAGNOSTIC QUESTION BANK</div>
+  <h3 style="margin:0 0 6px">Diagnostic bank · 68 active items</h3>
+  <p class="small" style="margin:0">68 active items across A1–A2+, organized by Grammar, Vocabulary, topic, subskill, and difficulty.</p>
+</div><div id="diagArea"></div><div class="grid g2"><div><h3>Short writing sample</h3><textarea id="diagWriting" placeholder="Write 5–8 sentences. Suggested topic: my routine, my last weekend, or my future plans."></textarea></div><div><h3>Results</h3><p class="small">Complete all 20 adaptive questions to unlock your Grammar, Vocabulary, and personalized study plan.</p><button class="btn secondary" onclick="resetDiagnostic()">Reset test</button><div id="diagFeedback" class="feedback" style="display:none"></div></div></div></section>
 <section class="section" id="plan"><h2>Personalized Study Plan</h2><p class="lead">After the diagnostic, Romi creates a practical study path.</p><div class="grid g3" id="studyPlan"><div class="card"><h3>Start here</h3><p class="small">Complete the diagnostic to unlock your 5-step learning path.</p></div></div></section>
 <section class="section" id="grammar"><h2>Grammar Micro-Lessons</h2><p class="lead">Clear explanations, examples, common mistakes, and quick practice.</p><div id="grammarTabs" class="tabs"></div><div id="grammarBox"></div></section>
 <section class="section" id="reading"><h2>Reading Library</h2><p class="lead">Choose a text, read carefully, then answer comprehension questions. A2 and A2+ readings are longer and more realistic.</p><div class="tabs" id="readingTabs"></div><div class="grid g2" id="readingList"></div></section>
@@ -575,7 +639,17 @@ body.romi-dark .progressSkill,body.romi-dark .errorItem,body.romi-dark .coachIns
   </div>
 </section>
 
-<section class="section" id="teacher"><h2>Teacher Mode</h2><p class="lead">Use this section to turn Romi into a classroom assistant.</p><div class="grid g2"><div class="card"><h3>Classroom Generator</h3><select id="classroomType"><option>Warm-up activity</option><option>Pair work</option><option>Exit ticket</option><option>Homework generator</option><option>Quiz generator</option><option>Speaking cards</option><option>Reading worksheet</option><option>Writing prompt</option></select><br><br><button class="btn" onclick="generateClassroom()">Generate</button></div><div class="card"><h3>Teacher Report</h3><div id="teacherReport" class="small">Complete the diagnostic to generate a report.</div></div></div><div id="classroomOutput" class="feedback" style="display:none"></div></section>
+<section class="section" id="teacher"><h2>Teacher Mode</h2><p class="lead">Use this section to turn Romi into a classroom assistant.</p>
+<div class="card" style="margin-bottom:16px">
+  <div class="pageEyebrow">QUESTION BANK STATUS</div>
+  <div class="grid g4">
+    <div><span class="small">Active scoring</span><h3>68</h3></div>
+    <div><span class="small">Calibration items</span><h3>48</h3></div>
+    <div><span class="small">Validated A2</span><h3>20</h3></div>
+    <div><span class="small">Range</span><h3>A1–A2+</h3></div>
+  </div>
+  <p class="small">The diagnostic currently uses 48 calibration items across A1–A2+ plus 20 validated A2 items. Another 40 A2 items remain reserved for later review.</p>
+</div><div class="grid g2"><div class="card"><h3>Classroom Generator</h3><select id="classroomType"><option>Warm-up activity</option><option>Pair work</option><option>Exit ticket</option><option>Homework generator</option><option>Quiz generator</option><option>Speaking cards</option><option>Reading worksheet</option><option>Writing prompt</option></select><br><br><button class="btn" onclick="generateClassroom()">Generate</button></div><div class="card"><h3>Teacher Report</h3><div id="teacherReport" class="small">Complete the diagnostic to generate a report.</div></div></div><div id="classroomOutput" class="feedback" style="display:none"></div></section>
 </main>
 
 
@@ -753,6 +827,17 @@ const adaptiveBank=[
 {d:4,level:'A2+',skill:'complex sentence',q:'Choose the clearest sentence.',opts:['Although it rained, we played indoors.','Although rain, we played indoor.','It rained because we played indoors.'],a:0,why:'Although connects a contrast clearly: Although it rained, we played indoors.',next:'Complex sentences'},
 {d:4,level:'A2+',skill:'reading inference',q:'A student says: “I have practiced every day, but I still feel nervous.” What can you infer?',opts:['The student is trying to improve.','The student never practices.','The student hates English.'],a:0,why:'The sentence shows effort and emotion, so the best inference is that the student is trying to improve.',next:'Reading inference'}
 ];
+const romiUploadedDiagnosticBank = [{"id":"MM-A2-001","source":"MM Publications Diagnostic Test A2","sourceItem":1,"level":"A2","skill":"vocabulary","topic":"Functional language","subskill":"Declining invitations","difficulty":2,"q":"Do you fancy going out tonight? / I’m afraid I ___.","opts":["can’t be serious","got to go","can’t make it","say no"],"a":2,"answer":"can’t make it","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-002","source":"MM Publications Diagnostic Test A2","sourceItem":2,"level":"A2","skill":"grammar","topic":"Quantifiers","subskill":"any in questions","difficulty":2,"q":"Mum, is there ___ cake left?","opts":["a lot","much","any","little"],"a":2,"answer":"any","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-003","source":"MM Publications Diagnostic Test A2","sourceItem":3,"level":"A2","skill":"grammar","topic":"Used to","subskill":"Negative past habits","difficulty":3,"q":"Carol ___ to eat vegetables when she was a child, but now she loves them.","opts":["used","don’t use","doesn’t use","didn’t use"],"a":3,"answer":"didn’t use","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-004","source":"MM Publications Diagnostic Test A2","sourceItem":4,"level":"A2","skill":"grammar","topic":"Question forms","subskill":"Frequency questions","difficulty":1,"q":"___ do you train? / About four times a week.","opts":["When","Why","How","How often"],"a":3,"answer":"How often","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-005","source":"MM Publications Diagnostic Test A2","sourceItem":5,"level":"A2","skill":"vocabulary","topic":"Personality adjectives","subskill":"Meaning in context","difficulty":2,"q":"I don’t like ___ people. They always tell you what to do.","opts":["bossy","quick-tempered","honest","confident"],"a":0,"answer":"bossy","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-006","source":"MM Publications Diagnostic Test A2","sourceItem":6,"level":"A2","skill":"grammar","topic":"Past Continuous","subskill":"Interrupted past action","difficulty":3,"q":"Wendy ___ a book last night when her friend called her.","opts":["reads","is reading","used to read","was reading"],"a":3,"answer":"was reading","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-007","source":"MM Publications Diagnostic Test A2","sourceItem":7,"level":"A2","skill":"vocabulary","topic":"Environment","subskill":"Verb meaning in context","difficulty":2,"q":"Some animals and plants can ___ in the desert.","opts":["experience","explore","survive","arrange"],"a":2,"answer":"survive","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-008","source":"MM Publications Diagnostic Test A2","sourceItem":8,"level":"A2","skill":"grammar","topic":"Present Perfect","subskill":"Life-long state","difficulty":3,"q":"Mark ___ to become a doctor.","opts":["has always wanted","always wants","is always wanting","have always wanted"],"a":0,"answer":"has always wanted","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-009","source":"MM Publications Diagnostic Test A2","sourceItem":9,"level":"A2","skill":"vocabulary","topic":"Education and travel","subskill":"Collocation","difficulty":2,"q":"The children are taking a summer ___ in England.","opts":["accommodation","expense","course","journey"],"a":2,"answer":"course","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-010","source":"MM Publications Diagnostic Test A2","sourceItem":10,"level":"A2","skill":"grammar","topic":"Present Perfect","subskill":"Since + state verb","difficulty":3,"q":"My parents ___ this house since 2012.","opts":["have","had","have had","are having"],"a":2,"answer":"have had","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-011","source":"MM Publications Diagnostic Test A2","sourceItem":11,"level":"A2","skill":"vocabulary","topic":"Travel","subskill":"Airport vocabulary","difficulty":2,"q":"I want a(n) ___ seat on the plane, please.","opts":["boarding","aisle","conveyor","flight"],"a":1,"answer":"aisle","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-012","source":"MM Publications Diagnostic Test A2","sourceItem":12,"level":"A2","skill":"grammar","topic":"Modals","subskill":"Lack of necessity","difficulty":3,"q":"You ___ bring a tent when we go camping. I have one.","opts":["needn’t","mustn’t","don’t have","need"],"a":0,"answer":"needn’t","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-013","source":"MM Publications Diagnostic Test A2","sourceItem":13,"level":"A2","skill":"vocabulary","topic":"Travel","subskill":"Collocation","difficulty":2,"q":"We’ve made all the necessary ___ for our trip.","opts":["preparations","formations","organisations","explorations"],"a":0,"answer":"preparations","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-014","source":"MM Publications Diagnostic Test A2","sourceItem":14,"level":"A2","skill":"grammar","topic":"Indirect questions","subskill":"Statement word order","difficulty":4,"q":"Excuse me, do you know how many batteries ___ for this torch?","opts":["I need","need I","do I need","I do need"],"a":0,"answer":"I need","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-015","source":"MM Publications Diagnostic Test A2","sourceItem":15,"level":"A2","skill":"vocabulary","topic":"Travel","subskill":"Airport vocabulary","difficulty":2,"q":"Please check in at least an hour before ___.","opts":["arrival","delay","destination","departure"],"a":3,"answer":"departure","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-016","source":"MM Publications Diagnostic Test A2","sourceItem":16,"level":"A2","skill":"grammar","topic":"Future time clauses","subskill":"Present after as soon as","difficulty":4,"q":"Sandra will call us as soon as she ___.","opts":["arrives","is arriving","will arrive","won’t arrive"],"a":0,"answer":"arrives","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-017","source":"MM Publications Diagnostic Test A2","sourceItem":17,"level":"A2","skill":"vocabulary","topic":"Environment","subskill":"Compound adjective","difficulty":2,"q":"More and more people use environmentally-___ products nowadays.","opts":["correct","useful","friendly","handy"],"a":2,"answer":"friendly","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-018","source":"MM Publications Diagnostic Test A2","sourceItem":18,"level":"A2","skill":"grammar","topic":"Relative clauses","subskill":"Relative adverb where","difficulty":3,"q":"The village ___ they live is very peaceful.","opts":["which","where","who","that"],"a":1,"answer":"where","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-019","source":"MM Publications Diagnostic Test A2","sourceItem":19,"level":"A2","skill":"grammar","topic":"Future obligation","subskill":"will have to","difficulty":4,"q":"Jason ___ find a part-time job soon because he needs extra money.","opts":["will have","will have to","will be able","will be able to"],"a":1,"answer":"will have to","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-020","source":"MM Publications Diagnostic Test A2","sourceItem":20,"level":"A2","skill":"grammar","topic":"Quantifiers","subskill":"Enough + noun","difficulty":2,"q":"There isn’t ___ in the printer.","opts":["enough paper","too paper","paper enough","paper too"],"a":0,"answer":"enough paper","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-021","source":"MM Publications Diagnostic Test A2","sourceItem":21,"level":"A2","skill":"vocabulary","topic":"Health","subskill":"Health collocation","difficulty":1,"q":"Doctor, my son has a sore ___ and a temperature.","opts":["cough","pain","throat","cold"],"a":2,"answer":"throat","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-022","source":"MM Publications Diagnostic Test A2","sourceItem":22,"level":"A2","skill":"grammar","topic":"Infinitives","subskill":"Adjective + infinitive","difficulty":2,"q":"It’s difficult for me ___ exactly what happened.","opts":["explain","explains","explained","to explain"],"a":3,"answer":"to explain","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-023","source":"MM Publications Diagnostic Test A2","sourceItem":23,"level":"A2","skill":"vocabulary","topic":"Idioms","subskill":"drive someone up the wall","difficulty":4,"q":"All that noise was really ___ him up the wall.","opts":["taking","driving","getting","putting"],"a":1,"answer":"driving","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-024","source":"MM Publications Diagnostic Test A2","sourceItem":24,"level":"A2","skill":"grammar","topic":"Passive Voice","subskill":"Past simple passive","difficulty":3,"q":"Unfortunately, the painting ___ in the fire.","opts":["destroyed","is destroyed","destroys","was destroyed"],"a":3,"answer":"was destroyed","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-025","source":"MM Publications Diagnostic Test A2","sourceItem":25,"level":"A2","skill":"vocabulary","topic":"Places and directions","subskill":"Meaning in context","difficulty":2,"q":"Where exactly are we? Please show me our ___ on the map.","opts":["presentation","direction","destination","location"],"a":3,"answer":"location","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-026","source":"MM Publications Diagnostic Test A2","sourceItem":26,"level":"A2","skill":"grammar","topic":"First Conditional","subskill":"If + present simple","difficulty":3,"q":"If we ___ for directions, we’ll find the hotel easily.","opts":["ask","don’t ask","won’t ask","will ask"],"a":0,"answer":"ask","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-027","source":"MM Publications Diagnostic Test A2","sourceItem":27,"level":"A2","skill":"vocabulary","topic":"Phrasal verbs","subskill":"let someone down","difficulty":4,"q":"Alice has never ___ me down. After all she’s my best friend.","opts":["brought","checked","let","given"],"a":2,"answer":"let","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-028","source":"MM Publications Diagnostic Test A2","sourceItem":28,"level":"A2","skill":"grammar","topic":"Present Perfect Continuous","subskill":"Duration up to now","difficulty":4,"q":"Mark ___ English for five years now.","opts":["teaches","taught","is teaching","has been teaching"],"a":3,"answer":"has been teaching","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-029","source":"MM Publications Diagnostic Test A2","sourceItem":29,"level":"A2","skill":"grammar","topic":"Agreement structures","subskill":"Negative agreement with either","difficulty":4,"q":"Alex hasn’t tried kayaking and Jack ___.","opts":["has too","hasn’t either","also has","is neither"],"a":1,"answer":"hasn’t either","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-030","source":"MM Publications Diagnostic Test A2","sourceItem":30,"level":"A2","skill":"vocabulary","topic":"Shopping and travel","subskill":"Meaning in context","difficulty":1,"q":"People who book online get a 20 per cent ___.","opts":["advance","discount","sale","offer"],"a":1,"answer":"discount","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-031","source":"MM Publications Diagnostic Test A2","sourceItem":31,"level":"A2","skill":"vocabulary","topic":"Money","subskill":"Banking collocation","difficulty":1,"q":"Good morning. I’d like to open a bank ___.","opts":["deposit","account","commission","card"],"a":1,"answer":"account","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-032","source":"MM Publications Diagnostic Test A2","sourceItem":32,"level":"A2","skill":"grammar","topic":"Past Perfect","subskill":"Earlier past action","difficulty":4,"q":"Our mother ___ cooking by the time we got home.","opts":["had finished","finished","will finish","has finished"],"a":0,"answer":"had finished","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-033","source":"MM Publications Diagnostic Test A2","sourceItem":33,"level":"A2","skill":"vocabulary","topic":"Work and skills","subskill":"Collocation","difficulty":3,"q":"A good ___ of Spanish is an advantage in this job.","opts":["request","skill","knowledge","degree"],"a":2,"answer":"knowledge","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-034","source":"MM Publications Diagnostic Test A2","sourceItem":34,"level":"A2","skill":"grammar","topic":"Question tags","subskill":"Present simple tag","difficulty":4,"q":"Your cousin James lives in Norway, ___?","opts":["lives he","didn’t he","doesn’t he","he doesn’t"],"a":2,"answer":"doesn’t he","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-035","source":"MM Publications Diagnostic Test A2","sourceItem":35,"level":"A2","skill":"vocabulary","topic":"Functional vocabulary","subskill":"Verb collocation","difficulty":3,"q":"If you need help, don’t ___ to call me.","opts":["refuse","consider","hesitate","criticize"],"a":2,"answer":"hesitate","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-036","source":"MM Publications Diagnostic Test A2","sourceItem":36,"level":"A2","skill":"grammar","topic":"Degree structures","subskill":"so + adjective + that","difficulty":3,"q":"The weather was ___ bad that we decided to stay at home.","opts":["so","such","what","how"],"a":0,"answer":"so","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-037","source":"MM Publications Diagnostic Test A2","sourceItem":37,"level":"A2","skill":"grammar","topic":"Reported requests","subskill":"ask + object + infinitive","difficulty":3,"q":"The teacher asked Jim ___ the window.","opts":["to open","not open","open","opening"],"a":0,"answer":"to open","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-038","source":"MM Publications Diagnostic Test A2","sourceItem":38,"level":"A2","skill":"vocabulary","topic":"Classroom language","subskill":"Verb meaning in context","difficulty":1,"q":"Don’t ___ the teacher when he’s explaining the exercise. Listen to him.","opts":["misunderstand","clear up","interrupt","introduce"],"a":2,"answer":"interrupt","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-039","source":"MM Publications Diagnostic Test A2","sourceItem":39,"level":"A2","skill":"vocabulary","topic":"Food and cooking","subskill":"Cooking verbs","difficulty":1,"q":"Will you ___ some milk into the mixture?","opts":["chop","pour","mash","peel"],"a":1,"answer":"pour","answerStatus":"inferred_needs_validation"},{"id":"MM-A2-040","source":"MM Publications Diagnostic Test A2","sourceItem":40,"level":"A2","skill":"grammar","topic":"Wish","subskill":"Past regret","difficulty":5,"q":"We wish there ___ more people present at yesterday’s meeting.","opts":["are","been","had been","have been"],"a":2,"answer":"had been","answerStatus":"inferred_needs_validation"},{"id":"ELT-A2-001","source":"English Level Test Pre-Intermediate A2","sourceItem":1,"level":"A2","skill":"grammar","topic":"Substitution","subskill":"I think so","difficulty":3,"q":"Is Ottawa the capital of Canada? I think ___.","opts":["is","yes","so","right"],"a":2,"answer":"so","answerStatus":"source_key"},{"id":"ELT-A2-002","source":"English Level Test Pre-Intermediate A2","sourceItem":2,"level":"A2","skill":"grammar","topic":"Past Simple","subskill":"Past possession","difficulty":2,"q":"We never ___ a television when I was a child.","opts":["have had","hadn’t","had","didn’t have"],"a":2,"answer":"had","answerStatus":"source_key"},{"id":"ELT-A2-003","source":"English Level Test Pre-Intermediate A2","sourceItem":3,"level":"A2","skill":"vocabulary","topic":"Money and payments","subskill":"Prepositional phrase","difficulty":2,"q":"We paid the restaurant bill ___ credit card.","opts":["to","with","on","by"],"a":3,"answer":"by","answerStatus":"source_key"},{"id":"ELT-A2-004","source":"English Level Test Pre-Intermediate A2","sourceItem":4,"level":"A2","skill":"grammar","topic":"Past Simple","subskill":"Finished past time","difficulty":2,"q":"The last time I ___ Joanna was in Paris.","opts":["have seen","saw","see","was seeing"],"a":1,"answer":"saw","answerStatus":"source_key"},{"id":"ELT-A2-005","source":"English Level Test Pre-Intermediate A2","sourceItem":5,"level":"A2","skill":"vocabulary","topic":"Money","subskill":"Borrow vs lend","difficulty":2,"q":"If you ___ money from a friend, you should always pay it back promptly.","opts":["borrow","earn","spend","lend"],"a":0,"answer":"borrow","answerStatus":"source_key"},{"id":"ELT-A2-006","source":"English Level Test Pre-Intermediate A2","sourceItem":6,"level":"A2","skill":"grammar","topic":"Modals and necessity","subskill":"don’t have to","difficulty":3,"q":"Can I make myself a cup of coffee? Of course. You ___ to ask.","opts":["haven’t","mustn’t","needn’t","don’t have"],"a":3,"answer":"don’t have","answerStatus":"source_key"},{"id":"ELT-A2-007","source":"English Level Test Pre-Intermediate A2","sourceItem":7,"level":"A2","skill":"vocabulary","topic":"Free time","subskill":"Collocation do sport","difficulty":2,"q":"I ___ a lot of sport in my free time.","opts":["do","practise","make","exercise"],"a":0,"answer":"do","answerStatus":"source_key"},{"id":"ELT-A2-008","source":"English Level Test Pre-Intermediate A2","sourceItem":8,"level":"A2","skill":"grammar","topic":"Present Perfect","subskill":"Recent experience","difficulty":3,"q":"___ anywhere interesting recently?","opts":["Do you go","Have you been","Are you going","Will you go"],"a":1,"answer":"Have you been","answerStatus":"source_key"},{"id":"ELT-A2-009","source":"English Level Test Pre-Intermediate A2","sourceItem":9,"level":"A2","skill":"grammar","topic":"Future with will","subskill":"Prediction","difficulty":2,"q":"It’s Walter’s birthday on Friday. He ___ be 30, I think.","opts":["should","can","will","shall"],"a":2,"answer":"will","answerStatus":"source_key"},{"id":"ELT-A2-010","source":"English Level Test Pre-Intermediate A2","sourceItem":10,"level":"A2","skill":"grammar","topic":"Comparatives","subskill":"as...as","difficulty":2,"q":"Learning the piano isn’t as difficult ___ learning the violin.","opts":["like","so","than","as"],"a":3,"answer":"as","answerStatus":"source_key"},{"id":"ELT-A2-011","source":"English Level Test Pre-Intermediate A2","sourceItem":11,"level":"A2","skill":"grammar","topic":"First Conditional","subskill":"If + present simple","difficulty":3,"q":"If the weather ___ bad tomorrow, we can go to a museum.","opts":["will be","was","is","would be"],"a":2,"answer":"is","answerStatus":"source_key"},{"id":"ELT-A2-012","source":"English Level Test Pre-Intermediate A2","sourceItem":12,"level":"A2","skill":"grammar","topic":"Passive Voice","subskill":"Present simple passive","difficulty":3,"q":"About a billion cans of Coca-Cola ___ drunk around the world every day.","opts":["is","are","was","were"],"a":1,"answer":"are","answerStatus":"source_key"},{"id":"ELT-A2-013","source":"English Level Test Pre-Intermediate A2","sourceItem":13,"level":"A2","skill":"vocabulary","topic":"Functional language","subskill":"Responding sympathetically","difficulty":2,"q":"My mum’s not very well. Oh, ___.","opts":["it doesn’t matter","I do apologise","sorry to hear that","not bad, thanks"],"a":2,"answer":"sorry to hear that","answerStatus":"source_key"},{"id":"ELT-A2-014","source":"English Level Test Pre-Intermediate A2","sourceItem":14,"level":"A2","skill":"grammar","topic":"Present Perfect","subskill":"has gone vs has been","difficulty":4,"q":"Hans isn’t here. He ___ to see his grandmother. He’ll be back tomorrow.","opts":["has gone","had been","has been","had gone"],"a":0,"answer":"has gone","answerStatus":"source_key"},{"id":"ELT-A2-015","source":"English Level Test Pre-Intermediate A2","sourceItem":15,"level":"A2","skill":"vocabulary","topic":"Appointments","subskill":"Determiner in context","difficulty":2,"q":"Would you mind changing my appointment? ___ time on Friday is fine.","opts":["Next","All the","Every","Any"],"a":3,"answer":"Any","answerStatus":"source_key"},{"id":"ELT-A2-016","source":"English Level Test Pre-Intermediate A2","sourceItem":16,"level":"A2","skill":"grammar","topic":"Past habits","subskill":"Would for repeated past actions","difficulty":4,"q":"When I was a child, I ___ climb the wall and jump into our neighbours’ garden.","opts":["would","did","have","used"],"a":0,"answer":"would","answerStatus":"source_key"},{"id":"ELT-A2-017","source":"English Level Test Pre-Intermediate A2","sourceItem":17,"level":"A2","skill":"grammar","topic":"Gerunds","subskill":"finish + -ing","difficulty":3,"q":"Have you finished ___ the wall yet?","opts":["paint","to paint","painting","painted"],"a":2,"answer":"painting","answerStatus":"source_key"},{"id":"ELT-A2-018","source":"English Level Test Pre-Intermediate A2","sourceItem":18,"level":"A2","skill":"grammar","topic":"Determiners","subskill":"every + singular noun","difficulty":3,"q":"Can you help me? I’ve tried ___ hotel in the city and can’t find a room.","opts":["many","any","every","all"],"a":2,"answer":"every","answerStatus":"source_key"},{"id":"ELT-A2-019","source":"English Level Test Pre-Intermediate A2","sourceItem":19,"level":"A2","skill":"grammar","topic":"Linkers","subskill":"until","difficulty":3,"q":"Lena used to find work boring ___ she became a nurse.","opts":["unless","until","if","since"],"a":1,"answer":"until","answerStatus":"source_key"},{"id":"ELT-A2-020","source":"English Level Test Pre-Intermediate A2","sourceItem":20,"level":"A2","skill":"grammar","topic":"Second Conditional","subskill":"If + past simple","difficulty":4,"q":"If I ___ closer to my office, I could walk to work.","opts":["lived","would live","had lived","live"],"a":0,"answer":"lived","answerStatus":"source_key"}];
+
+function diagnosticBankStats(){
+  const bank=romiUploadedDiagnosticBank||[];
+  const grammar=bank.filter(x=>x.skill==='grammar').length;
+  const vocabulary=bank.filter(x=>x.skill==='vocabulary').length;
+  const official=bank.filter(x=>x.answerStatus==='source_key').length;
+  const review=bank.filter(x=>x.answerStatus!=='source_key').length;
+  return {total:bank.length,grammar,vocabulary,official,review};
+}
+
 let adaptiveState={current:2,asked:[],correct:0,total:0,streak:0,misses:{},history:[],finished:false};
 function levelFromDifficulty(avg,accuracy){if(avg>=3.55&&accuracy>=.68)return 'A2+';if(avg>=2.75&&accuracy>=.6)return 'A2';if(avg>=1.85&&accuracy>=.52)return 'A1+';return 'A1'}
 function pickAdaptiveQuestion(){let candidates=adaptiveBank.filter(q=>q.d===adaptiveState.current&&!adaptiveState.asked.includes(q.q));if(!candidates.length){candidates=adaptiveBank.filter(q=>!adaptiveState.asked.includes(q.q));}return candidates[Math.floor(Math.random()*candidates.length)]}
@@ -1902,6 +1987,554 @@ function initRomi2App(){
 }
 
 window.addEventListener('load',()=>setTimeout(initRomi2App,120));
+
+
+/* ===== ROMI 2.1 LOCAL ADAPTIVE DIAGNOSTIC OVERRIDE ===== */
+const romiLocalCalibrationBank=[{"id":"ROMI-G-A1-01","d":1,"level":"A1","skill":"grammar","topic":"Verb to be","subskill":"am/is/are","q":"Complete: I ___ twelve years old.","opts":["am","is","are","be"],"a":0,"why":"Use am with I.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-G-A1-02","d":1,"level":"A1","skill":"grammar","topic":"Verb to be","subskill":"he/she/it + is","q":"My teacher ___ very friendly.","opts":["am","are","is","be"],"a":2,"why":"Use is with one person: my teacher.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-G-A1-03","d":1,"level":"A1","skill":"grammar","topic":"Articles","subskill":"a/an","q":"She has ___ orange in her bag.","opts":["a","an","the","some"],"a":1,"why":"Use an before a vowel sound.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-G-A1-04","d":1,"level":"A1","skill":"grammar","topic":"Possessives","subskill":"my/your/his/her","q":"Tom has a sister. ___ name is Lucy.","opts":["His","Her","My","Their"],"a":1,"why":"Her refers to Tom’s sister.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-G-A1-05","d":1,"level":"A1","skill":"grammar","topic":"Present Simple","subskill":"I/you/we/they","q":"We ___ English at school.","opts":["study","studies","studied","studying"],"a":0,"why":"Use the base verb with we in the simple present.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-G-A1-06","d":1,"level":"A1","skill":"grammar","topic":"Plural nouns","subskill":"regular plurals","q":"There are three ___ on the desk.","opts":["book","books","bookes","a book"],"a":1,"why":"Use the plural form books after three.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-V-A1-01","d":1,"level":"A1","skill":"vocabulary","topic":"Family","subskill":"basic family words","q":"My mother’s brother is my ___.","opts":["uncle","cousin","nephew","grandson"],"a":0,"why":"Your mother’s brother is your uncle.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-V-A1-02","d":1,"level":"A1","skill":"vocabulary","topic":"School","subskill":"classroom objects","q":"Which item do you use to erase pencil marks?","opts":["ruler","eraser","notebook","scissors"],"a":1,"why":"An eraser removes pencil marks.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-V-A1-03","d":1,"level":"A1","skill":"vocabulary","topic":"Food","subskill":"basic food","q":"Which one is a fruit?","opts":["carrot","apple","rice","bread"],"a":1,"why":"An apple is a fruit.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-V-A1-04","d":1,"level":"A1","skill":"vocabulary","topic":"Places","subskill":"town places","q":"You can borrow books from a ___.","opts":["library","hospital","bakery","station"],"a":0,"why":"A library lends books.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-V-A1-05","d":1,"level":"A1","skill":"vocabulary","topic":"Weather","subskill":"basic weather","q":"If there is a lot of water falling from the sky, it is ___.","opts":["sunny","windy","raining","dry"],"a":2,"why":"Water falling from the sky means it is raining.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-V-A1-06","d":1,"level":"A1","skill":"vocabulary","topic":"Daily routines","subskill":"basic routines","q":"What do most people do at night?","opts":["sleep","have lunch","go to school","wake up"],"a":0,"why":"People normally sleep at night.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-G-A1P-01","d":2,"level":"A1+","skill":"grammar","topic":"Present Simple","subskill":"third person -s","q":"My brother ___ football every Saturday.","opts":["play","plays","playing","played"],"a":1,"why":"Add -s with he/she/it in the simple present.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-G-A1P-02","d":2,"level":"A1+","skill":"grammar","topic":"Present Simple","subskill":"negative","q":"Sara ___ like coffee.","opts":["don’t","doesn’t","isn’t","not"],"a":1,"why":"Use doesn’t with he/she/it.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-G-A1P-03","d":2,"level":"A1+","skill":"grammar","topic":"Present Simple","subskill":"questions","q":"___ your friends live near you?","opts":["Do","Does","Are","Is"],"a":0,"why":"Use Do with plural subjects in simple-present questions.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-G-A1P-04","d":2,"level":"A1+","skill":"grammar","topic":"Past be","subskill":"was/were","q":"Yesterday, we ___ at home.","opts":["was","were","are","be"],"a":1,"why":"Use were with we in the past.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-G-A1P-05","d":2,"level":"A1+","skill":"grammar","topic":"There is/are","subskill":"plural","q":"There ___ two windows in my classroom.","opts":["is","are","was","be"],"a":1,"why":"Use there are with plural nouns.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-G-A1P-06","d":2,"level":"A1+","skill":"grammar","topic":"Modal can","subskill":"ability","q":"Mia can ___ very well.","opts":["swims","swim","swam","swimming"],"a":1,"why":"After can, use the base form of the verb.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-V-A1P-01","d":2,"level":"A1+","skill":"vocabulary","topic":"Daily routines","subskill":"routine verbs","q":"I usually ___ a shower before school.","opts":["make","do","take","get"],"a":2,"why":"The common expression is take a shower.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-V-A1P-02","d":2,"level":"A1+","skill":"vocabulary","topic":"Clothes","subskill":"clothing","q":"Which item do you wear on your feet?","opts":["gloves","boots","belt","cap"],"a":1,"why":"Boots are worn on your feet.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-V-A1P-03","d":2,"level":"A1+","skill":"vocabulary","topic":"House","subskill":"rooms","q":"You usually cook in the ___.","opts":["bedroom","kitchen","bathroom","garage"],"a":1,"why":"People normally cook in the kitchen.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-V-A1P-04","d":2,"level":"A1+","skill":"vocabulary","topic":"Transport","subskill":"travel words","q":"Which vehicle travels on rails?","opts":["bus","train","plane","bicycle"],"a":1,"why":"A train travels on rails.","complexity":1,"source":"ROMI original calibration"},{"id":"ROMI-V-A1P-05","d":2,"level":"A1+","skill":"vocabulary","topic":"Hobbies","subskill":"free time","q":"Someone who enjoys taking pictures likes ___.","opts":["photography","swimming","cooking","cycling"],"a":0,"why":"Photography is the activity of taking pictures.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-V-A1P-06","d":2,"level":"A1+","skill":"vocabulary","topic":"Jobs","subskill":"occupations","q":"A person who helps sick people in a hospital may be a ___.","opts":["mechanic","nurse","chef","pilot"],"a":1,"why":"A nurse cares for patients.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-G-A2-01","d":3,"level":"A2","skill":"grammar","topic":"Simple Past","subskill":"irregular verbs","q":"Last weekend, we ___ to the beach.","opts":["go","went","gone","going"],"a":1,"why":"Went is the past form of go.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-G-A2-02","d":3,"level":"A2","skill":"grammar","topic":"Past Continuous","subskill":"interrupted action","q":"I ___ dinner when the phone rang.","opts":["cooked","was cooking","am cooking","have cooked"],"a":1,"why":"Use past continuous for an action in progress when another action happened.","complexity":3,"source":"ROMI original calibration"},{"id":"ROMI-G-A2-03","d":3,"level":"A2","skill":"grammar","topic":"Comparatives","subskill":"comparative adjectives","q":"This exercise is ___ than the last one.","opts":["easy","easier","easiest","more easy"],"a":1,"why":"The comparative of easy is easier.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-G-A2-04","d":3,"level":"A2","skill":"grammar","topic":"First Conditional","subskill":"if + present","q":"If it rains tomorrow, we ___ at home.","opts":["stay","stayed","will stay","would stay"],"a":2,"why":"Use will + base verb in the result clause of a first conditional.","complexity":3,"source":"ROMI original calibration"},{"id":"ROMI-G-A2-05","d":3,"level":"A2","skill":"grammar","topic":"Future","subskill":"going to","q":"Look at those clouds! It ___.","opts":["is going to rain","will raining","rains yesterday","has rain"],"a":0,"why":"Going to is natural for a prediction based on present evidence.","complexity":3,"source":"ROMI original calibration"},{"id":"ROMI-G-A2-06","d":3,"level":"A2","skill":"grammar","topic":"Present Perfect","subskill":"experience","q":"Have you ever ___ sushi?","opts":["eat","ate","eaten","eating"],"a":2,"why":"Present perfect uses have + past participle: eaten.","complexity":3,"source":"ROMI original calibration"},{"id":"ROMI-V-A2-01","d":3,"level":"A2","skill":"vocabulary","topic":"Travel","subskill":"airport vocabulary","q":"You show your passport and boarding pass before you ___ the plane.","opts":["board","borrow","book","pack"],"a":0,"why":"To board a plane means to get on it.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-V-A2-02","d":3,"level":"A2","skill":"vocabulary","topic":"Health","subskill":"symptoms","q":"If your throat hurts, you have a ___.","opts":["sore throat","broken arm","headache","toothbrush"],"a":0,"why":"A sore throat means pain or irritation in the throat.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-V-A2-03","d":3,"level":"A2","skill":"vocabulary","topic":"Shopping","subskill":"price vocabulary","q":"The jacket was cheaper because the shop gave me a 20% ___.","opts":["receipt","discount","cash","change"],"a":1,"why":"A discount reduces the normal price.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-V-A2-04","d":3,"level":"A2","skill":"vocabulary","topic":"Personality","subskill":"adjectives","q":"Someone who always tells the truth is ___.","opts":["honest","lazy","nervous","bossy"],"a":0,"why":"Honest means truthful.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-V-A2-05","d":3,"level":"A2","skill":"vocabulary","topic":"Environment","subskill":"environment words","q":"We should ___ plastic bottles instead of throwing them away.","opts":["recycle","destroy","waste","pollute"],"a":0,"why":"Recycling lets materials be used again.","complexity":2,"source":"ROMI original calibration"},{"id":"ROMI-V-A2-06","d":3,"level":"A2","skill":"vocabulary","topic":"Collocations","subskill":"make/do/take","q":"Please ___ a decision before Friday.","opts":["do","make","take","have"],"a":1,"why":"The standard collocation is make a decision.","complexity":3,"source":"ROMI original calibration"},{"id":"ROMI-G-A2P-01","d":4,"level":"A2+","skill":"grammar","topic":"Present Perfect vs Past","subskill":"finished time","q":"I ___ that film last Friday.","opts":["have seen","saw","have saw","see"],"a":1,"why":"Use simple past with a finished past time such as last Friday.","complexity":3,"source":"ROMI original calibration"},{"id":"ROMI-G-A2P-02","d":4,"level":"A2+","skill":"grammar","topic":"Passive Voice","subskill":"past passive","q":"The school library ___ in 2018.","opts":["built","was built","is build","has building"],"a":1,"why":"Past passive uses was/were + past participle.","complexity":3,"source":"ROMI original calibration"},{"id":"ROMI-G-A2P-03","d":4,"level":"A2+","skill":"grammar","topic":"Second Conditional","subskill":"hypothetical situations","q":"If I ___ more free time, I would learn Japanese.","opts":["have","had","will have","would have"],"a":1,"why":"Second conditional uses past simple in the if-clause.","complexity":4,"source":"ROMI original calibration"},{"id":"ROMI-G-A2P-04","d":4,"level":"A2+","skill":"grammar","topic":"Relative clauses","subskill":"where","q":"That is the café ___ we met.","opts":["who","where","which person","whose"],"a":1,"why":"Use where for a place.","complexity":3,"source":"ROMI original calibration"},{"id":"ROMI-G-A2P-05","d":4,"level":"A2+","skill":"grammar","topic":"Reported requests","subskill":"ask + infinitive","q":"The teacher asked us ___ quietly.","opts":["work","to work","working","worked"],"a":1,"why":"After ask + object, use the infinitive with to.","complexity":4,"source":"ROMI original calibration"},{"id":"ROMI-G-A2P-06","d":4,"level":"A2+","skill":"grammar","topic":"Present Perfect Continuous","subskill":"duration","q":"She ___ English for three years.","opts":["has been studying","is study","studied tomorrow","have studied"],"a":0,"why":"Use has been + -ing for an activity continuing over a period until now.","complexity":4,"source":"ROMI original calibration"},{"id":"ROMI-V-A2P-01","d":4,"level":"A2+","skill":"vocabulary","topic":"Phrasal verbs","subskill":"let down","q":"I promised to help Ana, so I don’t want to ___ her down.","opts":["let","put","bring","take"],"a":0,"why":"Let someone down means disappoint them.","complexity":4,"source":"ROMI original calibration"},{"id":"ROMI-V-A2P-02","d":4,"level":"A2+","skill":"vocabulary","topic":"Word formation","subskill":"adjective formation","q":"The instructions were very ___, so everyone understood them.","opts":["clearly","clear","clarity","clearing"],"a":1,"why":"An adjective is needed after were: clear.","complexity":3,"source":"ROMI original calibration"},{"id":"ROMI-V-A2P-03","d":4,"level":"A2+","skill":"vocabulary","topic":"Collocations","subskill":"knowledge","q":"A good ___ of English can help you when travelling.","opts":["knowledge","know","knowing","known"],"a":0,"why":"The collocation is a good knowledge of a language.","complexity":4,"source":"ROMI original calibration"},{"id":"ROMI-V-A2P-04","d":4,"level":"A2+","skill":"vocabulary","topic":"Feelings","subskill":"nuanced adjectives","q":"I felt ___ before speaking in front of the whole class.","opts":["nervous","delicious","crowded","careless"],"a":0,"why":"Nervous describes feeling worried or anxious.","complexity":3,"source":"ROMI original calibration"},{"id":"ROMI-V-A2P-05","d":4,"level":"A2+","skill":"vocabulary","topic":"Travel","subskill":"accommodation","q":"We stayed in a small ___ near the station and had breakfast there.","opts":["guesthouse","platform","departure","suitcase"],"a":0,"why":"A guesthouse is a place where travellers can stay.","complexity":3,"source":"ROMI original calibration"},{"id":"ROMI-V-A2P-06","d":4,"level":"A2+","skill":"vocabulary","topic":"Work","subskill":"employment vocabulary","q":"She is looking for a part-time ___ after school.","opts":["job","careerful","workplace person","professionally"],"a":0,"why":"A part-time job is employment for fewer hours than a full-time job.","complexity":3,"source":"ROMI original calibration"}];
+
+const romiImportedScoringBank=(romiUploadedDiagnosticBank||[])
+  .filter(q=>q.answerStatus==='source_key')
+  .map(q=>({
+    id:q.id,d:3,level:'A2',skill:q.skill,topic:q.topic,subskill:q.subskill,
+    q:q.q,opts:q.opts,a:q.a,
+    why:`Correct answer: ${q.answer}. This item comes from the validated A2 answer-key bank.`,
+    complexity:q.difficulty||2,source:'validated imported A2 bank'
+  }));
+
+const romiLocalAdaptiveBank=[...romiLocalCalibrationBank,...romiImportedScoringBank];
+
+function makeLocalAdaptiveState(){
+  return {
+    asked:[],total:0,correct:0,history:[],finished:false,lastSkill:'vocabulary',
+    maxQuestions:20,minQuestions:14,
+    skills:{
+      grammar:{rating:2.05,total:0,correct:0,streak:0,trail:[]},
+      vocabulary:{rating:2.05,total:0,correct:0,streak:0,trail:[]}
+    },
+    misses:{}
+  };
+}
+adaptiveState=makeLocalAdaptiveState();
+
+function clampAdaptive(v,min,max){return Math.max(min,Math.min(max,v))}
+function ratingToLevel(r){
+  if(r<1.55)return'A1';
+  if(r<2.55)return'A1+';
+  if(r<3.55)return'A2';
+  return'A2+';
+}
+function adaptiveOverallRating(){
+  return (adaptiveState.skills.grammar.rating+adaptiveState.skills.vocabulary.rating)/2;
+}
+function skillStable(skill){
+  const s=adaptiveState.skills[skill];
+  if(s.total<7||s.trail.length<4)return false;
+  const last=s.trail.slice(-4);
+  return Math.max(...last)-Math.min(...last)<0.58;
+}
+function shouldFinishAdaptive(){
+  return adaptiveState.total>=adaptiveState.maxQuestions;
+}
+function chooseAdaptiveSkill(){
+  const g=adaptiveState.skills.grammar;
+  const v=adaptiveState.skills.vocabulary;
+  if(g.total<v.total)return'grammar';
+  if(v.total<g.total)return'vocabulary';
+  adaptiveState.lastSkill=adaptiveState.lastSkill==='grammar'?'vocabulary':'grammar';
+  return adaptiveState.lastSkill;
+}
+function pickAdaptiveQuestion(){
+  const skill=chooseAdaptiveSkill();
+  const s=adaptiveState.skills[skill];
+  const target=clampAdaptive(Math.round(s.rating),1,4);
+
+  let candidates=romiLocalAdaptiveBank.filter(q=>
+    q.skill===skill && q.d===target && !adaptiveState.asked.includes(q.id)
+  );
+  if(!candidates.length){
+    candidates=romiLocalAdaptiveBank.filter(q=>
+      q.skill===skill && Math.abs(q.d-target)<=1 && !adaptiveState.asked.includes(q.id)
+    );
+  }
+  if(!candidates.length){
+    candidates=romiLocalAdaptiveBank.filter(q=>
+      q.skill===skill && !adaptiveState.asked.includes(q.id)
+    );
+  }
+  if(!candidates.length)return null;
+
+  candidates.sort((a,b)=>{
+    const da=Math.abs(a.d-s.rating),db=Math.abs(b.d-s.rating);
+    if(da!==db)return da-db;
+    return Math.random()-.5;
+  });
+  const shortlist=candidates.slice(0,Math.min(6,candidates.length));
+  return shortlist[Math.floor(Math.random()*shortlist.length)];
+}
+function diagnosticSkillCard(skill,label){
+  const s=adaptiveState.skills[skill];
+  return `<div class="adaptiveSkillMeter">
+    <span>${label}</span>
+    <b id="${skill}LiveLevel">${ratingToLevel(s.rating)}</b>
+    <small id="${skill}Evidence">${s.total}/7 evidence</small>
+    <div class="adaptiveMiniBar"><i id="${skill}MiniBar" style="width:${Math.min(100,s.total/7*100)}%"></i></div>
+  </div>`;
+}
+renderDiagnostic=function(){
+  adaptiveState=makeLocalAdaptiveState();
+  const area=document.getElementById('diagArea');
+  if(!area)return;
+  area.innerHTML=`
+    <div class='liveBox localDiagnosticBox'>
+      <div class="localEngineBanner">
+        <div><span class="engineDot"></span><b>ROMI Adaptive Diagnostic</b></div>
+        <span>20 questions · A1 to A2+</span>
+      </div>
+      <h3>Grammar + Vocabulary Adaptive Diagnostic</h3>
+      <p>The test starts around A1+ and changes difficulty independently for Grammar and Vocabulary. It can finish early when both estimates become stable.</p>
+
+      <div class="adaptiveSkillGrid">
+        ${diagnosticSkillCard('grammar','🧩 Grammar')}
+        ${diagnosticSkillCard('vocabulary','🖼️ Vocabulary')}
+      </div>
+
+      <div class='adaptiveStatus adaptiveStatusV2'>
+        <div><span class='small'>Answered</span><b id='adTotal'>0 / 20</b></div>
+        <div><span class='small'>Live accuracy</span><b id='adAcc'>0%</b></div>
+        <div><span class='small'>Current skill</span><b id='adCurrentSkill'>—</b></div>
+        <div><span class='small'>Overall estimate</span><b id='adEstimate'>Starting…</b></div>
+      </div>
+
+      <div id='adaptiveQuestion'></div>
+      <div id='adaptiveLive' class='feedback' style='display:none'></div>
+      <div id='adaptiveResults' class='adaptiveResultsPanel' style='display:none'></div>
+    </div>`;
+  showAdaptiveQuestion();
+};
+
+showAdaptiveQuestion=function(){
+  if(shouldFinishAdaptive()){finishAdaptiveDiagnostic();return}
+  const q=pickAdaptiveQuestion();
+  if(!q){finishAdaptiveDiagnostic();return}
+
+  adaptiveState.active=q;
+  adaptiveState.asked.push(q.id);
+
+  const live=document.getElementById('adaptiveLive');
+  if(live)live.style.display='none';
+  const current=document.getElementById('adCurrentSkill');
+  if(current)current.textContent=q.skill==='grammar'?'Grammar':'Vocabulary';
+
+  document.getElementById('adaptiveQuestion').innerHTML=`
+    <div class='question adaptiveQuestionV2'>
+      <div class="adaptiveQuestionMeta">
+        <span class='pill level'>${q.level}</span>
+        <span class='pill'>${q.skill==='grammar'?'🧩 Grammar':'🖼️ Vocabulary'}</span>
+        <span class='pill'>${q.topic}</span>
+      </div>
+      <p class="small">Question ${adaptiveState.total+1} · difficulty selected from your ${q.skill} estimate</p>
+      <h3>${q.q}</h3>
+      ${q.opts.map((o,i)=>`<button class='choiceBtn' onclick='answerAdaptive(${i},this)'><span class="answerLetter">${String.fromCharCode(65+i)}</span>${o}</button>`).join('')}
+    </div>`;
+  updateAdaptiveStatus();
+};
+
+answerAdaptive=function(i,btn){
+  const q=adaptiveState.active;
+  if(!q||adaptiveState.finished)return;
+  const ok=i===q.a;
+  const s=adaptiveState.skills[q.skill];
+
+  [...btn.parentNode.querySelectorAll('.choiceBtn')].forEach((b,idx)=>{
+    b.disabled=true;
+    if(idx===q.a)b.classList.add('correct');
+  });
+  if(!ok)btn.classList.add('wrong');
+
+  adaptiveState.total++;
+  s.total++;
+  if(ok){
+    adaptiveState.correct++;
+    s.correct++;
+    s.streak=Math.max(1,s.streak+1);
+  }else{
+    s.streak=Math.min(-1,s.streak-1);
+  }
+
+  const challengeGap=q.d-s.rating;
+  let delta;
+  if(ok){
+    delta=.22+Math.max(0,challengeGap)*.14;
+    if(s.streak>=2)delta+=.10;
+  }else{
+    delta=-.27-Math.max(0,-challengeGap)*.12;
+    if(s.streak<=-2)delta-=.10;
+  }
+  s.rating=clampAdaptive(s.rating+delta,1,4);
+  s.trail.push(s.rating);
+
+  if(!ok){
+    const key=`${q.skill} · ${q.topic} · ${q.subskill}`;
+    adaptiveState.misses[key]=(adaptiveState.misses[key]||0)+1;
+    if(typeof recordError==='function'){
+      recordError(q.skill,q.opts[i],q.opts[q.a],q.why);
+    }
+  }
+
+  adaptiveState.history.push({
+    id:q.id,skill:q.skill,topic:q.topic,subskill:q.subskill,
+    level:q.level,d:q.d,ok,why:q.why,selected:i,correctIndex:q.a
+  });
+
+  if(typeof updateSkillScore==='function')updateSkillScore(q.skill,ok,1.10);
+
+  const overall=ratingToLevel(adaptiveOverallRating());
+  const nextLevel=ratingToLevel(s.rating);
+  const nextMessage=ok
+    ? `Your ${q.skill} estimate is now ${nextLevel}.`
+    : `ROMI will keep the next ${q.skill} item near ${nextLevel} to confirm your level.`;
+
+  const live=document.getElementById('adaptiveLive');
+  live.style.display='block';
+  live.className='feedback '+(ok?'ok':'warn');
+  live.innerHTML=`
+    <h3>${ok?'✅ Correct':'🟡 Review this skill'}</h3>
+    <p><b>Why:</b> ${q.why}</p>
+    <p><b>Adaptive decision:</b> ${nextMessage}</p>
+    <button class='btn small' onclick="${shouldFinishAdaptive()?'finishAdaptiveDiagnostic()':'showAdaptiveQuestion()'}">
+      ${shouldFinishAdaptive()?'See my results':'Next adaptive question'}
+    </button>`;
+
+  const estimate=document.getElementById('adEstimate');
+  if(estimate)estimate.textContent=overall;
+  updateAdaptiveStatus();
+
+  if(typeof setCoachMessage==='function'){
+    setCoachMessage('diagnostic',ok?'good':'review',
+      ok?`Correct. Your ${q.skill} challenge may increase.`:`Review ${q.topic}. ROMI is adjusting the next ${q.skill} item.`);
+  }
+  if(ok)addXP(4,'Diagnostic Starter');
+};
+
+updateAdaptiveStatus=function(){
+  const acc=adaptiveState.total?Math.round(100*adaptiveState.correct/adaptiveState.total):0;
+  const total=document.getElementById('adTotal');
+  const accuracy=document.getElementById('adAcc');
+  if(total)total.textContent=adaptiveState.total+' / '+adaptiveState.maxQuestions;
+  if(accuracy)accuracy.textContent=acc+'%';
+
+  ['grammar','vocabulary'].forEach(skill=>{
+    const s=adaptiveState.skills[skill];
+    const level=document.getElementById(skill+'LiveLevel');
+    const evidence=document.getElementById(skill+'Evidence');
+    const bar=document.getElementById(skill+'MiniBar');
+    if(level)level.textContent=ratingToLevel(s.rating);
+    if(evidence)evidence.textContent=`${s.total}/7 evidence`;
+    if(bar)bar.style.width=Math.min(100,s.total/7*100)+'%';
+  });
+};
+
+resetDiagnostic=function(){
+  const wt=document.getElementById('diagWriting');
+  if(wt)wt.value='';
+  const fb=document.getElementById('diagFeedback');
+  if(fb)fb.style.display='none';
+  renderDiagnostic();
+};
+
+function weakestDiagnosticFocus(){
+  const misses=Object.entries(adaptiveState.misses).sort((a,b)=>b[1]-a[1]);
+  if(misses.length)return misses[0][0];
+  const g=adaptiveState.skills.grammar,v=adaptiveState.skills.vocabulary;
+  return g.rating<=v.rating?'grammar · consolidate lower-confidence topics':'vocabulary · broaden vocabulary in context';
+}
+function writingLocalIndicators(){
+  const text=document.getElementById('diagWriting')?.value.trim()||'';
+  if(!text)return{words:0,connectors:0,past:0,future:0,pp:0,note:'No writing sample submitted.'};
+  const words=text.split(/\s+/).filter(Boolean).length;
+  const connectors=(text.match(/\b(and|but|because|then|after that|first|finally|however|also|although|so)\b/gi)||[]).length;
+  const past=(text.match(/\b(went|played|visited|was|were|had|did|made|studied|saw|ate|read|worked|watched|bought|came|got|took)\b/gi)||[]).length;
+  const future=(text.match(/\b(will|going to|am going to|is going to|are going to)\b/gi)||[]).length;
+  const pp=(text.match(/\b(have|has)\s+\w+(ed|en)\b/gi)||[]).length;
+  return{words,connectors,past,future,pp,note:'Writing is an informal indicator and does not change the Grammar/Vocabulary CEFR score.'};
+}
+
+
+function diagnosticTopicStats(){
+  const map={};
+  adaptiveState.history.forEach(h=>{
+    const key=`${h.skill}|${h.topic}`;
+    if(!map[key])map[key]={skill:h.skill,topic:h.topic,total:0,correct:0,wrong:0};
+    map[key].total++;
+    if(h.ok)map[key].correct++; else map[key].wrong++;
+  });
+  return Object.values(map);
+}
+
+function diagnosticStrengths(){
+  return diagnosticTopicStats()
+    .filter(x=>x.correct>0 && x.wrong===0)
+    .sort((a,b)=>b.correct-a.correct)
+    .slice(0,3);
+}
+
+function diagnosticPriorities(){
+  const missed=diagnosticTopicStats()
+    .filter(x=>x.wrong>0)
+    .sort((a,b)=>b.wrong-a.wrong || a.correct-b.correct);
+  if(missed.length)return missed.slice(0,3);
+
+  const g=adaptiveState.skills.grammar;
+  const v=adaptiveState.skills.vocabulary;
+  return [{
+    skill:g.rating<=v.rating?'grammar':'vocabulary',
+    topic:g.rating<=v.rating?'Mixed grammar review':'Vocabulary in context',
+    wrong:0,total:0,correct:0
+  }];
+}
+
+function levelStudyRecommendation(skill,level){
+  const plans={
+    grammar:{
+      'A1':'Verb to be, articles, pronouns, and basic present simple.',
+      'A1+':'Present simple questions/negatives, past be, can, and basic sentence patterns.',
+      'A2':'Simple past, past continuous, comparatives, future forms, first conditional, and present perfect.',
+      'A2+':'Present perfect vs past, passive voice, second conditional, relative clauses, and more complex structures.'
+    },
+    vocabulary:{
+      'A1':'Family, school, food, places, weather, and daily routines.',
+      'A1+':'House, clothes, transport, hobbies, jobs, and common collocations.',
+      'A2':'Travel, health, shopping, personality, environment, and vocabulary in context.',
+      'A2+':'Phrasal verbs, word formation, collocations, feelings, work, and precise contextual vocabulary.'
+    }
+  };
+  return plans[skill]?.[level]||'Mixed review and contextual practice.';
+}
+
+function buildPersonalizedStudyPlan(grammarLevel,vocabularyLevel){
+  const priorities=diagnosticPriorities();
+  const p1=priorities[0];
+  const p2=priorities[1];
+
+  return `
+    <div class="studyPlanHeader">
+      <div>
+        <div class="pageEyebrow">YOUR NEXT LEARNING PATH</div>
+        <h3>Personalized Study Plan</h3>
+        <p class="small">Follow this sequence before taking the diagnostic again.</p>
+      </div>
+      <span class="planDuration">7–10 days</span>
+    </div>
+
+    <div class="studyPlanTimeline">
+      <div class="studyPlanStep">
+        <span class="planStepNumber">1</span>
+        <div><b>Review your first priority</b>
+        <p>${p1.skill==='grammar'?'🧩 Grammar':'🖼️ Vocabulary'} · ${p1.topic}</p>
+        <small>Complete one explanation and 6–8 focused practice items.</small></div>
+      </div>
+
+      <div class="studyPlanStep">
+        <span class="planStepNumber">2</span>
+        <div><b>Strengthen Grammar</b>
+        <p>${levelStudyRecommendation('grammar',grammarLevel)}</p>
+        <small>Two short sessions of 10–15 minutes.</small></div>
+      </div>
+
+      <div class="studyPlanStep">
+        <span class="planStepNumber">3</span>
+        <div><b>Strengthen Vocabulary</b>
+        <p>${levelStudyRecommendation('vocabulary',vocabularyLevel)}</p>
+        <small>Use flashcards, then write five original sentences.</small></div>
+      </div>
+
+      <div class="studyPlanStep">
+        <span class="planStepNumber">4</span>
+        <div><b>${p2?`Review your second priority: ${p2.topic}`:'Mixed challenge'}</b>
+        <p>${p2?`Practice ${p2.skill} in a new context.`:'Combine Grammar and Vocabulary in one mixed practice session.'}</p>
+        <small>Do not repeat the same questions from the diagnostic.</small></div>
+      </div>
+
+      <div class="studyPlanStep">
+        <span class="planStepNumber">5</span>
+        <div><b>Check your progress</b>
+        <p>Complete a mixed practice and review the Error Bank.</p>
+        <small>Then repeat the diagnostic after several days to compare your profile.</small></div>
+      </div>
+    </div>
+  `;
+}
+
+finishAdaptiveDiagnostic=function(){
+  if(adaptiveState.finished)return;
+  if(adaptiveState.total<adaptiveState.maxQuestions){
+    const live=document.getElementById('adaptiveLive');
+    if(live){
+      live.style.display='block';
+      live.className='feedback warn';
+      live.innerHTML=`<b>Keep going.</b> Complete all ${adaptiveState.maxQuestions} questions to unlock your results.`;
+    }
+    return;
+  }
+
+  adaptiveState.finished=true;
+
+  const g=adaptiveState.skills.grammar;
+  const v=adaptiveState.skills.vocabulary;
+  const grammarLevel=ratingToLevel(g.rating);
+  const vocabularyLevel=ratingToLevel(v.rating);
+  const overallLevel=ratingToLevel(adaptiveOverallRating());
+  const weak=weakestDiagnosticFocus();
+  const w=writingLocalIndicators();
+  const strengths=diagnosticStrengths();
+  const priorities=diagnosticPriorities();
+
+  const pl=document.getElementById('profileLevel');
+  const pn=document.getElementById('profileNext');
+  if(pl)pl.textContent=overallLevel;
+  if(pn)pn.textContent=priorities[0]?.topic||weak;
+
+  const evidence=adaptiveState.history.map((h,idx)=>`
+    <li><b>${idx+1}. ${h.skill==='grammar'?'Grammar':'Vocabulary'} · ${h.level} · ${h.topic}</b>
+    — ${h.ok?'✓ correct':'review needed'}</li>`).join('');
+
+  const strengthsHtml=strengths.length
+    ? strengths.map(x=>`<span class="resultChip goodChip">✓ ${x.topic}</span>`).join('')
+    : '<span class="resultChip">Keep practicing to build clear strengths.</span>';
+
+  const prioritiesHtml=priorities.map(x=>
+    `<span class="resultChip focusChip">→ ${x.skill==='grammar'?'Grammar':'Vocabulary'}: ${x.topic}</span>`
+  ).join('');
+
+  const aq=document.getElementById('adaptiveQuestion');
+  if(aq)aq.style.display='none';
+
+  const live=document.getElementById('adaptiveLive');
+  if(live)live.style.display='none';
+
+  const results=document.getElementById('adaptiveResults');
+  if(results){
+    results.style.display='block';
+    results.innerHTML=`
+      <div class="diagnosticResultHero">
+        <div>
+          <div class="pageEyebrow">ADAPTIVE DIAGNOSTIC COMPLETE</div>
+          <h2>Your English profile</h2>
+          <p>You completed all 20 questions. ROMI used your performance in Grammar and Vocabulary to create the profile below.</p>
+        </div>
+        <div class="overallResultBadge">
+          <span>Overall</span>
+          <b>${overallLevel}</b>
+        </div>
+      </div>
+
+      <div class="diagnosticResultsGrid diagnosticResultsLarge">
+        <div class="resultLevelCard">
+          <span>🧩 Grammar</span>
+          <b>${grammarLevel}</b>
+          <small>${g.correct}/${g.total} correct</small>
+          <div class="resultBar"><i style="width:${Math.round(g.correct/g.total*100)}%"></i></div>
+        </div>
+        <div class="resultLevelCard">
+          <span>🖼️ Vocabulary</span>
+          <b>${vocabularyLevel}</b>
+          <small>${v.correct}/${v.total} correct</small>
+          <div class="resultBar"><i style="width:${Math.round(v.correct/v.total*100)}%"></i></div>
+        </div>
+        <div class="resultLevelCard">
+          <span>🎯 Total performance</span>
+          <b>${adaptiveState.correct}/20</b>
+          <small>${Math.round(adaptiveState.correct/20*100)}% correct</small>
+          <div class="resultBar"><i style="width:${Math.round(adaptiveState.correct/20*100)}%"></i></div>
+        </div>
+      </div>
+
+      <div class="diagnosticInsightGrid">
+        <div class="resultInsightCard">
+          <h3>🌟 Strengths</h3>
+          <div class="resultChipWrap">${strengthsHtml}</div>
+        </div>
+        <div class="resultInsightCard">
+          <h3>🎯 Priorities</h3>
+          <div class="resultChipWrap">${prioritiesHtml}</div>
+        </div>
+      </div>
+
+      ${w.words?`
+      <div class="writingIndicatorBox">
+        <b>✍️ Writing observation</b>
+        <p>${w.words} words · ${w.connectors} connectors · ${w.past} past forms · ${w.future} future forms · ${w.pp} present-perfect attempts.</p>
+        <p class="small">${w.note}</p>
+      </div>`:''}
+
+      <div class="diagnosticStudyPlan">
+        ${buildPersonalizedStudyPlan(grammarLevel,vocabularyLevel)}
+      </div>
+
+      <details class="diagnosticEvidence">
+        <summary><b>See the 20-question evidence</b></summary>
+        <ul>${evidence}</ul>
+      </details>
+
+      <div class="resultActions">
+        <button class="btn" onclick="location.hash='practiceHub'">Start practicing</button>
+        <button class="btn secondary" onclick="location.hash='progressCenter'">View my progress</button>
+        <button class="btn secondary" onclick="resetDiagnostic()">Retake diagnostic</button>
+      </div>
+    `;
+    setTimeout(()=>results.scrollIntoView({behavior:'smooth',block:'start'}),100);
+  }
+
+  if(typeof makePlan==='function')makePlan(overallLevel,priorities[0]?.topic||weak);
+  if(typeof makeTeacherReport==='function')makeTeacherReport(overallLevel,adaptiveState.correct,w.words,priorities[0]?.topic||weak);
+
+  const ratingScore=r=>Math.round(clampAdaptive(20+r*18,25,94));
+  if(typeof setSkillScore==='function'){
+    setSkillScore('grammar',ratingScore(g.rating),g.total,g.correct);
+    setSkillScore('vocabulary',ratingScore(v.rating),v.total,v.correct);
+    if(w.words){
+      const punctuation=(document.getElementById('diagWriting').value.match(/[.!?]/g)||[]).length;
+      setSkillScore('writing',Math.min(92,28+Math.min(w.words,45)*.8+w.connectors*6+punctuation*3),1,1);
+    }
+  }
+
+  if(typeof romiState!=='undefined'){
+    romiState.diagnosticLevel=overallLevel;
+    romiState.lastSkill=g.rating<=v.rating?'grammar':'vocabulary';
+    if(typeof logActivity==='function'){
+      logActivity('grammar',`Adaptive diagnostic · ${grammarLevel}`);
+      logActivity('vocabulary',`Adaptive diagnostic · ${vocabularyLevel}`);
+    }
+    if(typeof saveRomiState==='function')saveRomiState();
+    if(typeof renderSkillCards==='function')renderSkillCards();
+    if(typeof renderProgressCenter==='function')renderProgressCenter();
+    if(typeof renderMission==='function')renderMission();
+  }
+
+  if(typeof setCoachMessage==='function'){
+    setCoachMessage('diagnostic','challenge',`Overall ${overallLevel}. Grammar ${grammarLevel}. Vocabulary ${vocabularyLevel}. Priority: ${priorities[0]?.topic||weak}.`);
+  }
+  addXP(20,'Diagnostic Starter');
+};
+
+scoreDiagnostic=function(){
+  if(adaptiveState.total<adaptiveState.maxQuestions){
+    const fb=document.getElementById('diagFeedback');
+    if(fb){
+      fb.style.display='block';
+      fb.className='feedback warn';
+      fb.innerHTML=`<b>Complete the diagnostic first.</b> You have answered ${adaptiveState.total} of ${adaptiveState.maxQuestions} questions.`;
+    }
+    return;
+  }
+  finishAdaptiveDiagnostic();
+};
+
+window.addEventListener('load',()=>setTimeout(()=>{
+  if(location.hash==='#diagnostic' || document.getElementById('diagArea')){
+    renderDiagnostic();
+  }
+},220));
 
 </script>
 
