@@ -118,9 +118,218 @@ body{padding-bottom:0}
 @media(max-width:900px){.coachChatLayout{grid-template-columns:1fr}.coachChatWindow{height:390px}.coachPlusHeader{display:block}.coachStatus{margin-top:8px}}
 @media(max-width:600px){.coachChatWindow{height:360px}.chatMsg{max-width:96%}.coachQuickBar{overflow-x:auto;flex-wrap:nowrap}.coachQuickBar button{white-space:nowrap}}
 
+
+/* ===== ROMI 2.0 APP SHELL ===== */
+:root{
+  --sidebarW:264px;
+  --sidebarMini:82px;
+  --appBg:#f4f8f8;
+  --panel:#ffffff;
+  --panel2:#f9fbfb;
+  --side:#082f3a;
+  --side2:#0d4654;
+  --sideText:#dff3f5;
+  --sideMuted:#8db4bc;
+  --accent:#d9b76f;
+  --accentSoft:#fff5da;
+  --appBorder:#dce7e8;
+  --appShadow:0 18px 45px rgba(7,43,53,.08);
+}
+html{scroll-behavior:auto}
+body{background:var(--appBg);min-height:100vh}
+body>.topbar{display:none!important}
+body>.hero{display:none!important}
+body>.bottomAppNav{display:none!important}
+.romiSidebar{
+  position:fixed;left:0;top:0;bottom:0;width:var(--sidebarW);z-index:100;
+  background:linear-gradient(180deg,var(--side),#062832 72%,#041f27);
+  color:var(--sideText);display:flex;flex-direction:column;padding:16px 12px;
+  box-shadow:10px 0 35px rgba(3,31,39,.12);transition:width .25s ease,transform .25s ease;
+}
+.sidebarTop{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 5px 14px}
+.sidebarBrand{display:flex;align-items:center;gap:11px;min-width:0}
+.sidebarLogo{width:44px;height:44px;border-radius:15px;background:linear-gradient(145deg,#fff,#dcebed);color:var(--petrol);display:grid;place-items:center;font-weight:1000;font-size:1.25rem;box-shadow:0 8px 22px rgba(0,0,0,.16);flex:0 0 auto}
+.sidebarBrandText{display:grid;min-width:0}.sidebarBrandText strong{font-size:1.05rem;color:#fff}.sidebarBrandText span{font-size:.7rem;color:var(--sideMuted);white-space:nowrap}
+.sidebarCollapse,.iconBtn{width:34px;height:34px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:#fff;border-radius:11px;cursor:pointer;font-size:1.25rem}
+.sidebarStudent{display:flex;align-items:center;gap:9px;margin:3px 4px 14px;padding:11px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)}
+.studentAvatar{width:34px;height:34px;border-radius:11px;background:rgba(217,183,111,.18);display:grid;place-items:center;flex:0 0 auto}
+.sidebarStudentText{display:grid;min-width:0;flex:1}.sidebarStudentText span{font-size:.67rem;color:var(--sideMuted)}.sidebarStudentText strong{font-size:.86rem;color:#fff;overflow:hidden;text-overflow:ellipsis}
+.onlineDot{width:8px;height:8px;background:#2dd179;border-radius:50%;box-shadow:0 0 0 4px rgba(45,209,121,.13)}
+.sidebarNav{flex:1;overflow:auto;padding:0 2px 10px;scrollbar-width:thin}
+.navGroupLabel{font-size:.61rem;letter-spacing:.11em;color:#668f98;font-weight:950;padding:12px 11px 6px}
+.sideLink,.sideAction{
+  display:flex;align-items:center;gap:11px;min-height:42px;padding:9px 11px;margin:3px 0;border-radius:13px;
+  color:#cae3e7;text-decoration:none;font-size:.84rem;font-weight:800;transition:.18s;background:transparent;border:0;width:100%;cursor:pointer;text-align:left
+}
+.sideLink>span,.sideAction>span{font-size:1.05rem;width:22px;text-align:center;flex:0 0 auto}
+.sideLink>b,.sideAction>b{font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sideLink:hover,.sideAction:hover{background:rgba(255,255,255,.075);color:#fff}
+.sideLink.active{background:linear-gradient(90deg,rgba(217,183,111,.22),rgba(255,255,255,.08));color:#fff;box-shadow:inset 3px 0 0 var(--accent)}
+.sideLink i,.sideLink em{margin-left:auto;font-style:normal;font-size:.57rem;border-radius:999px;padding:3px 6px;font-weight:1000}
+.sideLink i{background:#dff8ec;color:#117045}.sideLink em{background:rgba(255,255,255,.1);color:#9fc4ca}
+.sidebarBottom{border-top:1px solid rgba(255,255,255,.1);padding-top:9px}
+body.sidebar-collapsed .romiSidebar{width:var(--sidebarMini)}
+body.sidebar-collapsed .sidebarBrandText,
+body.sidebar-collapsed .sidebarStudentText,
+body.sidebar-collapsed .navGroupLabel,
+body.sidebar-collapsed .sideLink>b,
+body.sidebar-collapsed .sideAction>b,
+body.sidebar-collapsed .sideLink i,
+body.sidebar-collapsed .sideLink em,
+body.sidebar-collapsed .onlineDot{display:none}
+body.sidebar-collapsed .sidebarTop{justify-content:center;flex-wrap:wrap}
+body.sidebar-collapsed .sidebarBrand{justify-content:center}
+body.sidebar-collapsed .sidebarCollapse{transform:rotate(180deg)}
+body.sidebar-collapsed .sidebarStudent{justify-content:center;padding:9px}
+body.sidebar-collapsed .sideLink,body.sidebar-collapsed .sideAction{justify-content:center;padding:9px 5px}
+body.sidebar-collapsed .sideLink>span,body.sidebar-collapsed .sideAction>span{width:auto}
+
+body>.vnextDashboard,body>.skillOverview,body>main.wrap{
+  margin-left:var(--sidebarW);transition:margin-left .25s ease;
+}
+body.sidebar-collapsed>.vnextDashboard,body.sidebar-collapsed>.skillOverview,body.sidebar-collapsed>main.wrap{margin-left:var(--sidebarMini)}
+body>main.wrap{max-width:none;padding:20px 28px 42px}
+body>.vnextDashboard{max-width:none;padding:28px 28px 0}
+body>.skillOverview{max-width:none;padding:0 28px}
+.dashboardShell{max-width:1260px;margin:0 auto}
+.skillOverview .skillGrid{max-width:1260px;margin:0 auto}
+main.wrap>.section{max-width:1260px;margin:0 auto 24px}
+
+body.app-ready .appPage{display:none!important}
+body.app-ready .appPage.app-active{display:block!important;animation:pageIn .24s ease}
+@keyframes pageIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+body.app-ready .skillOverview.appPage.app-active{display:block!important}
+.section{border-radius:24px;box-shadow:var(--appShadow);border:1px solid var(--appBorder);background:var(--panel)}
+.section h2{letter-spacing:-.025em}
+.vnextDashboard.appPage{margin-top:0}
+.vnextDashboard .dashboardShell{border-radius:26px}
+.skillOverview.appPage{margin-top:15px;margin-bottom:24px}
+
+.romiMobileTop{display:none}
+.sidebarScrim{display:none}
+.pageEyebrow{font-size:.7rem;letter-spacing:.12em;font-weight:1000;color:#9b7b35;margin-bottom:6px}
+.knowledgeLibrary{overflow:hidden}
+.libraryHero{display:grid;grid-template-columns:1fr 180px;gap:22px;align-items:center;background:linear-gradient(135deg,#f5faf9,#fff6dd);border:1px solid var(--appBorder);border-radius:22px;padding:24px;margin-bottom:18px}
+.libraryIllustration{height:145px;border-radius:25px;background:linear-gradient(145deg,var(--petrol),#277388);color:white;display:grid;place-items:center;font-size:4rem;position:relative;box-shadow:0 14px 30px rgba(15,76,92,.2)}
+.libraryIllustration span{position:absolute;right:25px;bottom:20px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#493508;font-size:1.35rem;font-weight:1000}
+.libraryActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.libraryActions .btn:disabled{opacity:.55;cursor:not-allowed}
+.libraryPreviewCard{position:relative}.libraryFileIcon{font-size:1.8rem;margin-bottom:8px}.libraryTag{display:inline-flex;margin-top:7px;padding:5px 8px;border-radius:999px;background:#edf3f4;color:#60777d;font-size:.7rem;font-weight:900}
+.libraryRoadmap{display:flex;justify-content:space-between;gap:22px;align-items:center;margin-top:16px;background:#fbfdfd}
+.roadmapSteps{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.roadmapSteps span{padding:8px 10px;border-radius:11px;background:#edf5f5;color:var(--petrol);font-weight:900;font-size:.76rem}
+
+/* Better AI response rendering */
+.chatBubble .romiMdHeading{font-size:1.04rem;color:var(--petrol);margin:5px 0 7px;font-weight:1000}
+.chatBubble .romiMdP{margin:6px 0}
+.chatBubble .romiMdList{margin:7px 0 7px 20px;padding:0}.chatBubble .romiMdList li{margin:4px 0}
+.chatBubble .romiMdCode{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef4f5;border-radius:6px;padding:2px 5px;font-size:.88em}
+.chatBubble .romiMdTableWrap{overflow:auto;margin:10px 0;border:1px solid var(--line);border-radius:12px}
+.chatBubble .romiMdTable{border-collapse:collapse;width:100%;font-size:.82rem;background:#fff}
+.chatBubble .romiMdTable th,.chatBubble .romiMdTable td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+.chatBubble .romiMdTable th{background:#eef6f6;color:var(--petrol)}
+.chatBubble .romiMdRule{margin:8px 0;padding:9px 11px;border-left:4px solid var(--accent);background:#fff8e7;border-radius:8px}
+
+/* Dark mode */
+body.romi-dark{
+  --appBg:#071b22;--panel:#0e2931;--panel2:#12323b;--appBorder:#24454d;
+  --ink:#e8f3f4;--muted:#99b2b7;--line:#284950;--soft:#122f37;
+  background:var(--appBg);color:var(--ink);
+}
+body.romi-dark .section,body.romi-dark .card,body.romi-dark .missionCard,body.romi-dark .recommendCard,
+body.romi-dark .coachProfilePanel,body.romi-dark .coachChatPanel,body.romi-dark .skillCard{background:var(--panel);border-color:var(--appBorder);color:var(--ink)}
+body.romi-dark input,body.romi-dark textarea,body.romi-dark select{background:#0a222a;color:#e8f3f4;border-color:#31515a}
+body.romi-dark .coachChatWindow{background:#0b2229}
+body.romi-dark .chatBubble{background:#14333b;color:#edf7f8;border-color:#2b4b53}
+body.romi-dark .chatMsg.user .chatBubble{background:#176074}
+body.romi-dark .coachQuickBar,body.romi-dark .coachAskArea{background:#0e2931;border-color:#294850}
+body.romi-dark .coachQuickBar button{background:#16353e;color:#dff3f5;border-color:#31515a}
+body.romi-dark .libraryHero{background:linear-gradient(135deg,#102e36,#302a18)}
+body.romi-dark .progressSkill,body.romi-dark .errorItem,body.romi-dark .coachInsightBox{background:#102d35;border-color:#284a52;color:#eaf4f5}
+
+@media(max-width:900px){
+  .romiMobileTop{display:flex;position:sticky;top:0;z-index:95;height:62px;align-items:center;justify-content:space-between;padding:8px 13px;background:rgba(8,47,58,.96);backdrop-filter:blur(12px);color:#fff;box-shadow:0 6px 25px rgba(3,31,39,.16)}
+  .mobileBrand{display:flex;align-items:center;gap:9px}.mobileBrand>div{display:grid}.mobileBrand small{font-size:.63rem;color:#b7d3d7}.miniLogo{width:34px;height:34px;border-radius:11px;background:#fff;color:var(--petrol);display:grid;place-items:center;font-weight:1000}
+  .romiSidebar{transform:translateX(-105%);width:min(290px,86vw);z-index:120}
+  body.sidebar-mobile-open .romiSidebar{transform:translateX(0)}
+  .sidebarScrim{position:fixed;inset:0;background:rgba(0,20,25,.48);z-index:110}
+  body.sidebar-mobile-open .sidebarScrim{display:block}
+  body>.vnextDashboard,body>.skillOverview,body>main.wrap,
+  body.sidebar-collapsed>.vnextDashboard,body.sidebar-collapsed>.skillOverview,body.sidebar-collapsed>main.wrap{margin-left:0}
+  body>.vnextDashboard{padding:18px 13px 0}
+  body>.skillOverview{padding:0 13px}
+  body>main.wrap{padding:14px 13px 80px}
+  .libraryHero{grid-template-columns:1fr}.libraryIllustration{height:110px}
+  .libraryRoadmap{display:block}.roadmapSteps{justify-content:flex-start;margin-top:12px}
+  .coachDock{position:fixed!important;right:12px!important;bottom:12px!important;width:min(360px,calc(100vw - 24px))!important;margin:0!important}
+}
+@media(max-width:560px){
+  .dashboardShell{border-radius:20px}.section{border-radius:19px}
+  .libraryPreviewGrid{grid-template-columns:1fr!important}
+}
+
 </style>
 </head>
 <body>
+
+<div class="romiMobileTop">
+  <button class="iconBtn" onclick="toggleRomiSidebar(true)" aria-label="Open menu">☰</button>
+  <div class="mobileBrand"><span class="miniLogo">R</span><div><b>Romi</b><small>Your AI Learning Assistant</small></div></div>
+  <button class="iconBtn" onclick="toggleRomiTheme()" aria-label="Toggle theme">◐</button>
+</div>
+
+<div class="sidebarScrim" id="sidebarScrim" onclick="toggleRomiSidebar(false)"></div>
+
+<aside class="romiSidebar" id="romiSidebar">
+  <div class="sidebarTop">
+    <div class="sidebarBrand">
+      <div class="sidebarLogo">R</div>
+      <div class="sidebarBrandText">
+        <strong>Romi</strong>
+        <span>AI Learning Assistant</span>
+      </div>
+    </div>
+    <button class="sidebarCollapse" onclick="toggleSidebarCollapse()" title="Collapse sidebar">‹</button>
+  </div>
+
+  <div class="sidebarStudent">
+    <div class="studentAvatar">👋</div>
+    <div class="sidebarStudentText">
+      <span>Welcome back</span>
+      <strong id="sidebarStudentName">Student</strong>
+    </div>
+    <span class="onlineDot" title="AI connected"></span>
+  </div>
+
+  <nav class="sidebarNav" aria-label="Romi navigation">
+    <div class="navGroupLabel">OVERVIEW</div>
+    <a class="sideLink" data-route="home" href="#home"><span>🏠</span><b>Home</b></a>
+    <a class="sideLink" data-route="diagnostic" href="#diagnostic"><span>🧭</span><b>Diagnostic</b></a>
+    <a class="sideLink" data-route="practiceHub" href="#practiceHub"><span>🎯</span><b>Practice Hub</b></a>
+    <a class="sideLink" data-route="progressCenter" href="#progressCenter"><span>📈</span><b>My Progress</b></a>
+
+    <div class="navGroupLabel">LEARN & PRACTICE</div>
+    <a class="sideLink" data-route="grammar" href="#grammar"><span>🧩</span><b>Grammar</b></a>
+    <a class="sideLink" data-route="reading" href="#reading"><span>📚</span><b>Reading</b></a>
+    <a class="sideLink" data-route="strategies" href="#strategies"><span>🧠</span><b>Strategies</b></a>
+    <a class="sideLink" data-route="vocabulary" href="#vocabulary"><span>🖼️</span><b>Vocabulary</b></a>
+    <a class="sideLink" data-route="listening" href="#listening"><span>🎧</span><b>Listening</b></a>
+    <a class="sideLink" data-route="speaking" href="#speaking"><span>🎤</span><b>Speaking</b></a>
+    <a class="sideLink" data-route="writing" href="#writing"><span>✍️</span><b>Writing</b></a>
+
+    <div class="navGroupLabel">ROMI AI</div>
+    <a class="sideLink coachSideLink" data-route="coach" href="#coach"><span>🤖</span><b>Live Coach</b><i>AI</i></a>
+    <a class="sideLink" data-route="knowledgeLibrary" href="#knowledgeLibrary"><span>📁</span><b>Knowledge Library</b><em>SOON</em></a>
+
+    <div class="navGroupLabel">TEACHER</div>
+    <a class="sideLink" data-route="teacher" href="#teacher"><span>🧑‍🏫</span><b>Teacher Studio</b></a>
+  </nav>
+
+  <div class="sidebarBottom">
+    <button class="sideAction" onclick="toggleRomiTheme()"><span>◐</span><b>Appearance</b></button>
+    <button class="sideAction" onclick="location.hash='coach'"><span>✨</span><b>Ask Romi</b></button>
+  </div>
+</aside>
+
 <header class="topbar">
 <nav class="nav">
   <div class="brand">
@@ -318,6 +527,54 @@ body{padding-bottom:0}
 <section class="section" id="writing"><h2>Writing Analysis and Writing Practice</h2><p class="lead">Romi gives live-style feedback on coherence, cohesion, punctuation, word order, and grammar.</p><div class="grid g2"><div><textarea id="writingText" placeholder="Paste your writing here..."></textarea><br><button class="btn" onclick="analyzeWriting()">Analyze writing</button> <button class="btn secondary" onclick="showModelWriting()">Show model paragraph</button></div><div id="writingFeedback" class="feedback">Your feedback will appear here.</div></div><h3 style="margin-top:18px">10 Adaptive Writing Exercises</h3><div class="grid g2" id="writingTasks"></div></section>
 <section class="section" id="speaking"><h2>Speaking Activities</h2><p class="lead">One-minute challenges, pair work, roleplays, and pronunciation practice.</p><div class="grid g2"><div class="card"><h3>Speaking timer</h3><div class="timer" id="timer">01:00</div><button class="btn small" onclick="startTimer(60)">1 minute</button> <button class="btn small secondary" onclick="startTimer(45)">45 seconds</button> <button class="btn small secondary" onclick="stopTimer()">Stop</button></div><div class="card"><h3>Self-check</h3><label><input type="checkbox"> I used complete sentences.</label><br><label><input type="checkbox"> I used connectors.</label><br><label><input type="checkbox"> I used the correct tense.</label><br><label><input type="checkbox"> I spoke clearly.</label><br><button class="btn small green" onclick="addXP(10,'Speaking Brave Student')">Mark speaking complete</button></div></div><div class="grid g3" id="speakingTasks" style="margin-top:15px"></div></section>
 <section class="section" id="listening"><h2>Listening Practice A1–A2+</h2><p class="lead">Students can listen using the built-in voice button or the teacher can read the script twice. Each listening task includes comprehension exercises and instant feedback.</p><div class="notice"><b>How to use it:</b> Click “Listen”, answer the questions, then check your score. The script is hidden first to make the activity more realistic, but teachers can reveal it when needed.</div><div class="grid g2" id="listeningTasks"></div></section>
+
+<section class="section knowledgeLibrary" id="knowledgeLibrary">
+  <div class="pageEyebrow">COMING NEXT · ROMI KNOWLEDGE</div>
+  <div class="libraryHero">
+    <div>
+      <h2>Knowledge Library</h2>
+      <p class="lead">A dedicated space for your class materials. In the next stage, teachers will be able to upload PDF, DOCX, PPTX, and TXT files so Romi can answer questions using those materials.</p>
+      <div class="libraryActions">
+        <button class="btn" disabled>＋ Upload document</button>
+        <button class="btn secondary" disabled>Ask my materials</button>
+      </div>
+    </div>
+    <div class="libraryIllustration">📚<span>＋</span></div>
+  </div>
+
+  <div class="grid g3 libraryPreviewGrid">
+    <div class="card libraryPreviewCard">
+      <div class="libraryFileIcon">📄</div>
+      <h3>Class Materials</h3>
+      <p class="small">Slides, worksheets, readings, rubrics, and teacher notes organized by course and topic.</p>
+      <span class="libraryTag">Planned</span>
+    </div>
+    <div class="card libraryPreviewCard">
+      <div class="libraryFileIcon">🔎</div>
+      <h3>Ask Romi</h3>
+      <p class="small">Students will be able to ask questions and receive answers grounded in the uploaded materials.</p>
+      <span class="libraryTag">Planned</span>
+    </div>
+    <div class="card libraryPreviewCard">
+      <div class="libraryFileIcon">✨</div>
+      <h3>Create from Materials</h3>
+      <p class="small">Generate practice, quizzes, flashcards, exit tickets, and explanations from your own content.</p>
+      <span class="libraryTag">Planned</span>
+    </div>
+  </div>
+
+  <div class="card libraryRoadmap">
+    <div>
+      <span class="recommendBadge">NEXT DEVELOPMENT STAGE</span>
+      <h3>Document intelligence is prepared in the interface, but not enabled yet.</h3>
+      <p class="small">The next implementation will add secure file storage, text extraction, semantic search, source citations, and teacher-only upload permissions.</p>
+    </div>
+    <div class="roadmapSteps">
+      <span>1 · Upload</span><span>2 · Process</span><span>3 · Search</span><span>4 · Ask Romi</span>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="teacher"><h2>Teacher Mode</h2><p class="lead">Use this section to turn Romi into a classroom assistant.</p><div class="grid g2"><div class="card"><h3>Classroom Generator</h3><select id="classroomType"><option>Warm-up activity</option><option>Pair work</option><option>Exit ticket</option><option>Homework generator</option><option>Quiz generator</option><option>Speaking cards</option><option>Reading worksheet</option><option>Writing prompt</option></select><br><br><button class="btn" onclick="generateClassroom()">Generate</button></div><div class="card"><h3>Teacher Report</h3><div id="teacherReport" class="small">Complete the diagnostic to generate a report.</div></div></div><div id="classroomOutput" class="feedback" style="display:none"></div></section>
 </main>
 
@@ -1447,6 +1704,204 @@ function initCoachPlus(){
   updateCoachPlusInsights();
 }
 window.addEventListener('load',()=>setTimeout(initCoachPlus,80));
+
+
+/* ===== ROMI 2.0 APP NAVIGATION ===== */
+const ROMI_APP_ROUTES=[
+  'home','diagnostic','practiceHub','progressCenter','grammar','reading','strategies',
+  'vocabulary','listening','speaking','writing','coach','knowledgeLibrary','teacher'
+];
+
+function markRomiPages(){
+  ROMI_APP_ROUTES.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.classList.add('appPage');
+  });
+
+  const skills=document.querySelector('.skillOverview');
+  if(skills){
+    skills.classList.add('appPage');
+    skills.dataset.pageGroup='home';
+  }
+
+  const plan=document.getElementById('plan');
+  if(plan){
+    plan.classList.add('appPage');
+    plan.dataset.pageGroup='diagnostic';
+  }
+}
+
+function normalizeRomiRoute(route){
+  route=String(route||'').replace(/^#/,'');
+  if(route==='plan')return'diagnostic';
+  return ROMI_APP_ROUTES.includes(route)?route:'home';
+}
+
+function navigateRomiApp(route,options={}){
+  const target=normalizeRomiRoute(route);
+  document.body.classList.add('app-ready');
+
+  document.querySelectorAll('.appPage').forEach(el=>{
+    const show=el.id===target || el.dataset.pageGroup===target;
+    el.classList.toggle('app-active',show);
+  });
+
+  document.querySelectorAll('.sideLink').forEach(a=>{
+    a.classList.toggle('active',a.dataset.route===target);
+  });
+
+  if(!options.skipHash && location.hash!=='#'+target){
+    history.replaceState(null,'','#'+target);
+  }
+
+  if(window.innerWidth<=900)toggleRomiSidebar(false);
+
+  const active=document.getElementById(target);
+  if(active && !options.noScroll){
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+
+  try{localStorage.setItem('romi_last_route',target)}catch(e){}
+}
+
+function toggleSidebarCollapse(){
+  document.body.classList.toggle('sidebar-collapsed');
+  try{localStorage.setItem('romi_sidebar_collapsed',document.body.classList.contains('sidebar-collapsed')?'1':'0')}catch(e){}
+}
+
+function toggleRomiSidebar(open){
+  document.body.classList.toggle('sidebar-mobile-open',!!open);
+}
+
+function toggleRomiTheme(){
+  document.body.classList.toggle('romi-dark');
+  try{localStorage.setItem('romi_theme',document.body.classList.contains('romi-dark')?'dark':'light')}catch(e){}
+}
+
+function syncSidebarStudent(){
+  const el=document.getElementById('sidebarStudentName');
+  if(el)el.textContent=romiState?.studentName||'Student';
+}
+
+const _romi2RenderVNext=renderVNext;
+renderVNext=function(){
+  _romi2RenderVNext();
+  syncSidebarStudent();
+};
+
+/* Render common Markdown from Groq into clean student-friendly HTML */
+function mdInlineRomi(text){
+  let s=escapeStateText(String(text||''));
+  s=s.replace(/`([^`]+)`/g,'<span class="romiMdCode">$1</span>');
+  s=s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  s=s.replace(/\*([^*]+)\*/g,'<em>$1</em>');
+  return s;
+}
+
+function isMdTableSeparator(line){
+  const cleaned=String(line||'').trim();
+  return cleaned.includes('|') && /^[\s|:\-]+$/.test(cleaned);
+}
+
+function tableCells(line){
+  return String(line||'').trim().replace(/^\|/,'').replace(/\|$/,'').split('|').map(x=>x.trim());
+}
+
+formatCoachAIText=function(value){
+  const lines=String(value||'').replace(/\r/g,'').split('\n');
+  let out='',i=0,listType=null;
+
+  const closeList=()=>{
+    if(listType){out+=listType==='ul'?'</ul>':'</ol>';listType=null}
+  };
+
+  while(i<lines.length){
+    const raw=lines[i];
+    const line=raw.trim();
+
+    if(!line){closeList();i++;continue}
+
+    // Markdown table
+    if(line.includes('|') && i+1<lines.length && isMdTableSeparator(lines[i+1])){
+      closeList();
+      const headers=tableCells(line);
+      i+=2;
+      const rows=[];
+      while(i<lines.length && lines[i].trim().includes('|') && lines[i].trim()){
+        rows.push(tableCells(lines[i]));
+        i++;
+      }
+      out+='<div class="romiMdTableWrap"><table class="romiMdTable"><thead><tr>'+
+        headers.map(h=>'<th>'+mdInlineRomi(h)+'</th>').join('')+
+        '</tr></thead><tbody>'+
+        rows.map(r=>'<tr>'+r.map(c=>'<td>'+mdInlineRomi(c)+'</td>').join('')+'</tr>').join('')+
+        '</tbody></table></div>';
+      continue;
+    }
+
+    const heading=line.match(/^#{1,5}\s+(.+)/);
+    if(heading){
+      closeList();
+      out+='<div class="romiMdHeading">'+mdInlineRomi(heading[1])+'</div>';
+      i++;continue;
+    }
+
+    const bullet=line.match(/^[-•]\s+(.+)/);
+    if(bullet){
+      if(listType!=='ul'){closeList();out+='<ul class="romiMdList">';listType='ul'}
+      out+='<li>'+mdInlineRomi(bullet[1])+'</li>';
+      i++;continue;
+    }
+
+    const numbered=line.match(/^\d+[.)]\s+(.+)/);
+    if(numbered){
+      if(listType!=='ol'){closeList();out+='<ol class="romiMdList">';listType='ol'}
+      out+='<li>'+mdInlineRomi(numbered[1])+'</li>';
+      i++;continue;
+    }
+
+    closeList();
+    const looksRule=/^(rule|structure|remember|why|tip|example|common mistake|your turn)\s*:/i.test(line);
+    out+=(looksRule?'<div class="romiMdRule">':'<div class="romiMdP">')+mdInlineRomi(line)+'</div>';
+    i++;
+  }
+  closeList();
+  return out;
+};
+
+function initRomi2App(){
+  markRomiPages();
+
+  try{
+    if(localStorage.getItem('romi_sidebar_collapsed')==='1' && window.innerWidth>900){
+      document.body.classList.add('sidebar-collapsed');
+    }
+    if(localStorage.getItem('romi_theme')==='dark'){
+      document.body.classList.add('romi-dark');
+    }
+  }catch(e){}
+
+  const initial=location.hash ? normalizeRomiRoute(location.hash) :
+    (localStorage.getItem('romi_last_route') || 'home');
+  navigateRomiApp(initial,{skipHash:!location.hash,noScroll:true});
+
+  window.addEventListener('hashchange',()=>navigateRomiApp(location.hash,{skipHash:true,noScroll:true}));
+
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a[href^="#"]');
+    if(!a)return;
+    const id=a.getAttribute('href').slice(1);
+    if(ROMI_APP_ROUTES.includes(normalizeRomiRoute(id))){
+      e.preventDefault();
+      location.hash='#'+normalizeRomiRoute(id);
+      navigateRomiApp(id,{skipHash:true});
+    }
+  });
+
+  syncSidebarStudent();
+}
+
+window.addEventListener('load',()=>setTimeout(initRomi2App,120));
 
 </script>
 
