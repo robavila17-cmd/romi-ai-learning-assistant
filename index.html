@@ -236,9 +236,9 @@ body{padding-bottom:0}
     <div>
       <div class="kicker">ROMI LIVE COACH+</div>
       <h2>Ask Romi Anything About Your English</h2>
-      <p class="lead">Romi uses your saved CEFR profile, recent activities, current skill, and Error Bank to give personalized guidance. This version works locally in the browser without an external AI API.</p>
+      <p class="lead">Romi uses your saved CEFR profile, recent activities, current skill, and Error Bank to give personalized guidance. Open questions are answered through the secure ROMI AI service, with the local coach available as a backup.</p>
     </div>
-    <div class="coachStatus"><span class="statusDot"></span> Local Coach Active</div>
+    <div class="coachStatus" id="coachAIStatus"><span class="statusDot"></span> AI Coach Ready</div>
   </div>
 
   <div class="coachChatLayout">
@@ -304,7 +304,7 @@ body{padding-bottom:0}
         <span>Listening tips</span>
         <span>Speaking support</span>
       </div>
-      <p class="coachLocalNote">Romi Live Coach+ is a rule-based local tutor in this file. It can respond flexibly to supported EFL topics and your saved progress, but it is not a general-purpose generative AI model.</p>
+      <p class="coachLocalNote">Romi Live Coach+ is connected to the ROMI AI service for open-ended tutoring. If the AI service is temporarily unavailable, the built-in local coach automatically provides a backup response.</p>
     </div>
   </div>
 </section>
@@ -1219,20 +1219,132 @@ function showCoachTyping(){
   win.appendChild(d);win.scrollTop=win.scrollHeight;return d;
 }
 
-function sendCoachQuestion(questionOverride){
+const ROMI_AI_ENDPOINT='https://romi-api2.vercel.app/api/romi';
+
+function stripCoachHtml(value){
+  const d=document.createElement('div');
+  d.innerHTML=String(value||'');
+  return (d.textContent||d.innerText||'').trim();
+}
+
+function formatCoachAIText(value){
+  let safe=escapeStateText(String(value||''));
+  safe=safe.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+  safe=safe.replace(/\n{2,}/g,'<br><br>').replace(/\n/g,'<br>');
+  return safe;
+}
+
+function coachAPIProfile(){
+  const levelFor=(skill)=>{
+    const score=romiState?.skills?.[skill]?.score;
+    return scoreToCEFR(score);
+  };
+  return {
+    name: romiState.studentName || 'Student',
+    overallLevel: overallCEFR(),
+    grammar: levelFor('grammar'),
+    reading: levelFor('reading'),
+    listening: levelFor('listening'),
+    speaking: levelFor('speaking'),
+    writing: levelFor('writing'),
+    vocabulary: levelFor('vocabulary'),
+    currentSkill: romiState.lastSkill || 'General English',
+    currentTopic: romiCoachSession.lastTopic || romiState.lastSkill || 'General English',
+    errors: (romiState.errors||[]).slice(0,6).map(e=>({
+      skill:e.skill,
+      mistake:e.mistake,
+      correction:e.correction,
+      reason:e.reason,
+      count:e.count||1
+    }))
+  };
+}
+
+function coachAPIConversation(){
+  return (romiState.coachChat||[])
+    .slice(-6)
+    .map(m=>({
+      role:m.role==='user'?'user':'assistant',
+      content:stripCoachHtml(m.html)
+    }))
+    .filter(m=>m.content);
+}
+
+function setCoachAIStatus(text,mode='ready'){
+  const el=document.getElementById('coachAIStatus');
+  if(!el)return;
+  const labels={
+    ready:'AI Coach Ready',
+    thinking:'Romi is thinking…',
+    connected:'AI Coach Connected',
+    fallback:'Local Backup Active'
+  };
+  el.innerHTML=`<span class="statusDot"></span> ${labels[mode]||text||'AI Coach Ready'}`;
+}
+
+async function askRomiAI(question){
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),20000);
+  try{
+    const response=await fetch(ROMI_AI_ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        question,
+        profile:coachAPIProfile(),
+        conversation:coachAPIConversation()
+      }),
+      signal:controller.signal
+    });
+
+    let data={};
+    try{data=await response.json()}catch(e){}
+
+    if(!response.ok){
+      const message=data?.details?.error?.message || data?.error || `HTTP ${response.status}`;
+      throw new Error(message);
+    }
+
+    if(!data.answer)throw new Error('The AI service returned an empty answer.');
+    return data.answer;
+  }finally{
+    clearTimeout(timeout);
+  }
+}
+
+async function sendCoachQuestion(questionOverride){
   const input=document.getElementById('coachQuestionInput');
   const q=String(questionOverride??input?.value??'').trim();
   if(!q)return;
+
   appendCoachChat('user',escapeStateText(q));
   if(input)input.value='';
+
   const typing=showCoachTyping();
-  setTimeout(()=>{
+  setCoachAIStatus('', 'thinking');
+
+  try{
+    const aiAnswer=await askRomiAI(q);
     typing?.remove();
-    const answer=buildCoachAnswer(q);
-    romiCoachSession.lastAnswer=answer;
-    appendCoachChat('romi',answer);
-    updateCoachPlusInsights();
-  },260);
+
+    const formatted=formatCoachAIText(aiAnswer);
+    romiCoachSession.lastAnswer=formatted;
+    appendCoachChat('romi',formatted);
+    setCoachAIStatus('', 'connected');
+  }catch(error){
+    console.warn('ROMI AI unavailable. Using local coach.',error);
+    typing?.remove();
+
+    const localAnswer=buildCoachAnswer(q);
+    romiCoachSession.lastAnswer=localAnswer;
+    appendCoachChat(
+      'romi',
+      `${localAnswer}<div class="coachFeedbackCard"><b>Connection note:</b> I used my local backup because the AI service could not be reached.</div>`
+    );
+    setCoachAIStatus('', 'fallback');
+  }
+
+  updateCoachPlusInsights();
 }
 
 function askRomiPreset(q){
@@ -1265,7 +1377,7 @@ function seedCoachConversation(){
     return;
   }
   const name=romiState.studentName&&romiState.studentName!=='Student'?escapeStateText(romiState.studentName):'there';
-  appendCoachChat('romi',`Hi ${name}! 👋 I’m Romi Live Coach+. Ask me a question about English, your recent mistakes, your progress, or what you should practice next.`,true);
+  appendCoachChat('romi',`Hi ${name}! 👋 I’m Romi Live Coach+. I’m connected to the ROMI AI service, so you can ask me open-ended questions about English, your mistakes, your progress, or what you should practice next.`,true);
 }
 
 function updateCoachPlusInsights(){
