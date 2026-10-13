@@ -792,3 +792,46 @@ body.romi-dark .btn.secondary:hover{
   background:#21515e;
   color:#ffffff;
 }
+/* ===== ROMI 2.3 V5 — SPEAKING SELF-CHECK ALIGNMENT ===== */
+
+/* Organize each self-check line */
+#speaking .card:nth-child(2) label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 12px 0;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+/* Remove old manual line breaks */
+#speaking .card:nth-child(2) br {
+  display: none;
+}
+
+/* Prevent checkbox from inheriting input width:100% */
+#speaking input[type="checkbox"] {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px;
+  flex: 0 0 18px;
+
+  margin: 0;
+  padding: 0;
+
+  vertical-align: middle;
+  accent-color: var(--green);
+
+  cursor: pointer;
+}
+
+/* Better position for completion button */
+#speaking .card:nth-child(2) .btn {
+  margin-top: 10px;
+}
+
+/* Dark mode checkbox */
+body.romi-dark #speaking input[type="checkbox"] {
+  accent-color: var(--gold);
+}
