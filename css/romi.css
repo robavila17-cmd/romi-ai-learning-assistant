@@ -387,3 +387,150 @@ body.romi-dark .feedback.bad{
   color:#f6c7c7;
   border-color:#6d3438;
 }
+
+/* ===== ROMI 2.3 DARK MODE CONTRAST V2 ===== */
+body.romi-dark{
+  --darkPanel:#0f2c34;
+  --darkPanel2:#153842;
+  --darkBorder:#3b626b;
+  --darkText:#eef8f9;
+  --darkMuted:#b8cdd1;
+  --darkHeading:#f7fbfc;
+  --darkAccent:#f0c96c;
+}
+
+/* Main learning surfaces */
+body.romi-dark .section,
+body.romi-dark .card,
+body.romi-dark .strategyBox,
+body.romi-dark .readerText,
+body.romi-dark .question{
+  background:var(--darkPanel) !important;
+  border-color:var(--darkBorder) !important;
+  color:var(--darkText) !important;
+}
+
+/* Headings */
+body.romi-dark .section h2,
+body.romi-dark .section h3,
+body.romi-dark .card h3,
+body.romi-dark .strategyBox h3,
+body.romi-dark #grammarBox h3,
+body.romi-dark #grammarTabs + #grammarBox h3{
+  color:var(--darkHeading) !important;
+}
+
+/* Normal and muted text */
+body.romi-dark .section p,
+body.romi-dark .section li,
+body.romi-dark .strategyStep,
+body.romi-dark .readerText,
+body.romi-dark .question p{
+  color:var(--darkText) !important;
+}
+body.romi-dark .lead,
+body.romi-dark .small,
+body.romi-dark .mastery,
+body.romi-dark .section small{
+  color:var(--darkMuted) !important;
+}
+body.romi-dark .section b,
+body.romi-dark .card b,
+body.romi-dark .question b,
+body.romi-dark .readerText b{
+  color:#ffffff !important;
+}
+
+/* Grammar/lesson tabs */
+body.romi-dark .tab{
+  background:#12323b !important;
+  color:#d9ebee !important;
+  border-color:#416771 !important;
+}
+body.romi-dark .tab:hover{
+  background:#1b4450 !important;
+  color:#ffffff !important;
+  border-color:#6b929a !important;
+}
+body.romi-dark .tab.active{
+  background:#12637a !important;
+  color:#ffffff !important;
+  border-color:#3ca0b7 !important;
+  box-shadow:0 0 0 2px rgba(60,160,183,.15);
+}
+
+/* Practice question cards */
+body.romi-dark .question{
+  background:#122f37 !important;
+}
+body.romi-dark .question p{
+  color:#f1f8f9 !important;
+}
+
+/* Answer / secondary buttons */
+body.romi-dark .btn.secondary,
+body.romi-dark .question .btn.secondary,
+body.romi-dark .option{
+  background:#1a414b !important;
+  color:#ffffff !important;
+  border-color:#6a8d95 !important;
+}
+body.romi-dark .btn.secondary:hover,
+body.romi-dark .question .btn.secondary:hover,
+body.romi-dark .option:hover{
+  background:#245461 !important;
+  border-color:#8cb0b7 !important;
+}
+
+/* Form controls */
+body.romi-dark input,
+body.romi-dark textarea,
+body.romi-dark select{
+  background:#0b252d !important;
+  color:#f0f8f9 !important;
+  border-color:#557982 !important;
+}
+body.romi-dark input::placeholder,
+body.romi-dark textarea::placeholder{
+  color:#9fb8bd !important;
+  opacity:1;
+}
+body.romi-dark select option{
+  background:#102d35;
+  color:#eef8f9;
+}
+
+/* Notices and level badges */
+body.romi-dark .notice{
+  background:#3a311b !important;
+  color:#ffe9ad !important;
+  border-left-color:var(--darkAccent) !important;
+}
+body.romi-dark .notice b{
+  color:#fff3c8 !important;
+}
+body.romi-dark .pill.level{
+  background:#493c1b !important;
+  color:#ffe7a0 !important;
+  border:1px solid #775f24;
+}
+
+/* Numbered strategy steps */
+body.romi-dark .num{
+  background:#17667a !important;
+  color:#ffffff !important;
+}
+
+/* Correct / incorrect states keep strong semantic contrast */
+body.romi-dark .option.correct,
+body.romi-dark .choiceBtn.correct{
+  background:#123f31 !important;
+  color:#d5f6e5 !important;
+  border-color:#2f8a65 !important;
+}
+body.romi-dark .option.wrong,
+body.romi-dark .choiceBtn.wrong{
+  background:#48272a !important;
+  color:#ffd9dc !important;
+  border-color:#a8555c !important;
+}
