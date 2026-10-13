@@ -534,3 +534,136 @@ body.romi-dark .choiceBtn.wrong{
   color:#ffd9dc !important;
   border-color:#a8555c !important;
 }
+/* ===== ROMI 2.3 DARK MODE CONTRAST V3 =====
+   Focus: Vocabulary flashcards, skill overview, Live Coach markdown/tables.
+   Append this AFTER the V2 dark-mode patch.
+*/
+
+/* ---------- Vocabulary flashcards ---------- */
+body.romi-dark .flashFront,
+body.romi-dark .flashBack{
+  background:#14343d !important;
+  border-color:#42666f !important;
+  color:#eef8f9 !important;
+  box-shadow:0 8px 18px rgba(0,0,0,.18) !important;
+}
+body.romi-dark .flashBack{
+  background:linear-gradient(180deg,#173a44,#102d35) !important;
+}
+body.romi-dark .flashFront .wordTitle,
+body.romi-dark .flashBack .wordTitle,
+body.romi-dark .wordTitle{
+  color:#f7fbfc !important;
+}
+body.romi-dark .flashFront .sentence,
+body.romi-dark .flashBack .sentence,
+body.romi-dark .sentence{
+  color:#bfd2d6 !important;
+}
+body.romi-dark .flashFront .small,
+body.romi-dark .flashBack .small{
+  color:#b7cdd1 !important;
+}
+
+/* ---------- Skill overview cards ---------- */
+body.romi-dark .skillCard{
+  background:#102f38 !important;
+  border-color:#355962 !important;
+}
+body.romi-dark .skillName{
+  color:#eef8f9 !important;
+}
+body.romi-dark .skillLevel{
+  color:#dfeef1 !important;
+}
+body.romi-dark .skillBar{
+  background:#294950 !important;
+}
+body.romi-dark .mastery{
+  color:#d0e1e4 !important;
+}
+
+/* ---------- Live Coach: AI formatted content ---------- */
+body.romi-dark .chatBubble .romiMdHeading{
+  color:#f4d27d !important;
+}
+body.romi-dark .chatBubble .romiMdP,
+body.romi-dark .chatBubble .romiMdList,
+body.romi-dark .chatBubble .romiMdList li{
+  color:#eaf4f5 !important;
+}
+body.romi-dark .chatBubble .romiMdCode{
+  background:#0b252d !important;
+  color:#dff3f5 !important;
+  border:1px solid #355962 !important;
+}
+body.romi-dark .chatBubble .romiMdRule{
+  background:#332c1a !important;
+  color:#f8e4aa !important;
+  border-left-color:#d9b76f !important;
+}
+
+/* Coach tables: remove white/light table surfaces */
+body.romi-dark .chatBubble .romiMdTableWrap{
+  border-color:#42636b !important;
+  background:#102d35 !important;
+}
+body.romi-dark .chatBubble .romiMdTable{
+  background:#102d35 !important;
+  color:#eaf4f5 !important;
+}
+body.romi-dark .chatBubble .romiMdTable th{
+  background:#19414b !important;
+  color:#ffffff !important;
+  border-color:#42636b !important;
+}
+body.romi-dark .chatBubble .romiMdTable td{
+  background:#12323b !important;
+  color:#e7f2f4 !important;
+  border-color:#355962 !important;
+}
+body.romi-dark .chatBubble .romiMdTable tr:nth-child(even) td{
+  background:#153842 !important;
+}
+body.romi-dark .chatBubble .romiMdTable b,
+body.romi-dark .chatBubble .romiMdTable strong{
+  color:#ffffff !important;
+}
+body.romi-dark .chatBubble .romiMdTable em{
+  color:#d5e6e9 !important;
+}
+
+/* Coach panel / insights: slightly stronger separation */
+body.romi-dark .coachProfilePanel,
+body.romi-dark .coachChatPanel{
+  background:#0f2c34 !important;
+  border-color:#355962 !important;
+}
+body.romi-dark .coachInsightBox{
+  background:#12323b !important;
+  border-color:#355962 !important;
+  color:#eef8f9 !important;
+}
+body.romi-dark .coachInsightLabel{
+  color:#a9c4c9 !important;
+}
+body.romi-dark .coachQuickBar{
+  background:#102f38 !important;
+  border-color:#355962 !important;
+}
+body.romi-dark .coachQuickBar button{
+  background:#173b45 !important;
+  color:#eef8f9 !important;
+  border-color:#456b74 !important;
+}
+body.romi-dark .coachQuickBar button:hover{
+  background:#21515e !important;
+  color:#ffffff !important;
+}
+
+/* Keep ordinary coach assistant messages clearly separated from page background */
+body.romi-dark .chatMsg:not(.user) .chatBubble{
+  background:#173842 !important;
+  color:#eef8f9 !important;
+  border-color:#355962 !important;
+}
