@@ -318,3 +318,72 @@ body.romi-dark .focusChip{background:#403518;color:#f2d994}
   .diagnosticResultHero{grid-template-columns:1fr}.overallResultBadge{min-height:105px}
   .diagnosticInsightGrid{grid-template-columns:1fr}.studyPlanHeader{display:block}.planDuration{display:inline-flex;margin-top:5px}
 }
+
+/* ===== ROMI 2.3 HOTFIX: DARK MODE FOR LEGACY LEARNING PANELS ===== */
+body.romi-dark .strategyBox,
+body.romi-dark .readerText,
+body.romi-dark .question,
+body.romi-dark .option{
+  background:#102d35;
+  border-color:#31515a;
+  color:#e8f3f4;
+}
+
+body.romi-dark .strategyStep{
+  color:#dcecee;
+}
+
+body.romi-dark .section h2,
+body.romi-dark .section h3,
+body.romi-dark .strategyBox h3{
+  color:#dff3f5;
+}
+
+body.romi-dark .readerText b,
+body.romi-dark .strategyBox b,
+body.romi-dark .question b{
+  color:#f0f7f8;
+}
+
+body.romi-dark .option:hover{
+  background:#163943;
+}
+
+body.romi-dark .btn.secondary{
+  background:#16353e;
+  color:#e8f3f4;
+  border-color:#31515a;
+}
+
+body.romi-dark .pill{
+  background:#163943;
+  color:#dcecee;
+}
+
+body.romi-dark .pill.level{
+  background:#403518;
+  color:#f2d994;
+}
+
+body.romi-dark .highlight{
+  background:#403518;
+  color:#f2d994;
+}
+
+body.romi-dark .feedback.ok{
+  background:#123d2e;
+  color:#b8edd5;
+  border-color:#23614d;
+}
+
+body.romi-dark .feedback.warn{
+  background:#403518;
+  color:#f2d994;
+  border-color:#6b5725;
+}
+
+body.romi-dark .feedback.bad{
+  background:#3d2022;
+  color:#f6c7c7;
+  border-color:#6d3438;
+}
