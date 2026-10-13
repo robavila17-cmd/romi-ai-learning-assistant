@@ -667,3 +667,128 @@ body.romi-dark .chatMsg:not(.user) .chatBubble{
   color:#eef8f9 !important;
   border-color:#355962 !important;
 }
+/* ===== ROMI 2.3 DARK MODE CONTRAST V4 =====
+   Focus: floating Live Coach, speaking controls, selection highlight, form controls.
+   Append this AFTER V3.
+*/
+
+/* Use Romi's palette for browser text selection instead of electric blue */
+body.romi-dark ::selection{
+  background:#d9b76f;
+  color:#082f3a;
+}
+
+/* ---------- Speaking area ---------- */
+body.romi-dark #speaking .timer{
+  color:#f4d27d !important;
+  background:#102f38;
+  border:1px solid #355962;
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:12px;
+  line-height:1.05;
+}
+body.romi-dark #speaking .card{
+  background:#102f38 !important;
+  border-color:#355962 !important;
+}
+body.romi-dark #speaking label{
+  color:#eef8f9 !important;
+}
+body.romi-dark #speaking input[type="checkbox"]{
+  accent-color:#d9b76f;
+  width:16px;
+  height:16px;
+}
+body.romi-dark #speaking .btn.green{
+  background:#2f8059 !important;
+  color:#ffffff !important;
+  border:1px solid #4d9b76 !important;
+  box-shadow:none !important;
+}
+body.romi-dark #speaking .btn.green:hover{
+  background:#38956a !important;
+}
+body.romi-dark #speaking .btn.secondary{
+  background:#173842 !important;
+  color:#eef8f9 !important;
+  border-color:#54727a !important;
+}
+
+/* ---------- Floating Live Coach dock ---------- */
+body.romi-dark .coachMini{
+  background:#0f2c34 !important;
+  border-color:#7b6730 !important;
+  box-shadow:0 18px 45px rgba(0,0,0,.34) !important;
+}
+body.romi-dark .coachHead{
+  background:linear-gradient(135deg,#082f3a,#0e5362) !important;
+  color:#ffffff !important;
+  border-bottom:1px solid #355962;
+}
+body.romi-dark .coachHead .btn.secondary{
+  background:#173842 !important;
+  color:#f5fbfc !important;
+  border-color:#63808a !important;
+}
+body.romi-dark .coachBody{
+  background:#102f38 !important;
+  color:#eaf4f5 !important;
+}
+body.romi-dark #coachDockMessage,
+body.romi-dark #coachDockMessage .small,
+body.romi-dark #coachDockMessage b,
+body.romi-dark #coachDockMessage strong{
+  color:#eaf4f5 !important;
+}
+body.romi-dark #coachDockMessage b,
+body.romi-dark #coachDockMessage strong{
+  color:#f4d27d !important;
+}
+body.romi-dark .coachDockAsk input{
+  background:#0b252d !important;
+  color:#f0f8f9 !important;
+  border:1px solid #45656e !important;
+}
+body.romi-dark .coachDockAsk input::placeholder{
+  color:#9fb8bd !important;
+}
+body.romi-dark .coachDockAsk .btn{
+  background:#17667a !important;
+  color:#ffffff !important;
+  border:1px solid #318196 !important;
+}
+body.romi-dark .coachMood .moodBtn{
+  background:#173842 !important;
+  color:#eef8f9 !important;
+  border-color:#54727a !important;
+}
+body.romi-dark .coachMood .moodBtn:hover{
+  background:#21515e !important;
+  color:#ffffff !important;
+}
+body.romi-dark .coachFeedbackCard{
+  background:#12323b !important;
+  color:#dcecee !important;
+  border-left-color:#d9b76f !important;
+}
+
+/* ---------- Generic focus / active feedback ---------- */
+body.romi-dark button:focus-visible,
+body.romi-dark input:focus-visible,
+body.romi-dark textarea:focus-visible,
+body.romi-dark select:focus-visible{
+  outline:2px solid #d9b76f !important;
+  outline-offset:2px;
+}
+
+/* Keep compact secondary controls readable everywhere */
+body.romi-dark .btn.secondary{
+  background:#173842;
+  color:#eef8f9;
+  border-color:#54727a;
+}
+body.romi-dark .btn.secondary:hover{
+  background:#21515e;
+  color:#ffffff;
+}
