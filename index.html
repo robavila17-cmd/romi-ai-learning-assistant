@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Romi | Your AI Learning Assistant</title>
-  <link rel="stylesheet" href="./css/romi.css?v=2.3.5">
+  <link rel="stylesheet" href="./css/romi.css?v=2.3.6">
 </head>
 <body>
 
@@ -352,10 +352,10 @@
   </div>
 </div>
 
-  <script src="./data/diagnostic-bank.js?v=2.3.5"></script>
-<script src="./js/state.js?v=2.3.5"></script>
+  <script src="./data/diagnostic-bank.js?v=2.3.6"></script>
+<script src="./js/state.js?v=2.3.6"></script>
 <script>
-let xp=0, timer=null, vocabMode='flash', selectedAnswers={};
+let xp=0, timer=null, vocabMode='flash';
 /* diag moved to ./data/diagnostic-bank.js */
 const grammar=[
 {title:'Verb to be: Present',level:'A1',structure:'Subject + am/is/are + complement.',examples:['I am happy.','She is my teacher.','They are in class.'],mistake:['She are my friend.','She is my friend.'],practice:['My brother ___ tall.|am,is,are|1','They ___ students.|am,is,are|2','I ___ from Ecuador.|am,is,are|0']},
@@ -412,10 +412,7 @@ const listeningTasks=[
 {level:'A2+',title:'Community Weekend',script:'Last weekend, our neighborhood organized a clean-up day. Many students participated because they wanted a cleaner park. First, they collected plastic bottles. Then, they planted flowers near the playground. By the end of the day, they had filled twelve bags of trash.',questions:[{q:'Why did many students participate?',opts:['They wanted a cleaner park','They wanted to miss school','They wanted to sell flowers'],a:0},{q:'What did they do first?',opts:['They planted flowers','They collected plastic bottles','They painted the school'],a:1},{q:'How many bags of trash had they filled by the end?',opts:['Ten','Eleven','Twelve'],a:2}]}
 ];
 function init(){renderDiagnostic();renderGrammar();renderReadingTabs();renderReadings(readings);renderStrategySelectors();renderVocabSelect();renderVocab();renderWritingTasks();renderSpeaking();renderListening();}
-function renderDiagnostic(){document.getElementById('diagArea').innerHTML=diag.map((d,i)=>`<div class='question'><p><span class='pill level'>${d.level}</span> ${i+1}. ${d.q}</p>${d.opts.map((o,j)=>`<button class='option' onclick='selectDiag(${i},${j},this)'>${o}</button>`).join('')}</div>`).join('')}
-function selectDiag(i,j,btn){selectedAnswers[i]=j;[...btn.parentNode.querySelectorAll('.option')].forEach(b=>b.classList.remove('correct','wrong'));btn.classList.add(j===diag[i].a?'correct':'wrong');if(j===diag[i].a)addXP(2,'Diagnostic Starter')}
-function resetDiagnostic(){selectedAnswers={};document.getElementById('diagWriting').value='';document.getElementById('diagFeedback').style.display='none';renderDiagnostic();}
-function scoreDiagnostic(){let correct=0, skillMiss={};diag.forEach((d,i)=>{if(selectedAnswers[i]===d.a)correct++;else skillMiss[d.skill]=(skillMiss[d.skill]||0)+1});let text=document.getElementById('diagWriting').value.trim();let words=text?text.split(/\s+/).length:0;let connectors=(text.match(/\b(and|but|because|then|after that|first|finally|however|also)\b/gi)||[]).length;let past=(text.match(/\b(went|played|visited|was|were|had|did|made|studied)\b/gi)||[]).length;let future=(text.match(/\b(will|going to)\b/gi)||[]).length;let perf=correct+(words>=40)+(connectors>=2)+(past>=1)+(future>=1);let level=perf>=14?'A2+':perf>=11?'A2':perf>=8?'A1+':'A1';let weakest=Object.entries(skillMiss).sort((a,b)=>b[1]-a[1])[0]?.[0]||'longer writing';document.getElementById('profileLevel').textContent=level;document.getElementById('profileNext').textContent=weakest;let fb=document.getElementById('diagFeedback');fb.style.display='block';fb.className='feedback ok';fb.innerHTML=`<h3>Estimated level: ${level}</h3><p><b>Score:</b> ${correct}/12 objective answers. Writing indicators: ${words} words, ${connectors} connectors, ${past} past forms, ${future} future forms.</p><p><b>Recommended priority:</b> ${weakest}.</p><button class='btn small' onclick="location.hash='plan'">Go to my study plan</button>`;makePlan(level,weakest);makeTeacherReport(level,correct,words,weakest);addXP(20,'Diagnostic Starter')}
+/* Diagnostic UI and scoring moved to ./js/diagnostic.js */
 function makePlan(level,weak){let base={A1:['Verb to be present','School items flashcards','Reading: My School Bag','Writing: 5 sentences about me','Speaking: introduce yourself'], 'A1+':['Simple present routines','Daily routines flashcards','Reading: Ana’s Routine','Writing: my daily routine','Speaking: routine interview'], A2:['Simple past and future plans','Sports and hobbies flashcards','Reading: A Sports Day','Writing: last weekend','Speaking: invite a friend'], 'A2+':['Present perfect and connectors','Technology and feelings vocabulary','Reading: Learning through Hobbies','Writing: future self message','Speaking: opinion challenge']}[level];document.getElementById('studyPlan').innerHTML=base.map((b,i)=>`<div class='card'><h3>Step ${i+1}</h3><p>${b}</p><p class='small'>Focus: ${weak}</p></div>`).join('')}
 function renderGrammar(){document.getElementById('grammarTabs').innerHTML=grammar.map((g,i)=>`<button class='tab ${i?'':'active'}' onclick='showGrammar(${i},this)'>${g.title}</button>`).join('');showGrammar(0)}
 function showGrammar(i,btn){if(btn){document.querySelectorAll('#grammarTabs .tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active')}let g=grammar[i];document.getElementById('grammarBox').innerHTML=`<div class='grid g2'><div class='card'><h3>${g.title} <span class='pill level'>${g.level}</span></h3><p><b>Structure:</b> ${g.structure}</p><p><b>Examples:</b></p><ul>${g.examples.map(e=>`<li>${e}</li>`).join('')}</ul><div class='notice'><b>Common mistake:</b> ${g.mistake[0]} → <b>${g.mistake[1]}</b></div></div><div class='card'><h3>Practice</h3>${g.practice.map((p,k)=>{let [q,ops,a]=p.split('|');return `<div class='question'><p>${k+1}. ${q}</p>${ops.split(',').map((o,j)=>`<button class='btn small secondary' onclick='checkSmall(this,${j==a},"Grammar Starter")'>${o}</button>`).join(' ')}<div class='small'></div></div>`}).join('')}</div></div>`}
@@ -475,46 +472,7 @@ function addXP(n,b){xp+=n;document.getElementById('xp').textContent=xp+' XP';doc
 function makeTeacherReport(level,score,words,weak){document.getElementById('teacherReport').innerHTML=`<b>Estimated level:</b> ${level}<br><b>Objective score:</b> ${score}/12<br><b>Writing length:</b> ${words} words<br><b>Priority:</b> ${weak}<br><b>Recommended action:</b> assign one grammar micro-lesson, one linked reading strategy task, and one short writing exercise.`}
 function generateClassroom(){let type=document.getElementById('classroomType').value;let out={'Warm-up activity':'Ask 5 quick oral questions: name, age, routine, favorite sport, and one past action.','Pair work':'Student A interviews Student B about routines, hobbies, and last weekend. Then they switch roles.','Exit ticket':'Students write one sentence with simple present, one with simple past, and one with going to.','Homework generator':'Write a 70-word paragraph using 5 vocabulary words, 3 connectors, and at least 2 past verbs.','Quiz generator':'Create 10 items: verb to be, simple present, past, future, present perfect, and vocabulary.','Speaking cards':'Use Romi speaking tasks. Students choose one card and speak for 45 seconds.','Reading worksheet':'Choose a reading and a strategy. Students answer comprehension and complete the strategy task.','Writing prompt':'Write an email to your teacher about your English goals. Include present perfect and future forms.'};document.getElementById('classroomOutput').style.display='block';document.getElementById('classroomOutput').innerHTML=`<h3>${type}</h3><p>${out[type]}</p>`}
 
-/* === UPGRADE: Real adaptive diagnostic + specific writing corrections === */
-const adaptiveBank=[
-{d:1,level:'A1',skill:'verb to be present',q:'Choose the correct sentence.',opts:['I are student.','I am a student.','I is a student.'],a:1,why:'Use am with I. Correct form: I am a student.',next:'Verb to be present'},
-{d:1,level:'A1',skill:'vocabulary school items',q:'Which word is a school item?',opts:['ruler','swim','hungry'],a:0,why:'A ruler is an object students use at school.',next:'School items vocabulary'},
-{d:1,level:'A1',skill:'daily routines',q:'Complete: I ___ breakfast at 7:00.',opts:['have','has','having'],a:0,why:'Use the base verb with I: I have breakfast.',next:'Daily routines vocabulary'},
-{d:1,level:'A1',skill:'basic questions',q:'Choose the correct question.',opts:['Are you happy?','Is you happy?','You are happy?'],a:0,why:'In questions with be, put the verb before the subject: Are you happy?',next:'Question formation'},
-{d:2,level:'A1+',skill:'simple present third person',q:'Choose the correct sentence.',opts:['She play tennis.','She plays tennis.','She playing tennis.'],a:1,why:'In simple present, add -s with he/she/it: she plays.',next:'Simple present third person'},
-{d:2,level:'A1+',skill:'negative simple present',q:'Complete: He ___ like vegetables.',opts:['don’t','doesn’t','isn’t'],a:1,why:'Use does not / doesn’t with he, she, it.',next:'Simple present negatives'},
-{d:2,level:'A1+',skill:'past to be',q:'Complete: Yesterday, they ___ tired.',opts:['was','were','are'],a:1,why:'Use were with they in the past.',next:'Verb to be past'},
-{d:2,level:'A1+',skill:'word order',q:'Choose the best word order.',opts:['I always do homework.','Always I do homework.','I do always homework.'],a:0,why:'Frequency adverbs usually go before the main verb: I always do homework.',next:'Word order with adverbs'},
-{d:3,level:'A2',skill:'simple past irregular',q:'Choose the correct past sentence.',opts:['I goed to the park.','I went to the park.','I go to the park yesterday.'],a:1,why:'Go is irregular in the past: went.',next:'Simple past irregular verbs'},
-{d:3,level:'A2',skill:'simple past regular',q:'Complete: Last night, we ___ English.',opts:['study','studied','studies'],a:1,why:'Regular past verbs commonly end in -ed: studied.',next:'Simple past regular verbs'},
-{d:3,level:'A2',skill:'future going to',q:'Choose the correct future plan.',opts:['I going to study.','I am going to study.','I studied tomorrow.'],a:1,why:'Use be + going to + base verb: I am going to study.',next:'Future with going to'},
-{d:3,level:'A2',skill:'cohesion',q:'Choose the best connector.',opts:['I was late because I missed the bus.','I was late but I missed the bus.','I was late or I missed the bus.'],a:0,why:'Because introduces a reason.',next:'Connectors: because, but, so'},
-{d:4,level:'A2+',skill:'present perfect',q:'Choose the correct present perfect sentence.',opts:['She has finished her project.','She have finished her project.','She finished tomorrow.'],a:0,why:'Use has + past participle with he/she/it.',next:'Present perfect'},
-{d:4,level:'A2+',skill:'present perfect experience',q:'Complete: I have ___ sushi before.',opts:['eat','ate','eaten'],a:2,why:'The past participle of eat is eaten.',next:'Past participles'},
-{d:4,level:'A2+',skill:'complex sentence',q:'Choose the clearest sentence.',opts:['Although it rained, we played indoors.','Although rain, we played indoor.','It rained because we played indoors.'],a:0,why:'Although connects a contrast clearly: Although it rained, we played indoors.',next:'Complex sentences'},
-{d:4,level:'A2+',skill:'reading inference',q:'A student says: “I have practiced every day, but I still feel nervous.” What can you infer?',opts:['The student is trying to improve.','The student never practices.','The student hates English.'],a:0,why:'The sentence shows effort and emotion, so the best inference is that the student is trying to improve.',next:'Reading inference'}
-];
-/* romiUploadedDiagnosticBank moved to ./data/diagnostic-bank.js */
-
-function diagnosticBankStats(){
-  const bank=romiUploadedDiagnosticBank||[];
-  const grammar=bank.filter(x=>x.skill==='grammar').length;
-  const vocabulary=bank.filter(x=>x.skill==='vocabulary').length;
-  const official=bank.filter(x=>x.answerStatus==='source_key').length;
-  const review=bank.filter(x=>x.answerStatus!=='source_key').length;
-  return {total:bank.length,grammar,vocabulary,official,review};
-}
-
-let adaptiveState={current:2,asked:[],correct:0,total:0,streak:0,misses:{},history:[],finished:false};
-function levelFromDifficulty(avg,accuracy){if(avg>=3.55&&accuracy>=.68)return 'A2+';if(avg>=2.75&&accuracy>=.6)return 'A2';if(avg>=1.85&&accuracy>=.52)return 'A1+';return 'A1'}
-function pickAdaptiveQuestion(){let candidates=adaptiveBank.filter(q=>q.d===adaptiveState.current&&!adaptiveState.asked.includes(q.q));if(!candidates.length){candidates=adaptiveBank.filter(q=>!adaptiveState.asked.includes(q.q));}return candidates[Math.floor(Math.random()*candidates.length)]}
-function renderDiagnostic(){adaptiveState={current:2,asked:[],correct:0,total:0,streak:0,misses:{},history:[],finished:false};document.getElementById('diagArea').innerHTML=`<div class='liveBox'><h3>Real Adaptive Diagnostic Mode</h3><p>This test changes after every answer. Correct answers unlock more difficult questions; incorrect answers bring support questions and show the exact skill to review.</p><div class='adaptiveStatus'><div><span class='small'>Current challenge</span><b id='adDiff'>A1+</b></div><div><span class='small'>Answered</span><b id='adTotal'>0</b></div><div><span class='small'>Live accuracy</span><b id='adAcc'>0%</b></div><div><span class='small'>Live estimate</span><b id='adEstimate'>Not ready</b></div></div><div id='adaptiveQuestion'></div><div id='adaptiveLive' class='feedback' style='display:none'></div></div>`;showAdaptiveQuestion()}
-function showAdaptiveQuestion(){if(adaptiveState.total>=10){finishAdaptiveDiagnostic();return}let q=pickAdaptiveQuestion();adaptiveState.active=q;adaptiveState.asked.push(q.q);let label={1:'A1',2:'A1+',3:'A2',4:'A2+'}[adaptiveState.current];document.getElementById('adDiff').textContent=label;document.getElementById('adaptiveQuestion').innerHTML=`<div class='question'><p><span class='pill level'>${q.level}</span> Question ${adaptiveState.total+1}/10 · <b>${q.skill}</b></p><h3>${q.q}</h3>${q.opts.map((o,i)=>`<button class='choiceBtn' onclick='answerAdaptive(${i},this)'>${o}</button>`).join('')}</div>`;updateAdaptiveStatus()}
-function answerAdaptive(i,btn){let q=adaptiveState.active, ok=i===q.a;[...btn.parentNode.querySelectorAll('.choiceBtn')].forEach((b,idx)=>{b.disabled=true;if(idx===q.a)b.classList.add('correct')});if(!ok)btn.classList.add('wrong');adaptiveState.total++;if(ok){adaptiveState.correct++;adaptiveState.streak++;if(adaptiveState.streak>=2&&adaptiveState.current<4){adaptiveState.current++;adaptiveState.streak=0}}else{adaptiveState.streak=0;adaptiveState.misses[q.skill]=(adaptiveState.misses[q.skill]||0)+1;if(adaptiveState.current>1)adaptiveState.current--}adaptiveState.history.push({skill:q.skill,level:q.level,d:q.d,ok,why:q.why,next:q.next});let accuracy=adaptiveState.correct/adaptiveState.total;let avg=adaptiveState.history.reduce((a,b)=>a+b.d,0)/adaptiveState.history.length;let estimate=levelFromDifficulty(avg,accuracy);document.getElementById('adaptiveLive').style.display='block';document.getElementById('adaptiveLive').className='feedback '+(ok?'ok':'warn');document.getElementById('adaptiveLive').innerHTML=`<h3>${ok?'✅ Correct — moving forward':'🟡 Not yet — adapting the next question'}</h3><p><b>Explanation:</b> ${q.why}</p><p><b>Live estimate:</b> ${estimate}. <b>Next focus:</b> ${ok?'a slightly higher challenge':q.next}.</p><button class='btn small' onclick='showAdaptiveQuestion()'>Next adaptive question</button>`;document.getElementById('adEstimate').textContent=estimate;updateAdaptiveStatus();if(ok)addXP(4,'Diagnostic Starter')}
-function updateAdaptiveStatus(){let acc=adaptiveState.total?Math.round(100*adaptiveState.correct/adaptiveState.total):0;document.getElementById('adTotal').textContent=adaptiveState.total+'/10';document.getElementById('adAcc').textContent=acc+'%'}
-function resetDiagnostic(){document.getElementById('diagWriting').value='';document.getElementById('diagFeedback').style.display='none';renderDiagnostic()}
-function finishAdaptiveDiagnostic(){adaptiveState.finished=true;let avg=adaptiveState.history.length?adaptiveState.history.reduce((a,b)=>a+b.d,0)/adaptiveState.history.length:1;let accuracy=adaptiveState.total?adaptiveState.correct/adaptiveState.total:0;let objectiveLevel=levelFromDifficulty(avg,accuracy);let text=document.getElementById('diagWriting').value.trim();let words=text?text.split(/\s+/).filter(Boolean).length:0;let connectors=(text.match(/\b(and|but|because|then|after that|first|finally|however|also|although|so)\b/gi)||[]).length;let past=(text.match(/\b(went|played|visited|was|were|had|did|made|studied|saw|ate|read|worked|watched)\b/gi)||[]).length;let future=(text.match(/\b(will|going to|am going to|is going to|are going to)\b/gi)||[]).length;let pp=(text.match(/\b(have|has)\s+\w+(ed|en)\b/gi)||[]).length;let bonus=(words>=35)+(connectors>=2)+(past>=1)+(future>=1)+(pp>=1);let level=objectiveLevel;if(objectiveLevel==='A1'&&bonus>=3)level='A1+';else if(objectiveLevel==='A1+'&&bonus>=4)level='A2';else if(objectiveLevel==='A2'&&bonus>=5)level='A2+';let weak=Object.entries(adaptiveState.misses).sort((a,b)=>b[1]-a[1])[0]?.[0]||'fluency and longer production';document.getElementById('profileLevel').textContent=level;document.getElementById('profileNext').textContent=weak;let list=adaptiveState.history.map((h,idx)=>`<li>${idx+1}. ${h.skill}: ${h.ok?'correct':'review needed'} — ${h.why}</li>`).join('');document.getElementById('adaptiveQuestion').innerHTML=`<h3>Adaptive diagnostic completed</h3><p>The test adjusted difficulty after each answer and combined objective performance with the writing sample.</p>`;let fb=document.getElementById('diagFeedback');fb.style.display='block';fb.className='feedback ok';fb.innerHTML=`<h3>Estimated level: ${level}</h3><p><b>Objective performance:</b> ${adaptiveState.correct}/${adaptiveState.total}. <b>Adaptive average difficulty:</b> ${avg.toFixed(1)}/4. <b>Writing indicators:</b> ${words} words, ${connectors} connectors, ${past} past forms, ${future} future forms, ${pp} present perfect attempts.</p><p><b>Recommended priority:</b> ${weak}.</p><details><summary><b>See diagnostic evidence</b></summary><ul>${list}</ul></details><button class='btn small' onclick="location.hash='plan'">Go to my study plan</button>`;makePlan(level,weak);makeTeacherReport(level,adaptiveState.correct,words,weak);addXP(20,'Diagnostic Starter')}
-function scoreDiagnostic(){finishAdaptiveDiagnostic()}
+/* Adaptive diagnostic engine moved to ./js/diagnostic.js */
 function escapeHtml(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
 function makeCorrections(text){let issues=[];let corrected=text;
 const rules=[
@@ -585,8 +543,6 @@ const _oldCheckStrategy=checkStrategy; checkStrategy=function(){_oldCheckStrateg
 const _oldSentenceFeedback=sentenceFeedback; sentenceFeedback=function(input){_oldSentenceFeedback(input); const ok=input.value.trim().split(/\s+/).length>=5&&/[.!?]$/.test(input.value.trim()); setCoachMessage('vocabulary',ok?'good':'review',ok?'Good sentence. Try to add one adjective or connector.':'Use at least five words and finish with punctuation.');};
 const _oldAnalyzeWriting=analyzeWriting; analyzeWriting=function(){_oldAnalyzeWriting(); const t=document.getElementById('writingText')?.value||''; const issueCount=(document.querySelectorAll('#writingFeedback .correctionTable tr').length-1)||0; setCoachMessage('writing',issueCount>1?'review':'good',issueCount>1?'Study the correction table: mistake, correction, focus, and reason. Then rewrite the paragraph.':'Nice work. Add richer vocabulary or try a higher-level tense.');};
 const _oldAddXP=addXP; addXP=function(n,b){_oldAddXP(n,b); if(b&&/Speaking/.test(b))setCoachMessage('speaking','good','You completed a speaking task. Next time, record yourself and check clarity, tense, and connectors.');};
-const _oldAnswerAdaptive=answerAdaptive; answerAdaptive=function(i,btn){const q=adaptiveState.active; const ok=i===q.a; _oldAnswerAdaptive(i,btn); setCoachMessage('diagnostic',ok?'good':'review',ok?'Your answer was correct, so the diagnostic may increase the difficulty.':'Review '+q.skill+'. The next question may become easier to locate your true level.');};
-const _oldFinishAdaptiveDiagnostic=finishAdaptiveDiagnostic; finishAdaptiveDiagnostic=function(){_oldFinishAdaptiveDiagnostic(); const level=document.getElementById('profileLevel')?.textContent||'your current level'; const focus=document.getElementById('profileNext')?.textContent||'your next skill'; setCoachMessage('diagnostic','challenge','Your estimated level is '+level+'. Your priority is '+focus+'. Follow the personalized study plan.');};
 const _oldCheckListening=checkListening; checkListening=function(i){_oldCheckListening(i); const fb=document.getElementById('listenFb'+i)?.textContent||''; const good=/Excellent|Good/.test(fb); setCoachMessage('listening',good?'good':'review',good?'Good listening score. Now reveal the script and underline the evidence.':'Listen again, focus on key words, then check the script for evidence.');};
 
 window.onload=init;
@@ -763,42 +719,7 @@ addXP=function(n,b){
   }
 };
 
-/* Diagnostic: record each adaptive result and build initial skill profile */
-const _vnextAnswerAdaptive=answerAdaptive;
-answerAdaptive=function(i,btn){
-  const q=adaptiveState.active;const ok=i===q.a;
-  _vnextAnswerAdaptive(i,btn);
-  const mapped=/reading/i.test(q.skill)?'reading':'grammar';
-  updateSkillScore(mapped,ok,1.15);
-  if(!ok)recordError(mapped,q.opts[i],q.opts[q.a],q.why);
-};
-const _vnextFinishAdaptive=finishAdaptiveDiagnostic;
-finishAdaptiveDiagnostic=function(){
-  _vnextFinishAdaptive();
-  const level=document.getElementById('profileLevel')?.textContent||'A1';
-  romiState.diagnosticLevel=level;
-
-  const gh=adaptiveState.history.filter(h=>!/reading/i.test(h.skill));
-  if(gh.length){
-    const acc=gh.filter(h=>h.ok).length/gh.length;
-    const avg=gh.reduce((a,b)=>a+b.d,0)/gh.length;
-    setSkillScore('grammar',Math.round(25+acc*48+avg*7),gh.length,gh.filter(h=>h.ok).length);
-  }
-  const rh=adaptiveState.history.filter(h=>/reading/i.test(h.skill));
-  if(rh.length){
-    const acc=rh.filter(h=>h.ok).length/rh.length;
-    setSkillScore('reading',Math.round(32+acc*58),rh.length,rh.filter(h=>h.ok).length);
-  }
-  const wt=document.getElementById('diagWriting')?.value.trim()||'';
-  if(wt){
-    const words=wt.split(/\s+/).filter(Boolean).length;
-    const connectors=(wt.match(/\b(and|but|because|then|after that|first|finally|however|also|although|so)\b/gi)||[]).length;
-    const punctuation=(wt.match(/[.!?]/g)||[]).length;
-    setSkillScore('writing',Math.min(92,28+Math.min(words,45)*.8+connectors*6+punctuation*3),1,1);
-  }
-  logActivity('grammar',`Completed adaptive diagnostic · ${level}`);
-  saveRomiState();renderVNext();
-};
+/* Diagnostic state/progress integration moved to ./js/diagnostic.js */
 
 /* Contextual Romi Live Coach: follows the section the student is using */
 function initContextualCoach(){
@@ -1426,8 +1347,8 @@ formatCoachAIText=function(value){
 
 
 </script>
-<script src="./js/diagnostic.js?v=2.3.5"></script>
-<script src="./js/navigation.js?v=2.3.5"></script>
+<script src="./js/diagnostic.js?v=2.3.6"></script>
+<script src="./js/navigation.js?v=2.3.6"></script>
 
 <nav class="bottomAppNav" aria-label="Mobile app navigation">
   <a href="#home"><span>🏠</span>Home</a>
